@@ -39,15 +39,18 @@ class GherkinEditor extends Component {
     value: this.props.initialValue
   }
 
-  reactAceRef = React.createRef()
+  constructor (props) {
+    super(props)
+    this.AceEditorRef = null
+  }
 
-  /**
-   * Get the low level ace editor
-   * @return {Object}
-   */
   get ace () {
-    const { editor } = this.reactAceRef.current
+    const { editor } = this.AceEditorRef
     return editor
+  }
+
+  setAceEditorRef = aceEditor => {
+    this.AceEditorRef = aceEditor
   }
 
   componentDidMount () {
@@ -71,7 +74,7 @@ class GherkinEditor extends Component {
       <Fragment>
         <AceEditor
           {...this.props}
-          ref={this.reactAceRef}
+          ref={this.setAceEditorRef}
           mode='gherkin'
           value={value}
           name={uniqueId}
