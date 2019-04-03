@@ -26,5 +26,9 @@
     "calculate-size": "^1.1.1",
     "lodash": "^4.17.11",
     "react-ace": "^6.4.0"
+  },
+  "peerDependencies": {
+    "react": "^15.0.1 || ^16.0.0",
+    "react-dom": "^15.0.1 || ^16.0.0"
   }
 }
