@@ -4,6 +4,7 @@
   "main": "build/GherkinEditor.js",
   "author": "SmartBear Software",
   "license": "UNLICENSED",
+  "private": true,
   "scripts": {
     "prepare": "neutrino build",
     "build": "neutrino build",
