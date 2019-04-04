@@ -5,12 +5,12 @@ import AceEditor from 'react-ace'
 
 describe('<GherkinEditor />', () => {
   it('renders <AceEditor />', () => {
-    const wrapper = shallow(<GherkinEditor onValueChange={() => {}} />)
+    const wrapper = shallow(<GherkinEditor />)
     expect(wrapper.find(AceEditor)).toBeTruthy()
   })
 
   it('keeps track of the AceEditor ref', () => {
-    const wrapper = mount(<GherkinEditor onValueChange={() => {}} />)
+    const wrapper = mount(<GherkinEditor />)
     const { AceEditorRef } = wrapper.instance()
     expect(AceEditorRef).toBeTruthy()
   })
@@ -25,7 +25,7 @@ describe('<GherkinEditor />', () => {
 
   describe('get ace', () => {
     it('returns the low level ace editor', () => {
-      const wrapper = mount(<GherkinEditor onValueChange={() => {}} />)
+      const wrapper = mount(<GherkinEditor />)
       const { ace } = wrapper.instance()
       expect(ace).toBeDefined()
       // TODO: find an easy way to assert a real Ace object

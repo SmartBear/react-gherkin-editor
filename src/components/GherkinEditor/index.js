@@ -12,7 +12,7 @@ class GherkinEditor extends Component {
   static propTypes = {
     initialValue: PropTypes.string,
     uniqueId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    onValueChange: PropTypes.func.isRequired,
+    onValueChange: PropTypes.func,
     autoCompleteFunction: PropTypes.func
   }
 
@@ -21,6 +21,7 @@ class GherkinEditor extends Component {
     uniqueId: Math.random()
       .toString(36)
       .substr(2, 9),
+    onValueChange: () => {},
     autoCompleteFunction: () => Promise.resolve([]),
     theme: 'jira',
     width: '100%',
