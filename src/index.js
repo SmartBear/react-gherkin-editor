@@ -45,7 +45,7 @@ const onValueChange = console.log
 const autoCompleteFunction = (_keyword, text) => {
   const matches = steps.filter(step => step.startsWith(text))
   const completions = matches.map(match => ({
-    name: match,
+    caption: match,
     value: match,
     score: Math.floor(Math.random() * Math.floor(100)),
     meta: 'Step'

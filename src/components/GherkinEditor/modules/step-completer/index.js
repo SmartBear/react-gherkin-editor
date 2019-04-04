@@ -1,8 +1,6 @@
 import _ from 'lodash'
 import calculateSize from 'calculate-size'
-
-// TODO: Should handle I18n
-const StepKeywords = ['Given', 'When', 'Then', 'And', 'But']
+import { stepLevelKeywords } from '../keyword-completer'
 
 class StepCompleter {
   constructor (autoCompleteFunction) {
@@ -15,7 +13,7 @@ class StepCompleter {
       .trim()
       .split(' ')
 
-    if (lineTokens.length > 1 && StepKeywords.includes(lineTokens[0])) {
+    if (lineTokens.length > 1 && stepLevelKeywords.includes(lineTokens[0])) {
       const keyword = lineTokens.shift()
       const text = lineTokens.join(' ')
       try {
@@ -34,7 +32,7 @@ class StepCompleter {
       return
     }
 
-    const strings = _.map(completions, 'name')
+    const strings = _.map(completions, 'caption')
     const longestString = _.orderBy(strings, 'length', 'desc').shift()
     const width = this._calculateVisualLength(editor, longestString)
     editor.completer.popup.container.style.width = `${width + 50}px`

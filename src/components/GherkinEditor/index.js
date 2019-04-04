@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AceEditor from 'react-ace'
 import Brace from 'brace'
+import KeywordCompleter from './modules/keyword-completer'
 import StepCompleter from './modules/step-completer'
 import './themes/jira'
 import 'brace/mode/gherkin'
@@ -29,6 +30,7 @@ class GherkinEditor extends Component {
     highlightActiveLine: true,
     setOptions: {
       fontFamily: `'SFMono-Medium', 'SF Mono', 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Mono', Menlo, Consolas, Courier, monospace`,
+      enableBasicAutocompletion: true,
       enableLiveAutocompletion: true,
       showLineNumbers: true,
       displayIndentGuides: true,
@@ -55,9 +57,10 @@ class GherkinEditor extends Component {
 
   componentDidMount () {
     const { autoCompleteFunction } = this.props
-    const gherkinStepsCompleter = new StepCompleter(autoCompleteFunction)
+    const keywordCompleter = new KeywordCompleter()
+    const stepCompleter = new StepCompleter(autoCompleteFunction)
     const langTools = Brace.acequire('ace/ext/language_tools')
-    langTools.addCompleter(gherkinStepsCompleter)
+    langTools.setCompleters([keywordCompleter, stepCompleter])
   }
 
   onChange = newValue => {

@@ -57,5 +57,22 @@ describe('StepCompleter class', () => {
       expect(autoCompleteFunctionMock).not.toHaveBeenCalled()
       expect(callBackMock).not.toHaveBeenCalled()
     })
+
+    it('resizes the completions popup', async () => {
+      const autoCompleteFunctionMock = jest.fn()
+      const callBackMock = jest.fn()
+      const sessionMock = {
+        getLine: jest.fn().mockReturnValue('I start')
+      }
+      const stepCompleter = new StepCompleter(autoCompleteFunctionMock)
+      await stepCompleter.getCompletions(
+        editorMock,
+        sessionMock,
+        { row: 1 },
+        null,
+        callBackMock
+      )
+      expect(editorMock.completer.popup.container.style.width).toEqual('50px')
+    })
   })
 })
