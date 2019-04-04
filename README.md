@@ -8,6 +8,7 @@ This is a wrapper arround [React Ace Editor](https://github.com/securingsincity/
 ## Features
 
 - Gherkin syntax highlighting
+- Gherkin keywords snippets
 - Easy to provide step autocompletions (Promise based)
 
 
