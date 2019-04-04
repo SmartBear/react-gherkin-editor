@@ -6,7 +6,6 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "prepare": "neutrino build",
     "build": "neutrino build",
     "start": "neutrino start",
     "lint": "neutrino lint",
