@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AceEditor from 'react-ace'
 import Brace from 'brace'
@@ -24,13 +24,14 @@ class GherkinEditor extends Component {
     theme: 'jira',
     width: '100%',
     fontSize: 14,
-    showPrintMargin: true,
+    showPrintMargin: false,
     showGutter: true,
     highlightActiveLine: true,
     setOptions: {
       fontFamily: `'SFMono-Medium', 'SF Mono', 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Mono', Menlo, Consolas, Courier, monospace`,
       enableLiveAutocompletion: true,
       showLineNumbers: true,
+      displayIndentGuides: true,
       tabSize: 2
     }
   }
@@ -45,8 +46,7 @@ class GherkinEditor extends Component {
   }
 
   get ace () {
-    const { editor } = this.AceEditorRef
-    return editor
+    return this.AceEditorRef.editor
   }
 
   setAceEditorRef = aceEditor => {
@@ -71,17 +71,15 @@ class GherkinEditor extends Component {
     const { uniqueId } = this.props
     const { value } = this.state
     return (
-      <Fragment>
-        <AceEditor
-          {...this.props}
-          ref={this.setAceEditorRef}
-          mode='gherkin'
-          value={value}
-          name={uniqueId}
-          editorProps={{ $blockScrolling: true }}
-          onChange={this.onChange}
-        />
-      </Fragment>
+      <AceEditor
+        {...this.props}
+        ref={this.setAceEditorRef}
+        mode='gherkin'
+        value={value}
+        name={uniqueId}
+        editorProps={{ $blockScrolling: true }}
+        onChange={this.onChange}
+      />
     )
   }
 }

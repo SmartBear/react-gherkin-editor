@@ -1,13 +1,13 @@
 /* istanbul ignore file */
 /* eslint-disable */
 ace.define(
-  "ace/theme/jira",
-  ["require", "exports", "module", "ace/lib/dom"],
+  'ace/theme/jira',
+  ['require', 'exports', 'module', 'ace/lib/dom'],
   function(acequire, exports, module) {
-    "use strict";
+    'use strict'
 
-    exports.isDark = false;
-    exports.cssClass = "ace-jira";
+    exports.isDark = false
+    exports.cssClass = 'ace-jira'
     exports.cssText = `ace_editor {
   margin: auto;
   width: 100%;
@@ -27,7 +27,7 @@ ace.define(
 }
 
 .ace-jira {
-  background-color: rgb(244, 245, 247);
+  background: rgb(244, 245, 247);
   color: rgb(23, 43, 77);
 }
 
@@ -166,9 +166,9 @@ ace.define(
 
 .ace-jira .ace_indent-guide {
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;
-}`;
+}`
 
-    var dom = acequire("../lib/dom");
-    dom.importCssString(exports.cssText, exports.cssClass);
+    var dom = acequire('../lib/dom')
+    dom.importCssString(exports.cssText, exports.cssClass)
   }
-);
+)
