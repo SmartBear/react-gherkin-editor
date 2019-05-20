@@ -64,6 +64,12 @@ class GherkinEditor extends Component {
     langTools.setCompleters([keywordCompleter, stepCompleter])
   }
 
+  componentWillReceiveProps (nextProps, prevState) {
+    if (nextProps.initialValue !== prevState.value) {
+      this.setState({ value: nextProps.initialValue })
+    }
+  }
+
   onChange = newValue => {
     this.setState({ value: newValue })
     const { onValueChange } = this.props

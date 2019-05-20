@@ -11,8 +11,16 @@ This is a wrapper arround [React Ace Editor](https://github.com/securingsincity/
 - Gherkin keywords snippets
 - Easy to provide step autocompletions (Promise based)
 
+## Install from a release tag
 
-## Install
+### With Yarn
+`yarn add git+ssh://git@github.com/SmartBear/react-gherkin-editor.git#v0.1.0`
+
+### With npm
+`npm install --save git+ssh://git@github.com/SmartBear/react-gherkin-editor.git#v0.1.0`
+
+
+## Install from master branch
 
 ### With Yarn
 `yarn add git+ssh://git@github.com/SmartBear/react-gherkin-editor.git`
