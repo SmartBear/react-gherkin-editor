@@ -1,9 +1,9 @@
 /* istanbul ignore file */
-/* eslint-disable */
+/* global ace */
 ace.define(
   'ace/theme/jira',
   ['require', 'exports', 'module', 'ace/lib/dom'],
-  function(acequire, exports, module) {
+  function (acequire, exports, module) {
     'use strict'
 
     exports.isDark = false

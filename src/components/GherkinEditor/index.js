@@ -4,8 +4,8 @@ import AceEditor from 'react-ace'
 import Brace from 'brace'
 import KeywordCompleter from './modules/keyword-completer'
 import StepCompleter from './modules/step-completer'
-import './themes/jira'
-import 'brace/mode/gherkin'
+import './theme/jira'
+import './mode/gherkin_i18n'
 import 'brace/ext/language_tools'
 
 class GherkinEditor extends Component {
@@ -84,7 +84,7 @@ class GherkinEditor extends Component {
       <AceEditor
         {...this.props}
         ref={this.setAceEditorRef}
-        mode='gherkin'
+        mode='gherkin_i18n'
         value={value}
         name={uniqueId}
         editorProps={{ $blockScrolling: true }}
