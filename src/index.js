@@ -58,6 +58,7 @@ render(
     initialValue={initialValue}
     onValueChange={onValueChange}
     autoCompleteFunction={autoCompleteFunction}
+    language='en'
   />,
   root
 )

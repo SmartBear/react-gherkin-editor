@@ -6,11 +6,13 @@ import KeywordCompleter from './modules/keyword-completer'
 import StepCompleter from './modules/step-completer'
 import './theme/jira'
 import './mode/gherkin_i18n'
+import { setGherkinDialect } from './mode/gherkin_i18n_dialects'
 import 'brace/ext/language_tools'
 
 class GherkinEditor extends Component {
   static propTypes = {
     initialValue: PropTypes.string,
+    language: PropTypes.string,
     uniqueId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     onValueChange: PropTypes.func,
     autoCompleteFunction: PropTypes.func
@@ -18,6 +20,7 @@ class GherkinEditor extends Component {
 
   static defaultProps = {
     initialValue: '',
+    language: 'en',
     uniqueId: Math.random()
       .toString(36)
       .substr(2, 9),
@@ -56,11 +59,22 @@ class GherkinEditor extends Component {
     this.AceEditorRef = aceEditor
   }
 
+  setModeLanguage = language => {
+    setGherkinDialect(language)
+    // Force reload of ace editor mode
+    this.ace.session.setMode({
+      path: 'ace/mode/gherkin_i18n',
+      v: Date.now()
+    })
+  }
+
   componentDidMount () {
-    const { autoCompleteFunction } = this.props
+    const { language, autoCompleteFunction } = this.props
     const keywordCompleter = new KeywordCompleter()
     const stepCompleter = new StepCompleter(autoCompleteFunction)
     const langTools = Brace.acequire('ace/ext/language_tools')
+
+    this.setModeLanguage(language)
     langTools.setCompleters([keywordCompleter, stepCompleter])
   }
 

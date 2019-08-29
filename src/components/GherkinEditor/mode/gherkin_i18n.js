@@ -1,6 +1,7 @@
 /* istanbul ignore file */
-import gherkinDialects from './gherkin_i18n_dialects'
+import { getGherkinDialect } from './gherkin_i18n_dialects'
 import escapeStringRegexp from 'escape-string-regexp'
+
 /* global ace */
 ace.define(
   'ace/mode/gherkin_highlight_rules',
@@ -19,15 +20,8 @@ ace.define(
       '\\\\(x[0-9A-Fa-f]{2}|[0-7]{3}|[\\\\abfnrtv\'"]|U[0-9A-Fa-f]{8}|u[0-9A-Fa-f]{4})'
 
     var GherkinHighlightRules = function () {
-      var labels = gherkinDialects
-        .map(function (l) {
-          return l.labels.map(escapeStringRegexp).join('|')
-        })
-
-      var keywords = gherkinDialects
-        .map(function (l) {
-          return l.keywords.map(escapeStringRegexp).join('|')
-        })
+      var labels = getGherkinDialect().labels
+      var keywords = getGherkinDialect().keywords
 
       this.$rules = {
         start: [
@@ -41,7 +35,12 @@ ace.define(
           },
           {
             token: 'keyword',
-            regex: '(?:' + labels.join('|') + '):|(?:' + keywords.join('|') + ')\\b'
+            regex:
+              '(?:' +
+              labels.map(escapeStringRegexp).join('|') +
+              '):|(?:' +
+              keywords.map(escapeStringRegexp).join('|') +
+              ')\\b'
           },
           {
             token: 'string', // multi line """ string start
@@ -171,7 +170,10 @@ ace.define(
     oop.inherits(Mode, TextMode)
     ;(function () {
       this.lineCommentStart = '#'
-      this.$id = 'ace/mode/gherkin'
+      this.$id = 'ace/mode/gherkin_i18n'
+
+      var labels = getGherkinDialect().labels
+      var keywords = getGherkinDialect().keywords
 
       this.getNextLineIndent = function (state, line, tab) {
         var indent = this.$getIndent(line)
@@ -189,9 +191,15 @@ ace.define(
         }
 
         if (state === 'start') {
-          if (line.match('Scenario:|Feature:|Scenario Outline:|Background:')) {
+          if (line.match(labels.map(escapeStringRegexp).join(':|') + ':')) {
             indent += space2
-          } else if (line.match('(Given|Then).+(:)$|Examples:')) {
+          } else if (
+            line.match(
+              '(' +
+                keywords.map(escapeStringRegexp).join('|') +
+                ').+(:)$|Examples:'
+            )
+          ) {
             indent += space2
           } else if (line.match('\\*.+')) {
             indent += '* '

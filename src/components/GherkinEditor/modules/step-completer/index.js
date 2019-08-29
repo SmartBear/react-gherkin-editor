@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import calculateSize from 'calculate-size'
-import { stepLevelKeywords } from '../keyword-completer'
+import { getGherkinDialect } from '../../mode/gherkin_i18n_dialects'
 
 class StepCompleter {
   constructor (autoCompleteFunction) {
@@ -13,7 +13,10 @@ class StepCompleter {
       .trim()
       .split(' ')
 
-    if (lineTokens.length > 1 && stepLevelKeywords.includes(lineTokens[0])) {
+    if (
+      lineTokens.length > 1 &&
+      getGherkinDialect().keywords.includes(lineTokens[0])
+    ) {
       const keyword = lineTokens.shift()
       const text = lineTokens.join(' ')
       try {

@@ -1,27 +1,34 @@
 import gherkinLanguages from './gherkin_languages'
 
-export default Object.keys(gherkinLanguages).map(iso => {
-  const lang = gherkinLanguages[iso]
+let GherkinDialect = {}
+
+export const setGherkinDialect = language => {
+  const dialect = gherkinLanguages[language]
   const trimWhiteSpace = string => string.trim()
-  return {
-    name: iso,
+  GherkinDialect = {
+    name: dialect.name,
+    native_name: dialect.native,
     labels: [
       ...new Set([
-        ...lang.feature.map(trimWhiteSpace),
-        ...lang.background.map(trimWhiteSpace),
-        ...lang.scenario.map(trimWhiteSpace),
-        ...lang.scenarioOutline.map(trimWhiteSpace),
-        ...lang.examples.map(trimWhiteSpace)
+        ...dialect.feature.map(trimWhiteSpace),
+        ...dialect.background.map(trimWhiteSpace),
+        ...dialect.scenario.map(trimWhiteSpace),
+        ...dialect.scenarioOutline.map(trimWhiteSpace),
+        ...dialect.examples.map(trimWhiteSpace)
       ])
     ],
     keywords: [
       ...new Set([
-        ...lang.given.map(trimWhiteSpace),
-        ...lang.when.map(trimWhiteSpace),
-        ...lang.then.map(trimWhiteSpace),
-        ...lang.and.map(trimWhiteSpace),
-        ...lang.but.map(trimWhiteSpace)
+        ...dialect.given.map(trimWhiteSpace),
+        ...dialect.when.map(trimWhiteSpace),
+        ...dialect.then.map(trimWhiteSpace),
+        ...dialect.and.map(trimWhiteSpace),
+        ...dialect.but.map(trimWhiteSpace)
       ])
     ]
   }
-})
+}
+
+setGherkinDialect('en')
+
+export const getGherkinDialect = () => GherkinDialect

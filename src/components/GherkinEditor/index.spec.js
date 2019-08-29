@@ -1,11 +1,11 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import { mount } from 'enzyme'
 import GherkinEditor from './index'
 import AceEditor from 'react-ace'
 
 describe('<GherkinEditor />', () => {
   it('renders <AceEditor />', () => {
-    const wrapper = shallow(<GherkinEditor />)
+    const wrapper = mount(<GherkinEditor />)
     expect(wrapper.find(AceEditor)).toBeTruthy()
   })
 
