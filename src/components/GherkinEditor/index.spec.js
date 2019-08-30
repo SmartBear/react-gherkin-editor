@@ -16,11 +16,14 @@ describe('<GherkinEditor />', () => {
   })
 
   it('triggers onValueChange when content is updated', () => {
-    const onValueChangeMock = jest.fn()
-    const wrapper = mount(<GherkinEditor onValueChange={onValueChangeMock} />)
+    const onChangeMock = jest.fn()
+    const wrapper = mount(<GherkinEditor onChange={onChangeMock} />)
     const { ace } = wrapper.instance()
     ace.session.setValue('Feature: User signup')
-    expect(onValueChangeMock).toHaveBeenCalledWith('Feature: User signup')
+    expect(onChangeMock).toHaveBeenCalledWith(
+      'Feature: User signup',
+      expect.anything()
+    )
   })
 
   describe('get ace', () => {

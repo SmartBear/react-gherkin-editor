@@ -14,7 +14,7 @@ class GherkinEditor extends Component {
     initialValue: PropTypes.string,
     language: PropTypes.string,
     uniqueId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    onValueChange: PropTypes.func,
+    onChange: PropTypes.func,
     autoCompleteFunction: PropTypes.func
   }
 
@@ -24,7 +24,7 @@ class GherkinEditor extends Component {
     uniqueId: Math.random()
       .toString(36)
       .substr(2, 9),
-    onValueChange: () => {},
+    onChange: () => {},
     autoCompleteFunction: () => Promise.resolve([]),
     theme: 'jira',
     width: '100%',
@@ -40,10 +40,6 @@ class GherkinEditor extends Component {
       displayIndentGuides: true,
       tabSize: 2
     }
-  }
-
-  state = {
-    value: this.props.initialValue
   }
 
   constructor (props) {
@@ -78,31 +74,17 @@ class GherkinEditor extends Component {
     langTools.setCompleters([keywordCompleter, stepCompleter])
   }
 
-  componentWillReceiveProps (nextProps, prevState) {
-    if (nextProps.initialValue !== prevState.value) {
-      this.setState({ value: nextProps.initialValue })
-    }
-  }
-
-  onChange = newValue => {
-    this.setState({ value: newValue })
-    const { onValueChange } = this.props
-    const { value } = this.state
-    onValueChange(value)
-  }
-
   render () {
-    const { uniqueId } = this.props
-    const { value } = this.state
+    const { uniqueId, initialValue, onChange } = this.props
     return (
       <AceEditor
         {...this.props}
         ref={this.setAceEditorRef}
         mode='gherkin_i18n'
-        value={value}
+        value={initialValue}
         name={uniqueId}
         editorProps={{ $blockScrolling: true }}
-        onChange={this.onChange}
+        onChange={onChange}
       />
     )
   }

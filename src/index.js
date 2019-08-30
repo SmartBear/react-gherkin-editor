@@ -40,7 +40,7 @@ const steps = [
   'settings should be:'
 ]
 
-const onValueChange = console.log
+const onChange = (value, event) => console.log(value)
 
 const autoCompleteFunction = (_keyword, text) => {
   const matches = steps.filter(step => step.startsWith(text))
@@ -56,7 +56,7 @@ const autoCompleteFunction = (_keyword, text) => {
 render(
   <GherkinEditor
     initialValue={initialValue}
-    onValueChange={onValueChange}
+    onChange={onChange}
     autoCompleteFunction={autoCompleteFunction}
     language='en'
   />,
