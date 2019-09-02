@@ -27,8 +27,8 @@ ace.define(
 }
 
 .ace-jira {
-  background: rgb(244, 245, 247);
-  color: rgb(23, 43, 77);
+  background: #FFFFFF;
+  color: #172B4D;
 }
 
 .ace-jira .ace_cursor {
@@ -40,7 +40,6 @@ ace.define(
 }
 
 .ace-jira .ace_storage, .ace-jira .ace_keyword {
-  color: rgb(0, 82, 204);
   font-weight: bolder;
 }
 
@@ -83,11 +82,15 @@ ace.define(
 }
 
 .ace-jira .ace_string {
-  color: rgb(54, 179, 126);
+  color: #36B37E;
 }
 
 .ace-jira .ace_comment {
   color: rgb(80, 95, 121);
+}
+
+.ace-jira .ace_argument {
+  color: rgb(101, 84, 192);
 }
 
 .ace-jira .ace_comment.ace_doc {

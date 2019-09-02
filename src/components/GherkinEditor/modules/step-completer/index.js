@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import calculateSize from 'calculate-size'
-import { getGherkinDialect } from '../../mode/gherkin_i18n_dialects'
+import { getGherkinDialect } from '../gherkin_i18n_dialects'
 
 class StepCompleter {
   constructor (autoCompleteFunction) {

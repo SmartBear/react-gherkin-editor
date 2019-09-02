@@ -229,21 +229,21 @@ export default {
     then: ['* ', 'Τότε '],
     when: ['* ', 'Όταν ']
   },
-  em: {
-    and: ['* ', '😂'],
-    background: ['💤'],
-    but: ['* ', '😔'],
-    examples: ['📓'],
-    feature: ['📚'],
-    given: ['* ', '😐'],
-    name: 'Emoji',
-    native: '😀',
-    rule: ['Rule'],
-    scenario: ['🥒', '📕'],
-    scenarioOutline: ['📖'],
-    then: ['* ', '🙏'],
-    when: ['* ', '🎬']
-  },
+  // em: {
+  //   and: ['* ', '😂'],
+  //   background: ['💤'],
+  //   but: ['* ', '😔'],
+  //   examples: ['📓'],
+  //   feature: ['📚'],
+  //   given: ['* ', '😐'],
+  //   name: 'Emoji',
+  //   native: '😀',
+  //   rule: ['Rule'],
+  //   scenario: ['🥒', '📕'],
+  //   scenarioOutline: ['📖'],
+  //   then: ['* ', '🙏'],
+  //   when: ['* ', '🎬']
+  // },
   en: {
     and: ['* ', 'And '],
     background: ['Background'],

@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-import { getGherkinDialect } from './gherkin_i18n_dialects'
+import { getGherkinDialect } from '../gherkin_i18n_dialects'
 import escapeStringRegexp from 'escape-string-regexp'
 
 /* global ace */
@@ -72,7 +72,7 @@ ace.define(
             ]
           },
           {
-            token: 'comment',
+            token: 'argument',
             regex: '<[^>]+>'
           },
           {

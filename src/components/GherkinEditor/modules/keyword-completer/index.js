@@ -1,4 +1,4 @@
-import { getGherkinDialect } from '../../mode/gherkin_i18n_dialects'
+import { getGherkinDialect } from '../gherkin_i18n_dialects'
 
 class KeywordCompleter {
   getCompletions = async (_editor, session, position, _prefix, callback) => {
