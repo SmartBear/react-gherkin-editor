@@ -5,17 +5,26 @@ import GherkinEditor from './components/GherkinEditor'
 
 const root = document.getElementById('root')
 
-const initialValue = `Feature: Serve coffee
-  As a coffee lover
-  I can get coffee from the machine
-  So I can enjoy the rest of the day
+const initialValue = `Feature: Support internationalisation
+  As a polyglot coffee lover
+  I can select the language on the coffee machine
+  So I can practice my use of greetings in several languages
 
-  Scenario: Simple use
-    # Well, sometimes, you just get a coffee.
+  Scenario: No messages are displayed when machine is shut down
     Given the coffee machine is started
-    When I take a coffee
-    Then coffee should be served
-    And message "Please take your coffee" should be printed`
+    When I shutdown the coffee machine
+    Then message "Bye" should be displayed
+
+  Scenario Outline: Messages are based on language
+  # Well, sometimes, you just get a coffee.
+    When I start the coffee machine using language <language>
+    Then message <ready_message> should be displayed
+
+    Examples:
+      | language   | ready_message |
+      | en         | Ready         |
+      | fr         | Pret          |
+`
 
 const steps = [
   'I start the coffee machine using language "lang"',
@@ -40,7 +49,7 @@ const steps = [
   'settings should be:'
 ]
 
-const onValueChange = console.log
+const onChange = (value, event) => console.log(value)
 
 const autoCompleteFunction = (_keyword, text) => {
   const matches = steps.filter(step => step.startsWith(text))
@@ -54,10 +63,13 @@ const autoCompleteFunction = (_keyword, text) => {
 }
 
 render(
-  <GherkinEditor
-    initialValue={initialValue}
-    onValueChange={onValueChange}
-    autoCompleteFunction={autoCompleteFunction}
-  />,
+  <div style={{ padding: '5px' }}>
+    <GherkinEditor
+      initialValue={initialValue}
+      onChange={onChange}
+      autoCompleteFunction={autoCompleteFunction}
+      language='en'
+    />
+  </div>,
   root
 )

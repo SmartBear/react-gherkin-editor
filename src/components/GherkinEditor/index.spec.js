@@ -1,11 +1,11 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import { mount } from 'enzyme'
 import GherkinEditor from './index'
 import AceEditor from 'react-ace'
 
 describe('<GherkinEditor />', () => {
   it('renders <AceEditor />', () => {
-    const wrapper = shallow(<GherkinEditor />)
+    const wrapper = mount(<GherkinEditor />)
     expect(wrapper.find(AceEditor)).toBeTruthy()
   })
 
@@ -16,11 +16,14 @@ describe('<GherkinEditor />', () => {
   })
 
   it('triggers onValueChange when content is updated', () => {
-    const onValueChangeMock = jest.fn()
-    const wrapper = mount(<GherkinEditor onValueChange={onValueChangeMock} />)
+    const onChangeMock = jest.fn()
+    const wrapper = mount(<GherkinEditor onChange={onChangeMock} />)
     const { ace } = wrapper.instance()
     ace.session.setValue('Feature: User signup')
-    expect(onValueChangeMock).toHaveBeenCalledWith('Feature: User signup')
+    expect(onChangeMock).toHaveBeenCalledWith(
+      'Feature: User signup',
+      expect.anything()
+    )
   })
 
   describe('get ace', () => {

@@ -1,17 +1,4 @@
-// TODO: Should handle I18n
-export const highLevelkeywords = [
-  'Feature',
-  'Background',
-  'Example',
-  'Scenario',
-  'Scenario Outline',
-  'Scenario Template',
-  'Examples'
-]
-
-export const stepLevelKeywords = ['Given', 'When', 'Then', 'And', 'But']
-
-export const keywords = highLevelkeywords.concat(stepLevelKeywords)
+import { getGherkinDialect } from '../gherkin_i18n_dialects'
 
 class KeywordCompleter {
   getCompletions = async (_editor, session, position, _prefix, callback) => {
@@ -21,6 +8,10 @@ class KeywordCompleter {
       .split(' ')
 
     if (lineTokens.length === 1) {
+      const keywords = [
+        ...getGherkinDialect().labels,
+        ...getGherkinDialect().keywords
+      ]
       const completions = keywords.map((keyword, index) => ({
         caption: keyword,
         value: keyword,
