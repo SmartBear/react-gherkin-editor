@@ -4,11 +4,16 @@ import Select from '@atlaskit/select'
 import gherkinLanguages from '../modules/gherkin_languages'
 
 const ToolbarContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px;
   background-color: rgb(235, 236, 240);
-  padding: 4px;
 `
 const LanguageDropdownContainer = styled.div`
-  width: 200px;
+  min-width: 150px;
 `
 const availableLanguages = Object.keys(gherkinLanguages).map(key => ({
   label: gherkinLanguages[key].native,
@@ -34,6 +39,7 @@ class Toolbar extends PureComponent {
   }
 
   render () {
+    const { content } = this.props
     const { language } = this.state
     const { key, native } = gherkinLanguages[language]
     return (
@@ -46,6 +52,7 @@ class Toolbar extends PureComponent {
             styles={languageSelectStyles}
           />
         </LanguageDropdownContainer>
+        {content}
       </ToolbarContainer>
     )
   }
