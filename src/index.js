@@ -2,6 +2,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { render } from 'react-dom'
 import GherkinEditor from './components/GherkinEditor'
+import Button, { ButtonGroup } from '@atlaskit/button'
+import '@atlaskit/css-reset'
 
 const root = document.getElementById('root')
 
@@ -62,6 +64,12 @@ const autoCompleteFunction = (_keyword, text) => {
   return Promise.resolve(completions)
 }
 
+const ToolbarContent = <ButtonGroup appearance='primary'>
+  <Button>First Button</Button>
+  <Button>Second Button</Button>
+  <Button>Third Button</Button>
+</ButtonGroup>
+
 render(
   <div style={{ padding: '5px' }}>
     <GherkinEditor
@@ -69,6 +77,7 @@ render(
       onChange={onChange}
       autoCompleteFunction={autoCompleteFunction}
       language='en'
+      toolbarContent={ToolbarContent}
     />
   </div>,
   root

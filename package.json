@@ -12,6 +12,8 @@
     "test": "neutrino test"
   },
   "devDependencies": {
+    "@atlaskit/button": "^13.1.7",
+    "@atlaskit/css-reset": "^5.0.8",
     "@atlaskit/select": "^10.1.0",
     "@neutrinojs/jest": "^8.3.0",
     "@neutrinojs/react-components": "^8.3.0",

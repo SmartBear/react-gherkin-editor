@@ -28,7 +28,8 @@ class GherkinEditor extends Component {
     uniqueId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     onChange: PropTypes.func,
     autoCompleteFunction: PropTypes.func,
-    onLanguageChange: PropTypes.func
+    onLanguageChange: PropTypes.func,
+    toolbarContent: PropTypes.node
   }
 
   static defaultProps = {
@@ -78,7 +79,7 @@ class GherkinEditor extends Component {
     })
   }
 
-  onLanguageChange = (option) => {
+  onLanguageChange = option => {
     const { value } = option
     const { onLanguageChange } = this.props
     this.setModeLanguage(value)
@@ -96,10 +97,20 @@ class GherkinEditor extends Component {
   }
 
   render () {
-    const { language, initialValue, uniqueId, onChange } = this.props
+    const {
+      language,
+      initialValue,
+      uniqueId,
+      onChange,
+      toolbarContent
+    } = this.props
     return (
       <EditorWrapper>
-        <Toolbar language={language} onLanguageChange={this.onLanguageChange} />
+        <Toolbar
+          language={language}
+          onLanguageChange={this.onLanguageChange}
+          content={toolbarContent}
+        />
         <ContentWrapper>
           <AceEditor
             {...this.props}
