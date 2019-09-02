@@ -172,10 +172,10 @@ ace.define(
       this.lineCommentStart = '#'
       this.$id = 'ace/mode/gherkin_i18n'
 
-      var labels = getGherkinDialect().labels
-      var keywords = getGherkinDialect().keywords
-
       this.getNextLineIndent = function (state, line, tab) {
+        var labels = getGherkinDialect().labels
+        var keywords = getGherkinDialect().keywords
+
         var indent = this.$getIndent(line)
         var space2 = '  '
 
