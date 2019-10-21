@@ -29,18 +29,20 @@ class GherkinEditor extends Component {
     onChange: PropTypes.func,
     autoCompleteFunction: PropTypes.func,
     onLanguageChange: PropTypes.func,
-    toolbarContent: PropTypes.node
+    toolbarContent: PropTypes.node,
+    autoFocus: PropTypes.bool
   }
 
   static defaultProps = {
     initialValue: '',
-    language: 'fr',
+    language: 'en',
     uniqueId: Math.random()
       .toString(36)
       .substr(2, 9),
     onChange: () => {},
     autoCompleteFunction: () => Promise.resolve([]),
     onLanguageChange: () => {},
+    autoFocus: false,
     theme: 'jira',
     width: '100%',
     fontSize: 14,
@@ -87,7 +89,12 @@ class GherkinEditor extends Component {
   }
 
   componentDidMount () {
-    const { language, autoCompleteFunction } = this.props
+    const { autoFocus, language, autoCompleteFunction } = this.props
+
+    if (autoFocus) {
+      this.ace.focus()
+    }
+
     const keywordCompleter = new KeywordCompleter()
     const stepCompleter = new StepCompleter(autoCompleteFunction)
     const langTools = Brace.acequire('ace/ext/language_tools')
