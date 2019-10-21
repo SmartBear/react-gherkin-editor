@@ -99,7 +99,7 @@ render(
 
 ## Documentation
 
-# Release a new version
+### Release a new version
 
 To release a new version of react-gherkin-editor, you need to:
 - Run `git checkout release` then `git merge master`
@@ -115,7 +115,7 @@ To release a new version of react-gherkin-editor, you need to:
 
 Then a new version is released :)
 
-# Upgrade
+### Upgrade
 You can upgrade react-gherkin-editor in two different ways:
 - [Using the release tag](https://github.com/SmartBear/react-gherkin-editor/tree/release#install-from-a-release-tag)
 - From the Github repository:
