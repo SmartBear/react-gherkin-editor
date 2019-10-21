@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import AceEditor from 'react-ace'
 import Brace from 'brace'
 import styled from 'styled-components'
+import { Resizable } from 're-resizable'
 import KeywordCompleter from './modules/keyword-completer'
 import StepCompleter from './modules/step-completer'
 import { setGherkinDialect } from './modules/gherkin_i18n_dialects'
@@ -17,10 +18,6 @@ const EditorWrapper = styled.div`
   border-color: rgb(223, 225, 230);
   border-radius: 3px;
 `
-const ContentWrapper = styled.div`
-  margin-top: 15px;
-  margin-left: 3px;
-`
 class GherkinEditor extends Component {
   static propTypes = {
     initialValue: PropTypes.string,
@@ -29,21 +26,25 @@ class GherkinEditor extends Component {
     onChange: PropTypes.func,
     autoCompleteFunction: PropTypes.func,
     onLanguageChange: PropTypes.func,
-    toolbarContent: PropTypes.node
+    toolbarContent: PropTypes.node,
+    autoFocus: PropTypes.bool,
+    initialHeight: PropTypes.number
   }
 
   static defaultProps = {
     initialValue: '',
-    language: 'fr',
+    language: 'en',
     uniqueId: Math.random()
       .toString(36)
       .substr(2, 9),
     onChange: () => {},
     autoCompleteFunction: () => Promise.resolve([]),
     onLanguageChange: () => {},
+    autoFocus: false,
     theme: 'jira',
-    width: '100%',
     fontSize: 14,
+    width: '100%',
+    initialHeight: 500,
     showPrintMargin: false,
     showGutter: false,
     highlightActiveLine: false,
@@ -55,6 +56,10 @@ class GherkinEditor extends Component {
       displayIndentGuides: false,
       tabSize: 2
     }
+  }
+
+  state = {
+    height: this.props.initialHeight
   }
 
   constructor (props) {
@@ -86,8 +91,17 @@ class GherkinEditor extends Component {
     onLanguageChange(option)
   }
 
+  onResizeStop = (e, direction, ref, d) => {
+    this.setState({ height: this.state.height + d.height })
+  }
+
   componentDidMount () {
-    const { language, autoCompleteFunction } = this.props
+    const { autoFocus, language, autoCompleteFunction } = this.props
+
+    if (autoFocus) {
+      this.ace.focus()
+    }
+
     const keywordCompleter = new KeywordCompleter()
     const stepCompleter = new StepCompleter(autoCompleteFunction)
     const langTools = Brace.acequire('ace/ext/language_tools')
@@ -104,6 +118,9 @@ class GherkinEditor extends Component {
       onChange,
       toolbarContent
     } = this.props
+
+    const { height } = this.state
+
     return (
       <EditorWrapper>
         <Toolbar
@@ -111,7 +128,20 @@ class GherkinEditor extends Component {
           onLanguageChange={this.onLanguageChange}
           content={toolbarContent}
         />
-        <ContentWrapper>
+        <Resizable
+          size={{ width: '100%', height: `${height}px` }}
+          onResizeStop={this.onResizeStop}
+          enable={{
+            top: false,
+            right: false,
+            bottom: true,
+            left: false,
+            topRight: false,
+            bottomRight: false,
+            bottomLeft: false,
+            topLeft: false
+          }}
+        >
           <AceEditor
             {...this.props}
             ref={this.setAceEditorRef}
@@ -120,8 +150,9 @@ class GherkinEditor extends Component {
             name={uniqueId}
             editorProps={{ $blockScrolling: true }}
             onChange={onChange}
+            height={`${height}px`}
           />
-        </ContentWrapper>
+        </Resizable>
       </EditorWrapper>
     )
   }

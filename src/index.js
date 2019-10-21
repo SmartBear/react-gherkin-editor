@@ -76,8 +76,8 @@ render(
       initialValue={initialValue}
       onChange={onChange}
       autoCompleteFunction={autoCompleteFunction}
-      language='en'
       toolbarContent={ToolbarContent}
+      autoFocus
     />
   </div>,
   root
