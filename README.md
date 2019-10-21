@@ -99,7 +99,31 @@ render(
 
 ## Documentation
 
-TODO
+# Release a new version
+
+To release a new version of react-gherkin-editor, you need to:
+- Run `git checkout release` then `git merge master`
+- Update the version in package.json file (example: 2.0.3)
+- Run `npm install` and `npm run build`
+- A folder named "build" will be created
+- Commit the changes with the message "release [version]" (example: "release 2.0.3")
+- From react-gherkin-editor repository, go to releases tab and click on "Draft new release"
+  - Tag: v[version] (example: v2.0.3)
+  - Release title: Release [version] (example: Release 2.0.3)
+  - Fill the release notes
+- Click on "Publish release"
+
+Then a new version is released :)
+
+# Upgrade
+You can upgrade react-gherkin-editor in two different ways:
+- [Using the release tag](https://github.com/SmartBear/react-gherkin-editor/tree/release#install-from-a-release-tag)
+- From the Github repository:
+  - Go to the wanted release in react-gherkin-editor Github repository
+  - Download the source code and copy the downloaded file
+  - Go to vendor folder of your project and paste the copied file
+  - Run `yarn add file:[path to vendor file]`
+
 
 ## Ace Documentation
 [React Ace Editor](https://github.com/securingsincity/react-ace)
