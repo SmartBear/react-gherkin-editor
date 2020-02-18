@@ -63,4 +63,17 @@ describe('<Toolbar />', () => {
 
     expect(setModeLanguage).toHaveBeenCalledWith('fr')
   })
+
+  describe('readOnly prop is set', () => {
+    it('disables the language selector', () => {
+      const wrapper = mount(
+        <Toolbar
+          defaultLanguage='en'
+          readOnly
+        />
+      )
+      const languageSelector = wrapper.find(Select)
+      expect(languageSelector.prop('isDisabled')).toEqual(true)
+    })
+  })
 })

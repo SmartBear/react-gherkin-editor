@@ -22,6 +22,7 @@ class GherkinEditor extends Component {
   static propTypes = {
     initialValue: PropTypes.string,
     language: PropTypes.string,
+    readOnly: PropTypes.bool,
     uniqueId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     onChange: PropTypes.func,
     autoCompleteFunction: PropTypes.func,
@@ -34,6 +35,7 @@ class GherkinEditor extends Component {
   static defaultProps = {
     initialValue: '',
     language: 'en',
+    readOnly: false,
     uniqueId: Math.random()
       .toString(36)
       .substr(2, 9),
@@ -110,7 +112,8 @@ class GherkinEditor extends Component {
       uniqueId,
       onChange,
       onLanguageChange,
-      toolbarContent
+      toolbarContent,
+      readOnly
     } = this.props
 
     const { height } = this.state
@@ -122,6 +125,7 @@ class GherkinEditor extends Component {
           onLanguageChange={onLanguageChange}
           setModeLanguage={this.setModeLanguage}
           content={toolbarContent}
+          readOnly={readOnly}
         />
         <Resizable
           size={{ width: '100%', height: `${height}px` }}

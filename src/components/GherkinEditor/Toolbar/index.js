@@ -52,7 +52,7 @@ class Toolbar extends PureComponent {
   }
 
   render () {
-    const { content } = this.props
+    const { content, readOnly } = this.props
     const { language } = this.state
     const { key, native } = gherkinLanguages[language]
     return (
@@ -63,6 +63,7 @@ class Toolbar extends PureComponent {
             options={availableLanguages}
             onChange={this.languageChangeHandler}
             styles={languageSelectStyles}
+            isDisabled={readOnly}
           />
         </LanguageDropdownContainer>
         {content}
