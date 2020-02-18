@@ -84,13 +84,6 @@ class GherkinEditor extends Component {
     })
   }
 
-  onLanguageChange = option => {
-    const { value } = option
-    const { onLanguageChange } = this.props
-    this.setModeLanguage(value)
-    onLanguageChange(option)
-  }
-
   onResizeStop = (e, direction, ref, d) => {
     this.setState({ height: this.state.height + d.height })
   }
@@ -116,6 +109,7 @@ class GherkinEditor extends Component {
       initialValue,
       uniqueId,
       onChange,
+      onLanguageChange,
       toolbarContent
     } = this.props
 
@@ -124,8 +118,9 @@ class GherkinEditor extends Component {
     return (
       <EditorWrapper>
         <Toolbar
-          language={language}
-          onLanguageChange={this.onLanguageChange}
+          defaultLanguage={language}
+          onLanguageChange={onLanguageChange}
+          setModeLanguage={this.setModeLanguage}
           content={toolbarContent}
         />
         <Resizable

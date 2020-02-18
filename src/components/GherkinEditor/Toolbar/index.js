@@ -27,15 +27,28 @@ const languageSelectStyles = {
 }
 
 class Toolbar extends PureComponent {
-  languageChangeHandler = (option, event) => {
-    const { value } = option
+  state = {
+    language: this.props.defaultLanguage
+  }
+
+  languageChangeHandler = (option, _event) => {
     const { onLanguageChange } = this.props
+    const { value } = option
     this.setState({ language: value })
     onLanguageChange(option)
   }
 
-  state = {
-    language: this.props.language
+  /* eslint-disable-next-line camelcase */
+  UNSAFE_componentWillReceiveProps (nextProps) {
+    if (nextProps.defaultLanguage !== this.state.language) {
+      this.setState({ language: nextProps.defaultLanguage })
+    }
+  }
+
+  componentDidUpdate (_prevProps, prevState) {
+    if (prevState.language !== this.state.language) {
+      this.props.setModeLanguage(this.state.language)
+    }
   }
 
   render () {
@@ -46,7 +59,7 @@ class Toolbar extends PureComponent {
       <ToolbarContainer>
         <LanguageDropdownContainer>
           <Select
-            defaultValue={{ key: key, label: native }}
+            value={{ key: key, label: native }}
             options={availableLanguages}
             onChange={this.languageChangeHandler}
             styles={languageSelectStyles}
