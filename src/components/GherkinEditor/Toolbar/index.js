@@ -27,15 +27,30 @@ const languageSelectStyles = {
 }
 
 class Toolbar extends PureComponent {
-  languageChangeHandler = (option, event) => {
-    const { value } = option
+  languageChangeHandler = (option, _event) => {
     const { onLanguageChange } = this.props
+    const { value } = option
     this.setState({ language: value })
     onLanguageChange(option)
   }
 
   state = {
-    language: this.props.language
+    language: this.props.defaultLanguage
+  }
+
+  static getDerivedStateFromProps (props, state) {
+    if (props.defaultLanguage !== state.langauge) {
+      return {
+        language: props.defaultLanguage
+      }
+    }
+    return null
+  }
+
+  componentDidUpdate (_prevProps, prevState) {
+    if (prevState.language !== this.state.language) {
+      this.props.setModeLanguage(this.state.language)
+    }
   }
 
   render () {
@@ -46,7 +61,7 @@ class Toolbar extends PureComponent {
       <ToolbarContainer>
         <LanguageDropdownContainer>
           <Select
-            defaultValue={{ key: key, label: native }}
+            value={{ key: key, label: native }}
             options={availableLanguages}
             onChange={this.languageChangeHandler}
             styles={languageSelectStyles}
