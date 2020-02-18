@@ -27,6 +27,10 @@ const languageSelectStyles = {
 }
 
 class Toolbar extends PureComponent {
+  state = {
+    language: this.props.defaultLanguage
+  }
+
   languageChangeHandler = (option, _event) => {
     const { onLanguageChange } = this.props
     const { value } = option
@@ -34,17 +38,11 @@ class Toolbar extends PureComponent {
     onLanguageChange(option)
   }
 
-  state = {
-    language: this.props.defaultLanguage
-  }
-
-  static getDerivedStateFromProps (props, state) {
-    if (props.defaultLanguage !== state.langauge) {
-      return {
-        language: props.defaultLanguage
-      }
+  /* eslint-disable-next-line camelcase */
+  UNSAFE_componentWillReceiveProps (nextProps) {
+    if (nextProps.defaultLanguage !== this.state.language) {
+      this.setState({ language: nextProps.defaultLanguage })
     }
-    return null
   }
 
   componentDidUpdate (_prevProps, prevState) {
