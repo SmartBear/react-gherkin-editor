@@ -109,6 +109,7 @@ To release a new version of react-gherkin-editor, you need to:
 - Commit the changes with the message "release [version]" (example: "release 2.0.3")
 - From react-gherkin-editor repository, go to releases tab and click on "Draft new release"
   - Tag: v[version] (example: v2.0.3)
+  - Target branch: release
   - Release title: Release [version] (example: Release 2.0.3)
   - Fill the release notes
 - Click on "Publish release"

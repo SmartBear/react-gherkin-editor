@@ -25,9 +25,11 @@ class GherkinEditor extends Component {
     readOnly: PropTypes.bool,
     uniqueId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     onChange: PropTypes.func,
+    onSubmit: PropTypes.func,
     autoCompleteFunction: PropTypes.func,
     onLanguageChange: PropTypes.func,
     toolbarContent: PropTypes.node,
+    hideToolbar: PropTypes.bool,
     autoFocus: PropTypes.bool,
     initialHeight: PropTypes.number
   }
@@ -35,11 +37,13 @@ class GherkinEditor extends Component {
   static defaultProps = {
     initialValue: '',
     language: 'en',
+    hideToolbar: false,
     readOnly: false,
     uniqueId: Math.random()
       .toString(36)
       .substr(2, 9),
     onChange: () => {},
+    onSubmit: (text) => {},
     autoCompleteFunction: () => Promise.resolve([]),
     onLanguageChange: () => {},
     autoFocus: false,
@@ -112,6 +116,7 @@ class GherkinEditor extends Component {
       uniqueId,
       onChange,
       onLanguageChange,
+      onSubmit,
       toolbarContent,
       readOnly
     } = this.props
@@ -120,13 +125,13 @@ class GherkinEditor extends Component {
 
     return (
       <EditorWrapper>
-        <Toolbar
+        { !this.props.hideToolbar && <Toolbar
           defaultLanguage={language}
           onLanguageChange={onLanguageChange}
           setModeLanguage={this.setModeLanguage}
           content={toolbarContent}
           readOnly={readOnly}
-        />
+        /> }
         <Resizable
           size={{ width: '100%', height: `${height}px` }}
           onResizeStop={this.onResizeStop}
@@ -150,6 +155,11 @@ class GherkinEditor extends Component {
             editorProps={{ $blockScrolling: true }}
             onChange={onChange}
             height={`${height}px`}
+            commands={[{
+              name: 'test',
+              bindKey: { win: 'Ctrl-Enter', mac: 'Cmd-Enter' },
+              exec: editor => onSubmit(editor.getValue())
+            }]}
           />
         </Resizable>
       </EditorWrapper>

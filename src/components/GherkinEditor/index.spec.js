@@ -2,6 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import GherkinEditor from './index'
 import AceEditor from 'react-ace'
+import Toolbar from './Toolbar'
 
 describe('<GherkinEditor />', () => {
   it('renders <AceEditor />', () => {
@@ -26,6 +27,16 @@ describe('<GherkinEditor />', () => {
     )
   })
 
+  // it('triggers onSubmit when pressing Crtl + Enter in editor', () => {
+  //   const submitMock = jest.fn()
+  //   const wrapper = mount(<GherkinEditor onSubmit={submitMock} />)
+  //   const aceEditor = wrapper.find(AceEditor)
+  //   aceEditor.simulate('keyDown', {key: "Enter", keyCode: 13, which: 13, metaKey: true})
+  //   expect(submitMock).toHaveBeenCalled(
+  //     expect.anything()
+  //   )
+  // })
+
   describe('get ace', () => {
     it('returns the low level ace editor', () => {
       const wrapper = mount(<GherkinEditor />)
@@ -34,5 +45,15 @@ describe('<GherkinEditor />', () => {
       // TODO: find an easy way to assert a real Ace object
       expect(ace).toHaveProperty('$blockScrolling')
     })
+  })
+
+  it('renders the toolbar by default', () => {
+    const wrapper = mount(<GherkinEditor />)
+    expect(wrapper.find(Toolbar)).toBeTruthy()
+  })
+
+  it('does not renders the toolbar when hideToolbar props is set', () => {
+    const wrapper = mount(<GherkinEditor hideToolbar />)
+    expect(wrapper.find(Toolbar).length).toEqual(0)
   })
 })

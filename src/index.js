@@ -75,6 +75,7 @@ render(
     <GherkinEditor
       initialValue={initialValue}
       onChange={onChange}
+      onSubmit={onChange}
       autoCompleteFunction={autoCompleteFunction}
       toolbarContent={ToolbarContent}
       autoFocus
