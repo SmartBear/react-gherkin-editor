@@ -25,6 +25,7 @@ class GherkinEditor extends Component {
     readOnly: PropTypes.bool,
     uniqueId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     onChange: PropTypes.func,
+    onSubmit: PropTypes.func,
     autoCompleteFunction: PropTypes.func,
     onLanguageChange: PropTypes.func,
     toolbarContent: PropTypes.node,
@@ -42,6 +43,7 @@ class GherkinEditor extends Component {
       .toString(36)
       .substr(2, 9),
     onChange: () => {},
+    onSubmit: (text) => {},
     autoCompleteFunction: () => Promise.resolve([]),
     onLanguageChange: () => {},
     autoFocus: false,
@@ -114,6 +116,7 @@ class GherkinEditor extends Component {
       uniqueId,
       onChange,
       onLanguageChange,
+      onSubmit,
       toolbarContent,
       readOnly
     } = this.props
@@ -152,6 +155,11 @@ class GherkinEditor extends Component {
             editorProps={{ $blockScrolling: true }}
             onChange={onChange}
             height={`${height}px`}
+            commands={[{
+              name: 'test',
+              bindKey: { win: 'Ctrl-Enter', mac: 'Cmd-Enter' },
+              exec: editor => onSubmit(editor.getValue())
+            }]}
           />
         </Resizable>
       </EditorWrapper>
