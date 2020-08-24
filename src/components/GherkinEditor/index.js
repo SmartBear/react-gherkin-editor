@@ -28,6 +28,7 @@ class GherkinEditor extends Component {
     autoCompleteFunction: PropTypes.func,
     onLanguageChange: PropTypes.func,
     toolbarContent: PropTypes.node,
+    hideToolbar: PropTypes.bool,
     autoFocus: PropTypes.bool,
     initialHeight: PropTypes.number
   }
@@ -35,6 +36,7 @@ class GherkinEditor extends Component {
   static defaultProps = {
     initialValue: '',
     language: 'en',
+    hideToolbar: false,
     readOnly: false,
     uniqueId: Math.random()
       .toString(36)
@@ -120,13 +122,13 @@ class GherkinEditor extends Component {
 
     return (
       <EditorWrapper>
-        <Toolbar
+        { !this.props.hideToolbar && <Toolbar
           defaultLanguage={language}
           onLanguageChange={onLanguageChange}
           setModeLanguage={this.setModeLanguage}
           content={toolbarContent}
           readOnly={readOnly}
-        />
+        /> }
         <Resizable
           size={{ width: '100%', height: `${height}px` }}
           onResizeStop={this.onResizeStop}

@@ -2,6 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import GherkinEditor from './index'
 import AceEditor from 'react-ace'
+import Toolbar from './Toolbar'
 
 describe('<GherkinEditor />', () => {
   it('renders <AceEditor />', () => {
@@ -34,5 +35,15 @@ describe('<GherkinEditor />', () => {
       // TODO: find an easy way to assert a real Ace object
       expect(ace).toHaveProperty('$blockScrolling')
     })
+  })
+
+  it('renders the toolbar by default', () => {
+    const wrapper = mount(<GherkinEditor />)
+    expect(wrapper.find(Toolbar)).toBeTruthy()
+  })
+
+  it('does not renders the toolbar when hideToolbar props is set', () => {
+    const wrapper = mount(<GherkinEditor hideToolbar />)
+    expect(wrapper.find(Toolbar).length).toEqual(0)
   })
 })
