@@ -27,16 +27,6 @@ describe('<GherkinEditor />', () => {
     )
   })
 
-  // it('triggers onSubmit when pressing Crtl + Enter in editor', () => {
-  //   const submitMock = jest.fn()
-  //   const wrapper = mount(<GherkinEditor onSubmit={submitMock} />)
-  //   const aceEditor = wrapper.find(AceEditor)
-  //   aceEditor.simulate('keyDown', {key: "Enter", keyCode: 13, which: 13, metaKey: true})
-  //   expect(submitMock).toHaveBeenCalled(
-  //     expect.anything()
-  //   )
-  // })
-
   describe('get ace', () => {
     it('returns the low level ace editor', () => {
       const wrapper = mount(<GherkinEditor />)
