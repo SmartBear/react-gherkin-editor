@@ -6,30 +6,36 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "build": "neutrino build",
-    "start": "neutrino start",
-    "lint": "neutrino lint",
-    "test": "neutrino test"
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development --open",
+    "lint": "eslint --cache --format codeframe --ext jsx,js src",
+    "test": "jest"
   },
   "devDependencies": {
     "@atlaskit/button": "^13.1.7",
     "@atlaskit/css-reset": "^5.0.8",
     "@atlaskit/select": "^10.1.0",
-    "@neutrinojs/jest": "^8.3.0",
-    "@neutrinojs/react-components": "^8.3.0",
-    "@neutrinojs/standardjs": "^8.3.0",
+    "@neutrinojs/jest": "^9.4.0",
+    "@neutrinojs/react-components": "^9.4.0",
+    "@neutrinojs/standardjs": "^9.4.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
-    "neutrino": "^8.3.0",
+    "eslint": "^7.14.0",
+    "jest": "^24.9.0",
+    "neutrino": "^9.4.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "styled-components": "^3.2.6"
+    "styled-components": "^3.2.6",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "calculate-size": "^1.1.1",
+    "core-js": "^3.7.0",
     "escape-string-regexp": "^2.0.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "re-resizable": "^6.1.0",
     "react-ace": "^6.4.0"
   },

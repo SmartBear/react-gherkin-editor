@@ -1,3 +1,4 @@
+// eslint-disable-next-line id-length
 import _ from 'lodash'
 import calculateSize from 'calculate-size'
 import { getGherkinDialect } from '../gherkin_i18n_dialects'
