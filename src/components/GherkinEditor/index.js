@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AceEditor from 'react-ace'
-import Brace from 'brace'
 import styled from 'styled-components'
 import { Resizable } from 're-resizable'
 import KeywordCompleter from './modules/keyword-completer'
 import StepCompleter from './modules/step-completer'
 import { setGherkinDialect } from './modules/gherkin_i18n_dialects'
+import Toolbar from './Toolbar'
+
+import 'ace-builds/src-noconflict/ext-language_tools'
 import './modules/mode/gherkin_i18n'
 import './theme/jira'
-import 'brace/ext/language_tools'
-import Toolbar from './Toolbar'
+import './theme/c4j'
 
 const EditorWrapper = styled.div`
   border-width: 1px;
@@ -31,7 +32,8 @@ class GherkinEditor extends Component {
     toolbarContent: PropTypes.node,
     hideToolbar: PropTypes.bool,
     autoFocus: PropTypes.bool,
-    initialHeight: PropTypes.number
+    initialHeight: PropTypes.number,
+    theme: PropTypes.string
   }
 
   static defaultProps = {
@@ -103,7 +105,7 @@ class GherkinEditor extends Component {
 
     const keywordCompleter = new KeywordCompleter()
     const stepCompleter = new StepCompleter(autoCompleteFunction)
-    const langTools = Brace.acequire('ace/ext/language_tools')
+    const langTools = window.ace.acequire('ace/ext/language_tools')
 
     this.setModeLanguage(language)
     langTools.setCompleters([keywordCompleter, stepCompleter])
@@ -118,7 +120,8 @@ class GherkinEditor extends Component {
       onLanguageChange,
       onSubmit,
       toolbarContent,
-      readOnly
+      readOnly,
+      theme
     } = this.props
 
     const { height } = this.state
@@ -149,7 +152,8 @@ class GherkinEditor extends Component {
           <AceEditor
             {...this.props}
             ref={this.setAceEditorRef}
-            mode='gherkin_i18n'
+            mode='gherkin'
+            theme={theme}
             value={initialValue}
             name={uniqueId}
             editorProps={{ $blockScrolling: true }}
