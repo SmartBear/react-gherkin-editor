@@ -3,6 +3,7 @@
 This is a wrapper arround [React Ace Editor](https://github.com/securingsincity/react-ace) specially designed for Gherkin.
 
 - It includes a special theme for Jira based on ace textmate theme.
+- It includes a special theme for C4J.
 
 
 ## Features
@@ -98,6 +99,19 @@ render(
 ```
 
 ## Documentation
+
+### Available themes
+Custom themes are available
+ - jira (default)
+ - c4j
+
+You can switch to the c4j theme by specifying it while rendering the GherkinEditor
+```javascript
+ <GherkinEditor
+  ...props
+  theme='c4j'
+ >
+```
 
 ### Release a new version
 
