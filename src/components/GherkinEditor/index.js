@@ -152,7 +152,7 @@ class GherkinEditor extends Component {
           <AceEditor
             {...this.props}
             ref={this.setAceEditorRef}
-            mode='gherkin'
+            mode='gherkin_i18n'
             theme={theme}
             value={initialValue}
             name={uniqueId}
