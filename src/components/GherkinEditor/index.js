@@ -1,24 +1,18 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AceEditor from 'react-ace'
-import styled from 'styled-components'
 import { Resizable } from 're-resizable'
 import KeywordCompleter from './modules/keyword-completer'
 import StepCompleter from './modules/step-completer'
 import { setGherkinDialect } from './modules/gherkin_i18n_dialects'
 import Toolbar from './Toolbar'
+import { EditorWrapper } from './style'
 
 import 'ace-builds/src-noconflict/ext-language_tools'
 import './modules/mode/gherkin_i18n'
 import './theme/jira'
 import './theme/c4j'
 
-const EditorWrapper = styled.div`
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgb(223, 225, 230);
-  border-radius: 3px;
-`
 class GherkinEditor extends Component {
   static propTypes = {
     initialValue: PropTypes.string,

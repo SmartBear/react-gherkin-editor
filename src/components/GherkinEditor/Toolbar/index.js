@@ -1,20 +1,7 @@
 import React, { PureComponent } from 'react'
-import styled from 'styled-components'
 import Select from '@atlaskit/select'
 import gherkinLanguages from '../modules/gherkin_languages'
-
-const ToolbarContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  padding: 3px;
-  background-color: rgb(235, 236, 240);
-`
-const LanguageDropdownContainer = styled.div`
-  min-width: 150px;
-`
+import { ToolbarContainer, LanguageDropdownContainer } from './style'
 const availableLanguages = Object.keys(gherkinLanguages).map(key => ({
   label: gherkinLanguages[key].native,
   value: key
