@@ -12,9 +12,9 @@
     "test": "neutrino test"
   },
   "devDependencies": {
-    "@atlaskit/button": "^13.1.7",
-    "@atlaskit/css-reset": "^5.0.8",
-    "@atlaskit/select": "^10.1.0",
+    "@atlaskit/button": "^15.1.4",
+    "@atlaskit/css-reset": "^6.0.5",
+    "@atlaskit/select": "^13.1.1",
     "@neutrinojs/jest": "^8.3.0",
     "@neutrinojs/react-components": "^8.3.0",
     "@neutrinojs/standardjs": "^8.3.0",
@@ -36,8 +36,8 @@
   },
   "peerDependencies": {
     "@atlaskit/select": "^10.1.0",
-    "react": "^15.0.1 || ^16.0.0",
-    "react-dom": "^15.0.1 || ^16.0.0",
-    "styled-components": "^3.2.6"
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "styled-components": "^5.2.1"
   }
 }
