@@ -22,9 +22,9 @@
     "enzyme-adapter-react-16": "^1.11.2",
     "neutrino": "^8.3.0",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "styled-components": "^3.2.6"
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "styled-components": "^5.2.1"
   },
   "dependencies": {
     "ace-builds": "^1.4.12",
