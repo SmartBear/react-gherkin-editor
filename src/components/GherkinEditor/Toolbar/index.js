@@ -3,14 +3,23 @@ import Select from '@atlaskit/select'
 import gherkinLanguages from '../modules/gherkin_languages'
 import { ToolbarContainer, LanguageDropdownContainer } from './style'
 
+const availableLanguages = Object.keys(gherkinLanguages).map(key => ({
+  label: gherkinLanguages[key].native,
+  value: key
+}))
+
+const languageSelectStyles = {
+  container (styles) {
+    return { ...styles, 'z-index': 5 }
+  }
+}
+
 const Toolbar = ({ content, defaultLanguage, readOnly, onLanguageChange, setModeLanguage }) => {
   const [language, setLanguage] = useState(defaultLanguage)
   const { key, native } = gherkinLanguages[language]
 
   useEffect(() => {
-    if (defaultLanguage !== language) {
-      setLanguage(defaultLanguage)
-    }
+    setLanguage(defaultLanguage)
   }, [defaultLanguage])
 
   useEffect(() => {
@@ -23,19 +32,8 @@ const Toolbar = ({ content, defaultLanguage, readOnly, onLanguageChange, setMode
     onLanguageChange(option)
   }
 
-  const availableLanguages = Object.keys(gherkinLanguages).map(key => ({
-    label: gherkinLanguages[key].native,
-    value: key
-  }))
-
-  const languageSelectStyles = {
-    container (styles) {
-      return { ...styles, 'z-index': 5 }
-    }
-  }
-
   return (
-    <ToolbarContainer>
+    <ToolbarContainer data-testid='editor-toolbar'>
       <LanguageDropdownContainer>
         <Select
           value={{ key: key, label: native }}
