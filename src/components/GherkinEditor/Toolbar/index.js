@@ -24,7 +24,7 @@ const Toolbar = ({ content, defaultLanguage, readOnly, onLanguageChange, setMode
 
   useEffect(() => {
     setModeLanguage(language)
-  }, [language])
+  }, [setModeLanguage, language])
 
   const languageChangeHandler = (option, _event) => {
     const { value } = option

@@ -75,14 +75,15 @@ const Preview = () => {
     }
   }
 
-  const ToolbarContent = <div>
-    <span style={{ marginRight: '10px' }}>Theme '{theme}'</span>
-    <ButtonGroup appearance='primary'>
-      <Button onClick={switchTheme}>Switch theme</Button>
-      <Button>Second Button</Button>
-      <Button>Third Button</Button>
-    </ButtonGroup>
-  </div>
+  const ToolbarContent =
+    <div>
+      <span style={{ marginRight: '10px' }}>Theme '{theme}'</span>
+      <ButtonGroup appearance='primary'>
+        <Button onClick={switchTheme}>Switch theme</Button>
+        <Button>Second Button</Button>
+        <Button>Third Button</Button>
+      </ButtonGroup>
+    </div>
 
   return (
     <div style={{ padding: '5px' }}>
