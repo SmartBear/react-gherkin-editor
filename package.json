@@ -41,9 +41,9 @@
     "react-ace": "^9.2.0"
   },
   "peerDependencies": {
-    "@atlaskit/select": "^10.1.0",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "styled-components": "^5.2.1"
+    "@atlaskit/select": "^13.0.0",
+    "react": "^16.0.0 || ^17.0.0",
+    "react-dom": "^16.0.0 || ^17.0.0",
+    "styled-components": "^5.0.0"
   }
 }
