@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import AceEditor from 'react-ace'
 import { Resizable } from 're-resizable'
@@ -36,7 +36,7 @@ const GherkinEditor = (props) => {
     aceEditorRef = aceEditor
   }
 
-  const setModeLanguage = useCallback(language => {
+  const setModeLanguage = language => {
     setGherkinDialect(language)
     // Force reload of ace editor mode
     aceEditorRef.editor.session.setMode({
@@ -44,7 +44,7 @@ const GherkinEditor = (props) => {
       // eslint-disable-next-line id-length
       v: Date.now()
     })
-  })
+  }
 
   useEffect(() => {
     if (autoFocus) {
