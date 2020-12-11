@@ -14,6 +14,7 @@ import './theme/jira'
 import './theme/c4j'
 
 const GherkinEditor = (props) => {
+  const [height, setHeight] = useState(initialHeight)
   const {
     initialValue,
     language,
@@ -29,8 +30,20 @@ const GherkinEditor = (props) => {
     theme,
     initialHeight
   } = props
-  const [height, setHeight] = useState(initialHeight)
   let aceEditorRef = null
+
+  useEffect(() => {
+    if (autoFocus) {
+      aceEditorRef.editor.focus()
+    }
+
+    const keywordCompleter = new KeywordCompleter()
+    const stepCompleter = new StepCompleter(autoCompleteFunction)
+    const langTools = window.ace.acequire('ace/ext/language_tools')
+
+    setModeLanguage(language)
+    langTools.setCompleters([keywordCompleter, stepCompleter])
+  })
 
   const setAceEditorRef = aceEditor => {
     aceEditorRef = aceEditor
@@ -45,19 +58,6 @@ const GherkinEditor = (props) => {
       v: Date.now()
     })
   }
-
-  useEffect(() => {
-    if (autoFocus) {
-      aceEditorRef.editor.focus()
-    }
-
-    const keywordCompleter = new KeywordCompleter()
-    const stepCompleter = new StepCompleter(autoCompleteFunction)
-    const langTools = window.ace.acequire('ace/ext/language_tools')
-
-    setModeLanguage(language)
-    langTools.setCompleters([keywordCompleter, stepCompleter])
-  })
 
   const onResizeStop = (e, direction, ref, d) => {
     setHeight(height + d.height)
