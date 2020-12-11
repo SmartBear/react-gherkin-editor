@@ -37,7 +37,7 @@
     "core-js": "^3.7.0",
     "escape-string-regexp": "^2.0.0",
     "lodash": "^4.17.20",
-    "re-resizable": "^6.1.0",
+    "re-resizable": "^6.9.0",
     "react-ace": "^9.2.0"
   },
   "peerDependencies": {
