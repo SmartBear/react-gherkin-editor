@@ -14,7 +14,7 @@ import './theme/jira'
 import './theme/c4j'
 
 const GherkinEditor = (props) => {
-  const [height, setHeight] = useState(initialHeight)
+  const [height, setHeight] = useState(props.initialHeight)
   const {
     initialValue,
     language,
@@ -27,8 +27,7 @@ const GherkinEditor = (props) => {
     autoCompleteFunction,
     onLanguageChange,
     autoFocus,
-    theme,
-    initialHeight
+    theme
   } = props
   let aceEditorRef = null
 
