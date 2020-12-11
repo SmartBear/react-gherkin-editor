@@ -1,0 +1,10 @@
+{
+  "settingsInheritedFrom": "SmartBear/whitesource-config@main",
+  "checkRunSettings": {
+    "vulnerableCheckRunConclusionLevel": "success",
+    "displayMode": "diff"
+  },
+  "issueSettings": {
+    "minSeverityLevel": "NONE"
+  }
+}
