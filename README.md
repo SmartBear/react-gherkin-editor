@@ -35,7 +35,7 @@ This is a wrapper arround [React Ace Editor](https://github.com/securingsincity/
 
 ```javascript
 import { render } from 'react-dom'
-import GherkinEditor from './components/GherkinEditor'
+import GherkinEditor from 'react-gherkin-editor'
 
 const root = document.getElementById('root')
 
