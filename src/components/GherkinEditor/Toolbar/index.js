@@ -1,20 +1,8 @@
-import React, { PureComponent } from 'react'
-import styled from 'styled-components'
+import React, { useState, useEffect } from 'react'
 import Select from '@atlaskit/select'
 import gherkinLanguages from '../modules/gherkin_languages'
+import { ToolbarContainer, LanguageDropdownContainer } from './style'
 
-const ToolbarContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  padding: 3px;
-  background-color: rgb(235, 236, 240);
-`
-const LanguageDropdownContainer = styled.div`
-  min-width: 150px;
-`
 const availableLanguages = Object.keys(gherkinLanguages).map(key => ({
   label: gherkinLanguages[key].native,
   value: key
@@ -26,50 +14,38 @@ const languageSelectStyles = {
   }
 }
 
-class Toolbar extends PureComponent {
-  state = {
-    language: this.props.defaultLanguage
-  }
+const Toolbar = ({ content, defaultLanguage, readOnly, onLanguageChange, setModeLanguage }) => {
+  const [language, setLanguage] = useState(defaultLanguage)
+  const { key, native } = gherkinLanguages[language]
 
-  languageChangeHandler = (option, _event) => {
-    const { onLanguageChange } = this.props
+  useEffect(() => {
+    setLanguage(defaultLanguage)
+  }, [defaultLanguage])
+
+  useEffect(() => {
+    setModeLanguage(language)
+  }, [setModeLanguage, language])
+
+  const languageChangeHandler = (option, _event) => {
     const { value } = option
-    this.setState({ language: value })
+    setLanguage(value)
     onLanguageChange(option)
   }
 
-  /* eslint-disable-next-line camelcase */
-  UNSAFE_componentWillReceiveProps (nextProps) {
-    if (nextProps.defaultLanguage !== this.state.language) {
-      this.setState({ language: nextProps.defaultLanguage })
-    }
-  }
-
-  componentDidUpdate (_prevProps, prevState) {
-    if (prevState.language !== this.state.language) {
-      this.props.setModeLanguage(this.state.language)
-    }
-  }
-
-  render () {
-    const { content, readOnly } = this.props
-    const { language } = this.state
-    const { key, native } = gherkinLanguages[language]
-    return (
-      <ToolbarContainer>
-        <LanguageDropdownContainer>
-          <Select
-            value={{ key: key, label: native }}
-            options={availableLanguages}
-            onChange={this.languageChangeHandler}
-            styles={languageSelectStyles}
-            isDisabled={readOnly}
-          />
-        </LanguageDropdownContainer>
-        {content}
-      </ToolbarContainer>
-    )
-  }
+  return (
+    <ToolbarContainer data-testid='editor-toolbar'>
+      <LanguageDropdownContainer>
+        <Select
+          value={{ key: key, label: native }}
+          options={availableLanguages}
+          onChange={languageChangeHandler}
+          styles={languageSelectStyles}
+          isDisabled={readOnly}
+        />
+      </LanguageDropdownContainer>
+      {content}
+    </ToolbarContainer>
+  )
 }
 
 export default Toolbar

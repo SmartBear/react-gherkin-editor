@@ -112,10 +112,4 @@ ace.define('ace/theme/c4j', ['require', 'exports', 'module', 'ace/lib/dom'], fun
 
   var dom = acequire('../lib/dom')
   dom.importCssString(exports.cssText, exports.cssClass)
-}); (function () {
-  ace.require(['ace/theme/c4j'], function (m) {
-    if (typeof module === 'object' && typeof exports === 'object' && module) {
-      module.exports = m
-    }
-  })
-})()
+})

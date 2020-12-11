@@ -1,4 +1,5 @@
 import React from 'react'
+import { act } from 'react-dom/test-utils'
 import { shallow, mount } from 'enzyme'
 import Toolbar from './index'
 import Select from '@atlaskit/select'
@@ -22,7 +23,9 @@ describe('<Toolbar />', () => {
 
     const select = wrapper.find('Select')
 
-    select.instance().selectOption({ label: 'français', value: 'fr' })
+    act(() => {
+      select.instance().selectOption({ label: 'français', value: 'fr' })
+    })
 
     expect(setModeLanguage).toHaveBeenCalledWith('fr')
   })
@@ -40,7 +43,9 @@ describe('<Toolbar />', () => {
 
     const select = wrapper.find('Select')
 
-    select.instance().selectOption({ label: 'français', value: 'fr' })
+    act(() => {
+      select.instance().selectOption({ label: 'français', value: 'fr' })
+    })
 
     expect(onLanguageChangeMock).toHaveBeenCalledWith({
       label: 'français',
@@ -69,6 +74,7 @@ describe('<Toolbar />', () => {
       const wrapper = mount(
         <Toolbar
           defaultLanguage='en'
+          setModeLanguage={() => {}}
           readOnly
         />
       )
