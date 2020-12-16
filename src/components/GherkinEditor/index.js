@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import AceEditor from 'react-ace'
 import { Resizable } from 're-resizable'
@@ -41,6 +41,7 @@ const getGherkinDialectFunctions = {
 }
 
 const GherkinEditor = (props) => {
+  const [currentLanguage, setCurrentLanguage] = useState(props.language)
   const [height, setHeight] = useState(props.initialHeight)
   const aceEditor = useRef()
 
@@ -62,16 +63,6 @@ const GherkinEditor = (props) => {
   const setGherkinDialect = setGherkinDialectFunctions[mode] || setDialect
   const getGherkinDialect = getGherkinDialectFunctions[mode] || getDialect
 
-  const setModeLanguage = useCallback(language => {
-    setGherkinDialect(language)
-
-    // Force reload of ace editor mode
-    aceEditor.current.editor.session.setMode({
-      path: `ace/mode/${mode}`,
-      v: Date.now()
-    })
-  }, [setGherkinDialect, mode])
-
   useEffect(() => {
     if (autoFocus) {
       aceEditor.current.editor.focus()
@@ -87,22 +78,36 @@ const GherkinEditor = (props) => {
   }, [autoCompleteFunction, getGherkinDialect])
 
   useEffect(() => {
-    setModeLanguage(language)
-  }, [setModeLanguage, language])
+    setCurrentLanguage(language)
+  }, [language])
+
+  useEffect(() => {
+    setGherkinDialect(currentLanguage)
+
+    // Force reload of ace editor mode
+    aceEditor.current.editor.session.setMode({
+      path: `ace/mode/${mode}`,
+      v: Date.now()
+    })
+  }, [setGherkinDialect, currentLanguage, mode])
 
   const onResizeStop = (_event, _direction, _refToElement, delta) => {
     setHeight(height + delta.height)
+  }
+
+  const languageChangeHandler = option => {
+    setCurrentLanguage(option.value)
+    onLanguageChange(option)
   }
 
   return (
     <EditorWrapper>
       {!hideToolbar &&
         <Toolbar
-          defaultLanguage={language}
-          onLanguageChange={onLanguageChange}
-          setModeLanguage={setModeLanguage}
           content={toolbarContent}
+          language={currentLanguage}
           readOnly={readOnly}
+          onLanguageChange={languageChangeHandler}
         />}
       <Resizable
         size={{ width: '100%', height: `${height}px` }}

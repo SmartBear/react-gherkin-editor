@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import Select from '@atlaskit/select'
 import gherkinLanguages from '../modules/gherkin_languages'
 import _find from 'lodash/find'
@@ -13,22 +14,8 @@ const languageSelectStyles = {
   container: styles => ({ ...styles, 'z-index': 5 })
 }
 
-const Toolbar = ({ content, defaultLanguage, readOnly, onLanguageChange, setModeLanguage }) => {
-  const [language, setLanguage] = useState(defaultLanguage)
+const Toolbar = ({ content, language, readOnly, onLanguageChange }) => {
   const gherkinLanguage = _find(availableLanguages, { value: language })
-
-  useEffect(() => {
-    setLanguage(defaultLanguage)
-  }, [defaultLanguage])
-
-  useEffect(() => {
-    setModeLanguage(language)
-  }, [setModeLanguage, language])
-
-  const languageChangeHandler = option => {
-    setLanguage(option.value)
-    onLanguageChange(option)
-  }
 
   return (
     <ToolbarContainer data-testid='editor-toolbar'>
@@ -36,14 +23,28 @@ const Toolbar = ({ content, defaultLanguage, readOnly, onLanguageChange, setMode
         <Select
           value={gherkinLanguage}
           options={availableLanguages}
-          onChange={languageChangeHandler}
+          onChange={onLanguageChange}
           styles={languageSelectStyles}
           isDisabled={readOnly}
+          classNamePrefix='gherkin-editor-language-select'
         />
       </LanguageDropdownContainer>
       {content}
     </ToolbarContainer>
   )
+}
+
+Toolbar.propTypes = {
+  content: PropTypes.node,
+  language: PropTypes.string,
+  readOnly: PropTypes.bool,
+  onLanguageChange: PropTypes.func
+}
+
+Toolbar.defaultProps = {
+  language: 'en',
+  readOnly: false,
+  onLanguageChange: () => {}
 }
 
 export default Toolbar

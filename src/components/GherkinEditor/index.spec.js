@@ -1,22 +1,30 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { render } from '@testing-library/react'
 import GherkinEditor from '.'
-import AceEditor from 'react-ace'
-import Toolbar from './Toolbar'
 
-describe('<GherkinEditor />', () => {
-  it('renders <AceEditor />', () => {
-    const wrapper = mount(<GherkinEditor />)
-    expect(wrapper.find(AceEditor)).toBeTruthy()
+describe('GherkinEditor', () => {
+  it('renders a Gherkin editor', () => {
+    const gherkinEditor = render(<GherkinEditor />)
+
+    expect(gherkinEditor.container.querySelector('.ace_editor')).toBeInTheDocument()
   })
 
-  it('renders the toolbar by default', () => {
-    const wrapper = mount(<GherkinEditor />)
-    expect(wrapper.find(Toolbar)).toBeTruthy()
+  describe('when hideToolbar is false', () => {
+    it('renders a toolbar with a language selector', () => {
+      const gherkinEditor = render(<GherkinEditor />)
+
+      const toolbar = gherkinEditor.queryByTestId('editor-toolbar')
+
+      expect(toolbar).toBeInTheDocument()
+      expect(toolbar).toHaveTextContent('English')
+    })
   })
 
-  it('does not renders the toolbar when hideToolbar props is set', () => {
-    const wrapper = mount(<GherkinEditor hideToolbar />)
-    expect(wrapper.find(Toolbar).length).toEqual(0)
+  describe('when hideToolbar is true', () => {
+    it('does not render a toolbar', () => {
+      const gherkinEditor = render(<GherkinEditor hideToolbar />)
+
+      expect(gherkinEditor.queryByTestId('editor-toolbar')).not.toBeInTheDocument()
+    })
   })
 })
