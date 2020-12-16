@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Select from '@atlaskit/select'
 import gherkinLanguages from '../modules/gherkin_languages'
+import _find from 'lodash/find'
 import { ToolbarContainer, LanguageDropdownContainer } from './style'
 
 const availableLanguages = Object.entries(gherkinLanguages).map(([key, language]) => ({
-  key,
-  label: language.native,
-  value: key
+  value: key,
+  label: language.native
 }))
 
 const languageSelectStyles = {
@@ -15,7 +15,7 @@ const languageSelectStyles = {
 
 const Toolbar = ({ content, defaultLanguage, readOnly, onLanguageChange, setModeLanguage }) => {
   const [language, setLanguage] = useState(defaultLanguage)
-  const gherkinLanguage = gherkinLanguages[language]
+  const gherkinLanguage = _find(availableLanguages, { value: language })
 
   useEffect(() => {
     setLanguage(defaultLanguage)
@@ -34,7 +34,7 @@ const Toolbar = ({ content, defaultLanguage, readOnly, onLanguageChange, setMode
     <ToolbarContainer data-testid='editor-toolbar'>
       <LanguageDropdownContainer>
         <Select
-          value={{ key: gherkinLanguage.key, label: gherkinLanguage.native }}
+          value={gherkinLanguage}
           options={availableLanguages}
           onChange={languageChangeHandler}
           styles={languageSelectStyles}

@@ -85,14 +85,19 @@ const Preview = () => {
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <span style={{ marginRight: '8px' }}>Theme</span>
       <Select
-        styles={{ control: (provided, state) => ({ ...provided, marginRight: '20px' }), singleValue: (provided, state) => ({ display: 'flex' }) }}
+        styles={{
+          control: provided => ({ ...provided, marginRight: '20px' }),
+          singleValue: () => ({ display: 'flex' })
+        }}
         onChange={option => setTheme(option.value)}
         options={themeOptions}
         defaultValue={themeOptions[0]}
       />
       <span style={{ marginRight: '8px' }}>Mode</span>
       <Select
-        styles={{ singleValue: (provided, state) => ({ display: 'flex' }) }}
+        styles={{
+          singleValue: () => ({ display: 'flex' })
+        }}
         onChange={option => setMode(option.value)}
         options={modeOptions}
         defaultValue={modeOptions[0]}
