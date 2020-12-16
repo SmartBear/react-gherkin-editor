@@ -77,7 +77,8 @@ const Preview = () => {
   ]
   const modeOptions = [
     { label: 'gherkin i18n', value: 'gherkin_i18n' },
-    { label: 'gherkin background i18n', value: 'gherkin_background_i18n' }
+    { label: 'gherkin background i18n', value: 'gherkin_background_i18n' },
+    { label: 'gherkin scenario i18n', value: 'gherkin_scenario_i18n' }
   ]
 
   const ToolbarContent =

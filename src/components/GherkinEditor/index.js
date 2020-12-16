@@ -12,14 +12,21 @@ import {
   setGherkinDialect as setBackgroundDialect,
   getGherkinDialect as getBackgroundDialect
 } from './modules/gherkin_background_i18n_dialects'
+import {
+  setGherkinDialect as setScenarioDialect,
+  getGherkinDialect as getScenarioDialect
+} from './modules/gherkin_scenario_i18n_dialects'
 import Toolbar from './Toolbar'
 import { EditorWrapper } from './style'
 
 import 'ace-builds/src-noconflict/ext-language_tools'
+
 import './theme/jira'
 import './theme/c4j'
+
 import './modules/mode/gherkin_i18n'
 import './modules/mode/gherkin_background_i18n'
+import './modules/mode/gherkin_scenario_i18n'
 
 const GherkinEditor = (props) => {
   const [height, setHeight] = useState(props.initialHeight)
@@ -54,6 +61,9 @@ const GherkinEditor = (props) => {
       case 'gherkin_background_i18n':
         getGherkinDialect = getBackgroundDialect
         break
+      case 'gherkin_scenario_i18n':
+        getGherkinDialect = getScenarioDialect
+        break
       default:
         getGherkinDialect = getDialect
         break
@@ -78,6 +88,9 @@ const GherkinEditor = (props) => {
         break
       case 'gherkin_background_i18n':
         setBackgroundDialect(language)
+        break
+      case 'gherkin_scenario_i18n':
+        setScenarioDialect(language)
         break
       default:
         setDialect(language)
@@ -153,7 +166,7 @@ GherkinEditor.propTypes = {
   autoFocus: PropTypes.bool,
   initialHeight: PropTypes.number,
   theme: PropTypes.string,
-  mode: PropTypes.oneOf(['gherkin_i18n', 'gherkin_background_i18n'])
+  mode: PropTypes.oneOf(['gherkin_i18n', 'gherkin_background_i18n', 'gherkin_scenario_i18n'])
 }
 
 GherkinEditor.defaultProps = {
