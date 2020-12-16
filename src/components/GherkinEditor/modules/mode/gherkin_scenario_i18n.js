@@ -1,10 +1,10 @@
 /* istanbul ignore file */
-import { getGherkinDialect } from '../dialects/gherkin_i18n'
+import { getGherkinDialect } from '../dialects/gherkin_scenario_i18n'
 import escapeStringRegexp from 'escape-string-regexp'
 
 /* global ace */
 ace.define(
-  'ace/mode/gherkin_highlight_rules',
+  'ace/mode/gherkin_scenario_highlight_rules',
   [
     'require',
     'exports',
@@ -148,19 +148,19 @@ ace.define(
 )
 
 ace.define(
-  'ace/mode/gherkin_i18n',
+  'ace/mode/gherkin_scenario_i18n',
   [
     'require',
     'exports',
     'module',
     'ace/lib/oop',
     'ace/mode/text',
-    'ace/mode/gherkin_highlight_rules'
+    'ace/mode/gherkin_scenario_highlight_rules'
   ],
   function (acequire, exports, module) {
     var oop = acequire('../lib/oop')
     var TextMode = acequire('./text').Mode
-    var GherkinHighlightRules = acequire('./gherkin_highlight_rules')
+    var GherkinHighlightRules = acequire('./gherkin_scenario_highlight_rules')
       .GherkinHighlightRules
 
     var Mode = function () {
@@ -170,7 +170,7 @@ ace.define(
     oop.inherits(Mode, TextMode)
     ;(function () {
       this.lineCommentStart = '#'
-      this.$id = 'ace/mode/gherkin_i18n'
+      this.$id = 'ace/mode/gherkin_scenario_i18n'
 
       this.getNextLineIndent = function (state, line, tab) {
         var labels = getGherkinDialect().labels

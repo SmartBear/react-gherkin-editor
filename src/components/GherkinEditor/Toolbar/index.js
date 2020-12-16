@@ -1,51 +1,50 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import Select from '@atlaskit/select'
 import gherkinLanguages from '../modules/gherkin_languages'
+import _find from 'lodash/find'
 import { ToolbarContainer, LanguageDropdownContainer } from './style'
 
-const availableLanguages = Object.keys(gherkinLanguages).map(key => ({
-  label: gherkinLanguages[key].native,
-  value: key
+const availableLanguages = Object.entries(gherkinLanguages).map(([key, language]) => ({
+  value: key,
+  label: language.native
 }))
 
 const languageSelectStyles = {
-  container (styles) {
-    return { ...styles, 'z-index': 5 }
-  }
+  container: styles => ({ ...styles, 'z-index': 5 })
 }
 
-const Toolbar = ({ content, defaultLanguage, readOnly, onLanguageChange, setModeLanguage }) => {
-  const [language, setLanguage] = useState(defaultLanguage)
-  const { key, native } = gherkinLanguages[language]
-
-  useEffect(() => {
-    setLanguage(defaultLanguage)
-  }, [defaultLanguage])
-
-  useEffect(() => {
-    setModeLanguage(language)
-  }, [setModeLanguage, language])
-
-  const languageChangeHandler = (option, _event) => {
-    const { value } = option
-    setLanguage(value)
-    onLanguageChange(option)
-  }
+const Toolbar = ({ content, language, readOnly, onLanguageChange }) => {
+  const gherkinLanguage = _find(availableLanguages, { value: language })
 
   return (
     <ToolbarContainer data-testid='editor-toolbar'>
       <LanguageDropdownContainer>
         <Select
-          value={{ key: key, label: native }}
+          value={gherkinLanguage}
           options={availableLanguages}
-          onChange={languageChangeHandler}
+          onChange={onLanguageChange}
           styles={languageSelectStyles}
           isDisabled={readOnly}
+          classNamePrefix='gherkin-editor-language-select'
         />
       </LanguageDropdownContainer>
       {content}
     </ToolbarContainer>
   )
+}
+
+Toolbar.propTypes = {
+  content: PropTypes.node,
+  language: PropTypes.string,
+  readOnly: PropTypes.bool,
+  onLanguageChange: PropTypes.func
+}
+
+Toolbar.defaultProps = {
+  language: 'en',
+  readOnly: false,
+  onLanguageChange: () => {}
 }
 
 export default Toolbar

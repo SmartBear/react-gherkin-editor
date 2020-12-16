@@ -1,85 +1,55 @@
 import React from 'react'
-import { act } from 'react-dom/test-utils'
-import { shallow, mount } from 'enzyme'
-import Toolbar from './index'
-import Select from '@atlaskit/select'
+import { render } from '@testing-library/react'
+import SelectEvent from 'react-select-event'
+import Toolbar from '.'
 
-describe('<Toolbar />', () => {
-  it('renders <Select />', () => {
-    const wrapper = shallow(<Toolbar defaultLanguage='en' />)
-    expect(wrapper.find(Select)).toBeTruthy()
-  })
+describe('Toolbar', () => {
+  describe('when no language is set', () => {
+    it('renders a language selector with English as the default language', () => {
+      const toolbar = render(<Toolbar />)
 
-  it('changes the language mode', () => {
-    const setModeLanguage = jest.fn()
-
-    const wrapper = mount(
-      <Toolbar
-        defaultLanguage='en'
-        setModeLanguage={setModeLanguage}
-        onLanguageChange={() => {}}
-      />
-    )
-
-    const select = wrapper.find('Select')
-
-    act(() => {
-      select.instance().selectOption({ label: 'français', value: 'fr' })
-    })
-
-    expect(setModeLanguage).toHaveBeenCalledWith('fr')
-  })
-
-  it('runs the callback when language is changed', () => {
-    const onLanguageChangeMock = jest.fn()
-
-    const wrapper = mount(
-      <Toolbar
-        defaultLanguage='en'
-        setModeLanguage={() => {}}
-        onLanguageChange={onLanguageChangeMock}
-      />
-    )
-
-    const select = wrapper.find('Select')
-
-    act(() => {
-      select.instance().selectOption({ label: 'français', value: 'fr' })
-    })
-
-    expect(onLanguageChangeMock).toHaveBeenCalledWith({
-      label: 'français',
-      value: 'fr'
+      expect(
+        toolbar.container.querySelector('.gherkin-editor-language-select__single-value')
+      ).toHaveTextContent('English')
     })
   })
 
-  it('handles internal state for language', () => {
-    const setModeLanguage = jest.fn()
+  describe('when a language is set', () => {
+    it('renders a language selector with the default language', () => {
+      const toolbar = render(<Toolbar language='fr' />)
 
-    const wrapper = mount(
-      <Toolbar
-        defaultLanguage='en'
-        setModeLanguage={setModeLanguage}
-        onLanguageChange={() => {}}
-      />
-    )
-
-    wrapper.setProps({ ...wrapper.props(), defaultLanguage: 'fr' })
-
-    expect(setModeLanguage).toHaveBeenCalledWith('fr')
+      expect(
+        toolbar.container.querySelector('.gherkin-editor-language-select__single-value')
+      ).toHaveTextContent('français')
+    })
   })
 
-  describe('readOnly prop is set', () => {
-    it('disables the language selector', () => {
-      const wrapper = mount(
-        <Toolbar
-          defaultLanguage='en'
-          setModeLanguage={() => {}}
-          readOnly
-        />
+  describe('when the toolbar is not read only', () => {
+    it('renders the language selector as enabled', () => {
+      const toolbar = render(<Toolbar />)
+
+      expect(toolbar.container.querySelector('.gherkin-editor-language-select__input input')).toBeEnabled()
+    })
+
+    it('calls the onLanguageChange callback when changing the language', async () => {
+      const onLanguageChange = jest.fn()
+
+      const toolbar = render(<Toolbar onLanguageChange={onLanguageChange} />)
+
+      await SelectEvent.select(
+        toolbar.container.querySelector('.gherkin-editor-language-select__input input'),
+        'français'
       )
-      const languageSelector = wrapper.find(Select)
-      expect(languageSelector.prop('isDisabled')).toEqual(true)
+
+      expect(onLanguageChange).toHaveBeenCalled()
+    })
+  })
+
+  describe('when the toolbar is read only', () => {
+    it('renders the language selector as disabled', () => {
+      const toolbar = render(<Toolbar readOnly />)
+
+      expect(toolbar.container.querySelector('.gherkin-editor-language-select__input input')).toBeDisabled()
     })
   })
 })

@@ -1,16 +1,15 @@
-import { getGherkinDialect } from '../gherkin_i18n_dialects'
-
 class KeywordCompleter {
+  constructor (getGherkinDialect) {
+    this.getGherkinDialect = getGherkinDialect
+  }
+
   getCompletions = async (_editor, session, position, _prefix, callback) => {
-    const lineTokens = session
-      .getLine(position.row)
-      .trim()
-      .split(' ')
+    const lineTokens = session.getLine(position.row).trim().split(' ')
 
     if (lineTokens.length === 1) {
       const keywords = [
-        ...getGherkinDialect().labels,
-        ...getGherkinDialect().keywords
+        ...this.getGherkinDialect().labels,
+        ...this.getGherkinDialect().keywords
       ]
       const completions = keywords.map((keyword, index) => ({
         caption: keyword,
@@ -18,6 +17,7 @@ class KeywordCompleter {
         score: index,
         meta: 'Keyword'
       }))
+
       callback(null, completions)
     }
   }
