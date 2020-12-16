@@ -4,14 +4,22 @@ import AceEditor from 'react-ace'
 import { Resizable } from 're-resizable'
 import KeywordCompleter from './modules/keyword-completer'
 import StepCompleter from './modules/step-completer'
-import { setGherkinDialect } from './modules/gherkin_i18n_dialects'
+import {
+  setGherkinDialect as setDialect,
+  getGherkinDialect as getDialect
+} from './modules/gherkin_i18n_dialects'
+import {
+  setGherkinDialect as setBackgroundDialect,
+  getGherkinDialect as getBackgroundDialect
+} from './modules/gherkin_background_i18n_dialects'
 import Toolbar from './Toolbar'
 import { EditorWrapper } from './style'
 
 import 'ace-builds/src-noconflict/ext-language_tools'
-import './modules/mode/gherkin_i18n'
 import './theme/jira'
 import './theme/c4j'
+import './modules/mode/gherkin_i18n'
+import './modules/mode/gherkin_background_i18n'
 
 const GherkinEditor = (props) => {
   const [height, setHeight] = useState(props.initialHeight)
@@ -27,7 +35,8 @@ const GherkinEditor = (props) => {
     autoCompleteFunction,
     onLanguageChange,
     autoFocus,
-    theme
+    theme,
+    mode
   } = props
   let aceEditorRef = null
 
@@ -36,8 +45,22 @@ const GherkinEditor = (props) => {
       aceEditorRef.editor.focus()
     }
 
-    const keywordCompleter = new KeywordCompleter()
-    const stepCompleter = new StepCompleter(autoCompleteFunction)
+    let getGherkinDialect
+
+    switch (mode) {
+      case 'gherkin_i18n':
+        getGherkinDialect = getDialect
+        break
+      case 'gherkin_background_i18n':
+        getGherkinDialect = getBackgroundDialect
+        break
+      default:
+        getGherkinDialect = getDialect
+        break
+    }
+
+    const keywordCompleter = new KeywordCompleter(getGherkinDialect)
+    const stepCompleter = new StepCompleter(autoCompleteFunction, getGherkinDialect)
     const langTools = window.ace.acequire('ace/ext/language_tools')
 
     setModeLanguage(language)
@@ -49,10 +72,20 @@ const GherkinEditor = (props) => {
   }
 
   const setModeLanguage = language => {
-    setGherkinDialect(language)
+    switch (mode) {
+      case 'gherkin_i18n':
+        setDialect(language)
+        break
+      case 'gherkin_background_i18n':
+        setBackgroundDialect(language)
+        break
+      default:
+        setDialect(language)
+        break
+    }
     // Force reload of ace editor mode
     aceEditorRef.editor.session.setMode({
-      path: 'ace/mode/gherkin_i18n',
+      path: `ace/mode/${mode}`,
       // eslint-disable-next-line id-length
       v: Date.now()
     })
@@ -89,7 +122,6 @@ const GherkinEditor = (props) => {
         <AceEditor
           {...props}
           ref={setAceEditorRef}
-          mode='gherkin_i18n'
           theme={theme}
           value={initialValue}
           name={uniqueId}
@@ -120,7 +152,8 @@ GherkinEditor.propTypes = {
   hideToolbar: PropTypes.bool,
   autoFocus: PropTypes.bool,
   initialHeight: PropTypes.number,
-  theme: PropTypes.string
+  theme: PropTypes.string,
+  mode: PropTypes.oneOf(['gherkin_i18n', 'gherkin_background_i18n'])
 }
 
 GherkinEditor.defaultProps = {
@@ -137,6 +170,7 @@ GherkinEditor.defaultProps = {
   onLanguageChange: () => {},
   autoFocus: false,
   theme: 'jira',
+  mode: 'gherkin_i18n',
   fontSize: 14,
   width: '100%',
   initialHeight: 500,

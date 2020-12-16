@@ -1,11 +1,11 @@
 // eslint-disable-next-line id-length
 import _ from 'lodash'
 import calculateSize from 'calculate-size'
-import { getGherkinDialect } from '../gherkin_i18n_dialects'
 
 class StepCompleter {
-  constructor (autoCompleteFunction) {
+  constructor (autoCompleteFunction, getGherkinDialect) {
     this.autoCompleteFunction = autoCompleteFunction
+    this.getGherkinDialect = getGherkinDialect
   }
 
   getCompletions = async (editor, session, position, _prefix, callback) => {
@@ -16,7 +16,7 @@ class StepCompleter {
 
     if (
       lineTokens.length > 1 &&
-      getGherkinDialect().keywords.includes(lineTokens[0])
+      this.getGherkinDialect().keywords.includes(lineTokens[0])
     ) {
       const keyword = lineTokens.shift()
       const text = lineTokens.join(' ')
