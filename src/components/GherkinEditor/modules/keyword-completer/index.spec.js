@@ -1,4 +1,4 @@
-import KeywordCompleter from './index'
+import KeywordCompleter from '.'
 import { getGherkinDialect } from '../gherkin_i18n_dialects'
 import { getGherkinDialect as getBackgroundDialect } from '../gherkin_background_i18n_dialects'
 import { getGherkinDialect as getScenarioDialect } from '../gherkin_scenario_i18n_dialects'

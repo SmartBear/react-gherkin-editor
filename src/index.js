@@ -1,5 +1,4 @@
 /* istanbul ignore file */
-/* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react'
 import { render } from 'react-dom'
 import GherkinEditor from './components/GherkinEditor'
@@ -55,7 +54,7 @@ const Preview = () => {
     'settings should be:'
   ]
 
-  const onChange = (value, event) => {
+  const onChange = value => {
     console.log(value)
     setValue(value)
   }

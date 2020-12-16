@@ -1,4 +1,3 @@
-// eslint-disable-next-line id-length
 import _ from 'lodash'
 import calculateSize from 'calculate-size'
 
@@ -9,15 +8,9 @@ class StepCompleter {
   }
 
   getCompletions = async (editor, session, position, _prefix, callback) => {
-    const lineTokens = session
-      .getLine(position.row)
-      .trim()
-      .split(' ')
+    const lineTokens = session.getLine(position.row).trim().split(' ')
 
-    if (
-      lineTokens.length > 1 &&
-      this.getGherkinDialect().keywords.includes(lineTokens[0])
-    ) {
+    if (lineTokens.length > 1 && this.getGherkinDialect().keywords.includes(lineTokens[0])) {
       const keyword = lineTokens.shift()
       const text = lineTokens.join(' ')
       try {
@@ -39,6 +32,7 @@ class StepCompleter {
     const strings = _.map(completions, 'caption')
     const longestString = _.orderBy(strings, 'length', 'desc').shift()
     const width = this._calculateVisualLength(editor, longestString)
+
     editor.completer.popup.container.style.width = `${width + 50}px`
   }
 
@@ -48,6 +42,7 @@ class StepCompleter {
       font: fontFamily,
       fontSize: fontSize
     })
+
     return width
   }
 }

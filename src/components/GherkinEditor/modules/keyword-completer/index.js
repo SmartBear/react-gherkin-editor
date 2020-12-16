@@ -4,10 +4,7 @@ class KeywordCompleter {
   }
 
   getCompletions = async (_editor, session, position, _prefix, callback) => {
-    const lineTokens = session
-      .getLine(position.row)
-      .trim()
-      .split(' ')
+    const lineTokens = session.getLine(position.row).trim().split(' ')
 
     if (lineTokens.length === 1) {
       const keywords = [
@@ -20,6 +17,7 @@ class KeywordCompleter {
         score: index,
         meta: 'Keyword'
       }))
+
       callback(null, completions)
     }
   }

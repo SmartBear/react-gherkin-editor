@@ -99,13 +99,12 @@ const GherkinEditor = (props) => {
     // Force reload of ace editor mode
     aceEditorRef.editor.session.setMode({
       path: `ace/mode/${mode}`,
-      // eslint-disable-next-line id-length
       v: Date.now()
     })
   }
 
-  const onResizeStop = (e, direction, ref, d) => {
-    setHeight(height + d.height)
+  const onResizeStop = (_event, _direction, _refToElement, delta) => {
+    setHeight(height + delta.height)
   }
 
   return (
@@ -178,7 +177,7 @@ GherkinEditor.defaultProps = {
     .toString(36)
     .substr(2, 9),
   onChange: () => {},
-  onSubmit: (text) => {},
+  onSubmit: () => {},
   autoCompleteFunction: () => Promise.resolve([]),
   onLanguageChange: () => {},
   autoFocus: false,

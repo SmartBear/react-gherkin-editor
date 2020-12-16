@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import GherkinEditor from './index'
+import GherkinEditor from '.'
 import AceEditor from 'react-ace'
 import Toolbar from './Toolbar'
 

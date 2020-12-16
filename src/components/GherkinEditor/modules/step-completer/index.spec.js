@@ -1,4 +1,4 @@
-import StepCompleter from './index'
+import StepCompleter from '.'
 import { getGherkinDialect } from '../gherkin_i18n_dialects'
 
 describe('StepCompleter class', () => {
@@ -16,9 +16,7 @@ describe('StepCompleter class', () => {
   ]
 
   const editorMock = {
-    getOptions: jest
-      .fn()
-      .mockReturnValue({ fontFamily: 'Arial', fontSize: 14 }),
+    getOptions: jest.fn().mockReturnValue({ fontFamily: 'Arial', fontSize: 14 }),
     completer: { popup: { container: { style: { width: 0 } } } }
   }
 
