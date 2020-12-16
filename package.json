@@ -28,6 +28,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-select-event": "^5.1.0",
     "styled-components": "^5.2.1",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
