@@ -1,4 +1,4 @@
-import gherkinLanguages from './gherkin_languages'
+import gherkinLanguages from '../gherkin_languages'
 
 let GherkinDialect = {}
 
@@ -8,7 +8,11 @@ export const setGherkinDialect = language => {
   GherkinDialect = {
     name: dialect.name,
     native_name: dialect.native,
-    labels: [],
+    labels: [
+      ...new Set([
+        ...dialect.examples.map(trimWhiteSpace)
+      ])
+    ],
     keywords: [
       ...new Set([
         ...dialect.given.map(trimWhiteSpace),

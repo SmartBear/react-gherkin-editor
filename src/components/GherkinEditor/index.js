@@ -7,15 +7,15 @@ import StepCompleter from './modules/step-completer'
 import {
   setGherkinDialect as setDialect,
   getGherkinDialect as getDialect
-} from './modules/gherkin_i18n_dialects'
+} from './modules/dialects/gherkin_i18n'
 import {
   setGherkinDialect as setBackgroundDialect,
   getGherkinDialect as getBackgroundDialect
-} from './modules/gherkin_background_i18n_dialects'
+} from './modules/dialects/gherkin_background_i18n'
 import {
   setGherkinDialect as setScenarioDialect,
   getGherkinDialect as getScenarioDialect
-} from './modules/gherkin_scenario_i18n_dialects'
+} from './modules/dialects/gherkin_scenario_i18n'
 import Toolbar from './Toolbar'
 import { EditorWrapper } from './style'
 

@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-import { getGherkinDialect } from '../gherkin_scenario_i18n_dialects'
+import { getGherkinDialect } from '../dialects/gherkin_scenario_i18n'
 import escapeStringRegexp from 'escape-string-regexp'
 
 /* global ace */
