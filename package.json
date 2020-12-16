@@ -23,7 +23,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "eslint": "^7.14.0",
-    "jest": "^24.9.0",
+    "jest": "^26.6.3",
     "neutrino": "^9.4.0",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
