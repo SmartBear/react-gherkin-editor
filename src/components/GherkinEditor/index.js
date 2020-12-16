@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import PropTypes from 'prop-types'
 import AceEditor from 'react-ace'
 import { Resizable } from 're-resizable'
@@ -28,8 +28,22 @@ import './modules/mode/gherkin_i18n'
 import './modules/mode/gherkin_background_i18n'
 import './modules/mode/gherkin_scenario_i18n'
 
+const setGherkinDialectFunctions = {
+  gherkin_i18n: setDialect,
+  gherkin_background_i18n: setBackgroundDialect,
+  gherkin_scenario_i18n: setScenarioDialect
+}
+
+const getGherkinDialectFunctions = {
+  gherkin_i18n: getDialect,
+  gherkin_background_i18n: getBackgroundDialect,
+  gherkin_scenario_i18n: getScenarioDialect
+}
+
 const GherkinEditor = (props) => {
   const [height, setHeight] = useState(props.initialHeight)
+  const aceEditor = useRef()
+
   const {
     initialValue,
     language,
@@ -37,7 +51,6 @@ const GherkinEditor = (props) => {
     readOnly,
     uniqueId,
     toolbarContent,
-    onChange,
     onSubmit,
     autoCompleteFunction,
     onLanguageChange,
@@ -45,63 +58,37 @@ const GherkinEditor = (props) => {
     theme,
     mode
   } = props
-  let aceEditorRef = null
+
+  const setGherkinDialect = setGherkinDialectFunctions[mode] || setDialect
+  const getGherkinDialect = getGherkinDialectFunctions[mode] || getDialect
+
+  const setModeLanguage = useCallback(language => {
+    setGherkinDialect(language)
+
+    // Force reload of ace editor mode
+    aceEditor.current.editor.session.setMode({
+      path: `ace/mode/${mode}`,
+      v: Date.now()
+    })
+  }, [setGherkinDialect, mode])
 
   useEffect(() => {
     if (autoFocus) {
-      aceEditorRef.editor.focus()
+      aceEditor.current.editor.focus()
     }
+  }, [autoFocus])
 
-    let getGherkinDialect
-
-    switch (mode) {
-      case 'gherkin_i18n':
-        getGherkinDialect = getDialect
-        break
-      case 'gherkin_background_i18n':
-        getGherkinDialect = getBackgroundDialect
-        break
-      case 'gherkin_scenario_i18n':
-        getGherkinDialect = getScenarioDialect
-        break
-      default:
-        getGherkinDialect = getDialect
-        break
-    }
-
+  useEffect(() => {
     const keywordCompleter = new KeywordCompleter(getGherkinDialect)
     const stepCompleter = new StepCompleter(autoCompleteFunction, getGherkinDialect)
     const langTools = window.ace.acequire('ace/ext/language_tools')
 
-    setModeLanguage(language)
     langTools.setCompleters([keywordCompleter, stepCompleter])
-  })
+  }, [autoCompleteFunction, getGherkinDialect])
 
-  const setAceEditorRef = aceEditor => {
-    aceEditorRef = aceEditor
-  }
-
-  const setModeLanguage = language => {
-    switch (mode) {
-      case 'gherkin_i18n':
-        setDialect(language)
-        break
-      case 'gherkin_background_i18n':
-        setBackgroundDialect(language)
-        break
-      case 'gherkin_scenario_i18n':
-        setScenarioDialect(language)
-        break
-      default:
-        setDialect(language)
-        break
-    }
-    // Force reload of ace editor mode
-    aceEditorRef.editor.session.setMode({
-      path: `ace/mode/${mode}`,
-      v: Date.now()
-    })
-  }
+  useEffect(() => {
+    setModeLanguage(language)
+  }, [setModeLanguage, language])
 
   const onResizeStop = (_event, _direction, _refToElement, delta) => {
     setHeight(height + delta.height)
@@ -133,12 +120,11 @@ const GherkinEditor = (props) => {
       >
         <AceEditor
           {...props}
-          ref={setAceEditorRef}
+          ref={aceEditor}
           theme={theme}
           value={initialValue}
           name={uniqueId}
           editorProps={{ $blockScrolling: true }}
-          onChange={onChange}
           height={`${height}px`}
           commands={[{
             name: 'test',
@@ -173,9 +159,7 @@ GherkinEditor.defaultProps = {
   language: 'en',
   hideToolbar: false,
   readOnly: false,
-  uniqueId: Math.random()
-    .toString(36)
-    .substr(2, 9),
+  uniqueId: Math.random().toString(36).substr(2, 9),
   onChange: () => {},
   onSubmit: () => {},
   autoCompleteFunction: () => Promise.resolve([]),
