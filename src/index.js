@@ -10,6 +10,7 @@ const root = document.getElementById('root')
 const Preview = () => {
   const [theme, setTheme] = useState('jira')
   const [mode, setMode] = useState('gherkin_i18n')
+  const [language, setLanguage] = useState('en')
   const [value, setValue] = useState(`Feature: Support internationalisation
   As a polyglot coffee lover
   I can select the language on the coffee machine
@@ -102,8 +103,10 @@ const Preview = () => {
     <div style={{ padding: '5px' }}>
       <GherkinEditor
         initialValue={value}
+        language={language}
         onChange={onChange}
         onSubmit={onChange}
+        onLanguageChange={(option) => setLanguage(option.value)}
         theme={theme}
         mode={mode}
         autoCompleteFunction={autoCompleteFunction}
