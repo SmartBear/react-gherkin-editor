@@ -109,7 +109,7 @@ const Preview = () => {
         language={language}
         onChange={onChange}
         onSubmit={onChange}
-        onLanguageChange={(option) => setLanguage(option.value)}
+        onLanguageChange={option => setLanguage(option.value)}
         theme={theme}
         mode={mode}
         autoCompleteFunction={autoCompleteFunction}

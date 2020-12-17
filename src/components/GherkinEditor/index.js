@@ -40,7 +40,7 @@ const getGherkinDialectFunctions = {
   gherkin_scenario_i18n: getScenarioDialect
 }
 
-const GherkinEditor = (props) => {
+const GherkinEditor = props => {
   const [currentLanguage, setCurrentLanguage] = useState(props.language)
   const [height, setHeight] = useState(props.initialHeight)
   const aceEditor = useRef()
