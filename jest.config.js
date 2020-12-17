@@ -1,4 +1,3 @@
-
 const neutrino = require('neutrino')
 
 // Set a default NODE_ENV before loading any middleware

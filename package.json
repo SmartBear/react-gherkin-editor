@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development --open",
+    "start": "webpack-dev-server --mode development",
     "lint": "eslint --cache --format codeframe --ext jsx,js src",
     "test": "jest"
   },
