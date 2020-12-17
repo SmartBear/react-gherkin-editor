@@ -70,4 +70,19 @@ describe('GherkinEditor', () => {
       expect(editor.getOption('firstLineNumber')).toBe(5)
     })
   })
+
+  describe('when content is changed', () => {
+    it('calls the onChange callback', () => {
+      const onChange = jest.fn()
+
+      const ref = React.createRef()
+      render(<GherkinEditor initialValue='Given a scenario' onChange={onChange} ref={ref} />)
+
+      const editor = ref.current.editor
+
+      editor.setValue('Then no scenario')
+
+      expect(onChange).toHaveBeenCalledWith('Then no scenario', expect.anything())
+    })
+  })
 })
