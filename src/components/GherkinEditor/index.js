@@ -40,6 +40,25 @@ const getGherkinDialectFunctions = {
   gherkin_scenario_i18n: getScenarioDialect
 }
 
+const defaultOptions = {
+  fontFamily: [
+    "'SFMono-Medium'",
+    "'SF Mono'",
+    "'Segoe UI Mono'",
+    "'Roboto Mono'",
+    "'Ubuntu Mono'",
+    'Menlo',
+    'Consolas',
+    'Courier',
+    'monospace'
+  ].join(', '),
+  enableBasicAutocompletion: true,
+  enableLiveAutocompletion: true,
+  showLineNumbers: false,
+  displayIndentGuides: false,
+  tabSize: 2
+}
+
 const GherkinEditor = React.forwardRef((props, ref) => {
   const [currentLanguage, setCurrentLanguage] = useState(props.language)
   const [height, setHeight] = useState(props.initialHeight)
@@ -58,7 +77,8 @@ const GherkinEditor = React.forwardRef((props, ref) => {
     onLanguageChange,
     autoFocus,
     theme,
-    mode
+    mode,
+    setOptions
   } = props
 
   const setGherkinDialect = setGherkinDialectFunctions[mode] || setDialect
@@ -104,6 +124,8 @@ const GherkinEditor = React.forwardRef((props, ref) => {
     onLanguageChange(option)
   }
 
+  const options = { ...defaultOptions, ...setOptions }
+
   return (
     <EditorWrapper>
       {!hideToolbar &&
@@ -134,6 +156,7 @@ const GherkinEditor = React.forwardRef((props, ref) => {
           value={initialValue}
           name={uniqueId}
           editorProps={{ $blockScrolling: true }}
+          setOptions={options}
           height={`${height}px`}
           commands={[{
             name: 'test',
@@ -166,14 +189,7 @@ GherkinEditor.propTypes = {
   showPrintMargin: PropTypes.bool,
   showGutter: PropTypes.bool,
   highlightActiveLine: PropTypes.bool,
-  setOptions: PropTypes.shape({
-    fontFamily: PropTypes.string,
-    enableBasicAutocompletion: PropTypes.bool,
-    enableLiveAutocompletion: PropTypes.bool,
-    showLineNumbers: PropTypes.bool,
-    displayIndentGuides: PropTypes.bool,
-    tabSize: PropTypes.number
-  })
+  setOptions: PropTypes.object
 }
 
 GherkinEditor.defaultProps = {
@@ -195,14 +211,7 @@ GherkinEditor.defaultProps = {
   showPrintMargin: false,
   showGutter: false,
   highlightActiveLine: false,
-  setOptions: {
-    fontFamily: "'SFMono-Medium', 'SF Mono', 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Mono', Menlo, Consolas, Courier, monospace",
-    enableBasicAutocompletion: true,
-    enableLiveAutocompletion: true,
-    showLineNumbers: false,
-    displayIndentGuides: false,
-    tabSize: 2
-  }
+  setOptions: {}
 }
 
 export default GherkinEditor
