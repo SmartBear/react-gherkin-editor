@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useImperativeHandle } from 'react'
 import PropTypes from 'prop-types'
 import AceEditor from 'react-ace'
 import { Resizable } from 're-resizable'
@@ -40,10 +40,11 @@ const getGherkinDialectFunctions = {
   gherkin_scenario_i18n: getScenarioDialect
 }
 
-const GherkinEditor = props => {
+const GherkinEditor = React.forwardRef((props, ref) => {
   const [currentLanguage, setCurrentLanguage] = useState(props.language)
   const [height, setHeight] = useState(props.initialHeight)
-  const aceEditor = useRef()
+
+  const aceEditorRef = useRef()
 
   const {
     initialValue,
@@ -65,7 +66,7 @@ const GherkinEditor = props => {
 
   useEffect(() => {
     if (autoFocus) {
-      aceEditor.current.editor.focus()
+      aceEditorRef.current.editor.focus()
     }
   }, [autoFocus])
 
@@ -84,12 +85,15 @@ const GherkinEditor = props => {
   useEffect(() => {
     setGherkinDialect(currentLanguage)
 
-    // Force reload of ace editor mode
-    aceEditor.current.editor.session.setMode({
+    aceEditorRef.current.editor.session.setMode({
       path: `ace/mode/${mode}`,
       v: Date.now()
     })
   }, [setGherkinDialect, currentLanguage, mode])
+
+  useImperativeHandle(ref, () => ({
+    editor: aceEditorRef.current.editor
+  }))
 
   const onResizeStop = (_event, _direction, _refToElement, delta) => {
     setHeight(height + delta.height)
@@ -125,7 +129,7 @@ const GherkinEditor = props => {
       >
         <AceEditor
           {...props}
-          ref={aceEditor}
+          ref={aceEditorRef}
           theme={theme}
           value={initialValue}
           name={uniqueId}
@@ -140,7 +144,7 @@ const GherkinEditor = props => {
       </Resizable>
     </EditorWrapper>
   )
-}
+})
 
 GherkinEditor.propTypes = {
   initialValue: PropTypes.string,
