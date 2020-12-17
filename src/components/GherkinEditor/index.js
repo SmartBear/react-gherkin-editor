@@ -149,18 +149,31 @@ const GherkinEditor = React.forwardRef((props, ref) => {
 GherkinEditor.propTypes = {
   initialValue: PropTypes.string,
   language: PropTypes.string,
+  hideToolbar: PropTypes.bool,
   readOnly: PropTypes.bool,
   uniqueId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  toolbarContent: PropTypes.node,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
   autoCompleteFunction: PropTypes.func,
   onLanguageChange: PropTypes.func,
-  toolbarContent: PropTypes.node,
-  hideToolbar: PropTypes.bool,
   autoFocus: PropTypes.bool,
   initialHeight: PropTypes.number,
   theme: PropTypes.string,
-  mode: PropTypes.oneOf(['gherkin_i18n', 'gherkin_background_i18n', 'gherkin_scenario_i18n'])
+  mode: PropTypes.oneOf(['gherkin_i18n', 'gherkin_background_i18n', 'gherkin_scenario_i18n']),
+  fontSize: PropTypes.number,
+  width: PropTypes.string,
+  showPrintMargin: PropTypes.bool,
+  showGutter: PropTypes.bool,
+  highlightActiveLine: PropTypes.bool,
+  setOptions: PropTypes.shape({
+    fontFamily: PropTypes.string,
+    enableBasicAutocompletion: PropTypes.bool,
+    enableLiveAutocompletion: PropTypes.bool,
+    showLineNumbers: PropTypes.bool,
+    displayIndentGuides: PropTypes.bool,
+    tabSize: PropTypes.number
+  })
 }
 
 GherkinEditor.defaultProps = {
@@ -174,11 +187,11 @@ GherkinEditor.defaultProps = {
   autoCompleteFunction: () => Promise.resolve([]),
   onLanguageChange: () => {},
   autoFocus: false,
+  initialHeight: 500,
   theme: 'jira',
   mode: 'gherkin_i18n',
   fontSize: 14,
   width: '100%',
-  initialHeight: 500,
   showPrintMargin: false,
   showGutter: false,
   highlightActiveLine: false,
