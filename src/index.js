@@ -70,7 +70,7 @@ const Preview = () => {
 
   const themeOptions = [
     { label: 'jira', value: 'jira' },
-    { label: 'c4j', value: 'c4j' }
+    { label: 'cucumber', value: 'cucumber' }
   ]
   const modeOptions = [
     { label: 'gherkin i18n', value: 'gherkin_i18n' },

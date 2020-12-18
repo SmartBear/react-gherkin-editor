@@ -22,7 +22,7 @@ import { EditorWrapper } from './style'
 import 'ace-builds/src-noconflict/ext-language_tools'
 
 import './theme/jira'
-import './theme/c4j'
+import './theme/cucumber'
 
 import './modules/mode/gherkin_i18n'
 import './modules/mode/gherkin_background_i18n'
