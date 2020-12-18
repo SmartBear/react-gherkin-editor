@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useImperativeHandle } from 'react'
 import PropTypes from 'prop-types'
 import AceEditor from 'react-ace'
 import { Resizable } from 're-resizable'
@@ -40,10 +40,30 @@ const getGherkinDialectFunctions = {
   gherkin_scenario_i18n: getScenarioDialect
 }
 
-const GherkinEditor = (props) => {
+const defaultOptions = {
+  fontFamily: [
+    "'SFMono-Medium'",
+    "'SF Mono'",
+    "'Segoe UI Mono'",
+    "'Roboto Mono'",
+    "'Ubuntu Mono'",
+    'Menlo',
+    'Consolas',
+    'Courier',
+    'monospace'
+  ].join(', '),
+  enableBasicAutocompletion: true,
+  enableLiveAutocompletion: true,
+  showLineNumbers: false,
+  displayIndentGuides: false,
+  tabSize: 2
+}
+
+const GherkinEditor = React.forwardRef((props, ref) => {
   const [currentLanguage, setCurrentLanguage] = useState(props.language)
   const [height, setHeight] = useState(props.initialHeight)
-  const aceEditor = useRef()
+
+  const aceEditorRef = useRef()
 
   const {
     initialValue,
@@ -57,7 +77,8 @@ const GherkinEditor = (props) => {
     onLanguageChange,
     autoFocus,
     theme,
-    mode
+    mode,
+    setOptions
   } = props
 
   const setGherkinDialect = setGherkinDialectFunctions[mode] || setDialect
@@ -65,7 +86,7 @@ const GherkinEditor = (props) => {
 
   useEffect(() => {
     if (autoFocus) {
-      aceEditor.current.editor.focus()
+      aceEditorRef.current.editor.focus()
     }
   }, [autoFocus])
 
@@ -84,12 +105,15 @@ const GherkinEditor = (props) => {
   useEffect(() => {
     setGherkinDialect(currentLanguage)
 
-    // Force reload of ace editor mode
-    aceEditor.current.editor.session.setMode({
+    aceEditorRef.current.editor.session.setMode({
       path: `ace/mode/${mode}`,
       v: Date.now()
     })
   }, [setGherkinDialect, currentLanguage, mode])
+
+  useImperativeHandle(ref, () => ({
+    editor: aceEditorRef.current.editor
+  }))
 
   const onResizeStop = (_event, _direction, _refToElement, delta) => {
     setHeight(height + delta.height)
@@ -99,6 +123,8 @@ const GherkinEditor = (props) => {
     setCurrentLanguage(option.value)
     onLanguageChange(option)
   }
+
+  const options = { ...defaultOptions, ...setOptions }
 
   return (
     <EditorWrapper>
@@ -125,11 +151,12 @@ const GherkinEditor = (props) => {
       >
         <AceEditor
           {...props}
-          ref={aceEditor}
+          ref={aceEditorRef}
           theme={theme}
           value={initialValue}
           name={uniqueId}
           editorProps={{ $blockScrolling: true }}
+          setOptions={options}
           height={`${height}px`}
           commands={[{
             name: 'test',
@@ -140,23 +167,29 @@ const GherkinEditor = (props) => {
       </Resizable>
     </EditorWrapper>
   )
-}
+})
 
 GherkinEditor.propTypes = {
   initialValue: PropTypes.string,
   language: PropTypes.string,
+  hideToolbar: PropTypes.bool,
   readOnly: PropTypes.bool,
   uniqueId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  toolbarContent: PropTypes.node,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
   autoCompleteFunction: PropTypes.func,
   onLanguageChange: PropTypes.func,
-  toolbarContent: PropTypes.node,
-  hideToolbar: PropTypes.bool,
   autoFocus: PropTypes.bool,
   initialHeight: PropTypes.number,
   theme: PropTypes.string,
-  mode: PropTypes.oneOf(['gherkin_i18n', 'gherkin_background_i18n', 'gherkin_scenario_i18n'])
+  mode: PropTypes.oneOf(['gherkin_i18n', 'gherkin_background_i18n', 'gherkin_scenario_i18n']),
+  fontSize: PropTypes.number,
+  width: PropTypes.string,
+  showPrintMargin: PropTypes.bool,
+  showGutter: PropTypes.bool,
+  highlightActiveLine: PropTypes.bool,
+  setOptions: PropTypes.object
 }
 
 GherkinEditor.defaultProps = {
@@ -170,22 +203,15 @@ GherkinEditor.defaultProps = {
   autoCompleteFunction: () => Promise.resolve([]),
   onLanguageChange: () => {},
   autoFocus: false,
+  initialHeight: 500,
   theme: 'jira',
   mode: 'gherkin_i18n',
   fontSize: 14,
   width: '100%',
-  initialHeight: 500,
   showPrintMargin: false,
   showGutter: false,
   highlightActiveLine: false,
-  setOptions: {
-    fontFamily: "'SFMono-Medium', 'SF Mono', 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Mono', Menlo, Consolas, Courier, monospace",
-    enableBasicAutocompletion: true,
-    enableLiveAutocompletion: true,
-    showLineNumbers: false,
-    displayIndentGuides: false,
-    tabSize: 2
-  }
+  setOptions: {}
 }
 
 export default GherkinEditor

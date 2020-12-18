@@ -2,8 +2,7 @@
 import React, { useState } from 'react'
 import { render } from 'react-dom'
 import GherkinEditor from './components/GherkinEditor'
-import Select from '@atlaskit/select'
-import '@atlaskit/css-reset'
+import Select from 'react-select'
 
 const steps = [
   'I start the coffee machine using language "lang"',
@@ -109,7 +108,7 @@ const Preview = () => {
         language={language}
         onChange={onChange}
         onSubmit={onChange}
-        onLanguageChange={(option) => setLanguage(option.value)}
+        onLanguageChange={option => setLanguage(option.value)}
         theme={theme}
         mode={mode}
         autoCompleteFunction={autoCompleteFunction}

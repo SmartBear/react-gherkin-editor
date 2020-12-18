@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Select from '@atlaskit/select'
+import Select from 'react-select'
 import gherkinLanguages from '../modules/gherkin_languages'
 import _find from 'lodash/find'
 import { ToolbarContainer, LanguageDropdownContainer } from './style'
