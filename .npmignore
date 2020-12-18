@@ -7,6 +7,8 @@ src/
 # config files
 .editorconfig
 .eslintrc.js
+.eslintcache
+.neutrinorc.js
 .prettierrc.json
 .whitesource
 jest.config.js
