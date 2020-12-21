@@ -3,7 +3,7 @@
 This is a wrapper arround [React Ace Editor](https://github.com/securingsincity/react-ace) specially designed for Gherkin.
 
 - It includes a special theme for Jira based on ace textmate theme.
-- It includes a special theme for C4J.
+- It includes a special theme for Cucumber.
 
 
 ## Features
@@ -16,19 +16,10 @@ This is a wrapper arround [React Ace Editor](https://github.com/securingsincity/
 ## Install from a release tag
 
 ### With Yarn
-`yarn add git+ssh://git@github.com/SmartBear/react-gherkin-editor.git#v0.1.0`
+`yarn add @smartbear/react-gherkin-editor`
 
 ### With npm
-`npm install --save git+ssh://git@github.com/SmartBear/react-gherkin-editor.git#v0.1.0`
-
-
-## Install from master branch
-
-### With Yarn
-`yarn add git+ssh://git@github.com/SmartBear/react-gherkin-editor.git`
-
-### With npm
-`npm install --save git+ssh://git@github.com/SmartBear/react-gherkin-editor.git`
+`npm install --save @smartbear/react-gherkin-editor`
 
 
 ## Basic Usage
@@ -93,53 +84,13 @@ render(
     onValueChange={onValueChange}
     autoCompleteFunction={autoCompleteFunction}
     language='en'
+    theme='cucumber'
   />,
   root
 )
 ```
 
-## Documentation
-
-### Available themes
-Custom themes are available
- - jira (default)
- - c4j
-
-You can switch to the c4j theme by specifying it while rendering the GherkinEditor
-```javascript
- <GherkinEditor
-  ...props
-  theme='c4j'
- >
-```
-
-### Release a new version
-
-To release a new version of react-gherkin-editor, you need to:
-- Run `git checkout release` then `git merge master`
-- Update the version in package.json file (example: 2.0.3)
-- Run `npm install` and `npm run build`
-- A folder named "build" will be created
-- Commit the changes with the message "release [version]" (example: "release 2.0.3")
-- From react-gherkin-editor repository, go to releases tab and click on "Draft new release"
-  - Tag: v[version] (example: v2.0.3)
-  - Target branch: release
-  - Release title: Release [version] (example: Release 2.0.3)
-  - Fill the release notes
-- Click on "Publish release"
-
-Then a new version is released :)
-
-### Upgrade
-You can upgrade react-gherkin-editor in two different ways:
-- [Using the release tag](https://github.com/SmartBear/react-gherkin-editor/tree/release#install-from-a-release-tag)
-- From the Github repository:
-  - Go to the wanted release in react-gherkin-editor Github repository
-  - Download the source code and copy the downloaded file
-  - Go to vendor folder of your project and paste the copied file
-  - Run `yarn add file:[path to vendor file]`
-
-
+___
 ## Ace Documentation
 [React Ace Editor](https://github.com/securingsincity/react-ace)
 
