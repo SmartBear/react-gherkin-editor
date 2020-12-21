@@ -20,7 +20,6 @@ ace.define(
       '\\\\(x[0-9A-Fa-f]{2}|[0-7]{3}|[\\\\abfnrtv\'"]|U[0-9A-Fa-f]{8}|u[0-9A-Fa-f]{4})'
 
     var GherkinHighlightRules = function () {
-      var labels = getGherkinDialect().labels
       var keywords = getGherkinDialect().keywords
 
       this.$rules = {
@@ -37,8 +36,6 @@ ace.define(
             token: 'keyword',
             regex:
               '(?:' +
-              labels.map(escapeStringRegexp).join('|') +
-              '):|(?:' +
               keywords.map(escapeStringRegexp).join('|') +
               ')\\b'
           },
