@@ -1,6 +1,6 @@
 {
   "name": "@smartbear/react-gherkin-editor",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "main": "build/GherkinEditor.js",
   "author": "SmartBear Software",
   "license": "MIT",
