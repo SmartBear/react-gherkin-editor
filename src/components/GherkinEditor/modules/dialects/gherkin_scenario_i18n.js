@@ -1,4 +1,4 @@
-import gherkinLanguages from '../gherkin_languages'
+import gherkinLanguages from '../../../../lib/gherkin-languages'
 
 let GherkinDialect = {}
 
