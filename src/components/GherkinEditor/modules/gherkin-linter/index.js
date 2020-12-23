@@ -5,17 +5,17 @@ class GherkinLinter {
   constructor (session) {
     this.session = session
     this.worker = new GherkinLinterWorker()
-    this.worker.onmessage = this._onWorkerMessage
+    this.worker.onmessage = this._onWorkerMessage.bind(this)
 
     this.language = 'en'
     this.mode = ''
   }
 
-  setLanguage = language => {
+  setLanguage(language) {
     this.language = language
   }
 
-  setMode = mode => {
+  setMode(mode) {
     switch (mode) {
       case 'gherkin_background_i18n':
         this.mode = 'background'
@@ -28,13 +28,19 @@ class GherkinLinter {
     }
   }
 
-  check = debounce(value => {
+  check(value) {
+    this.debouncedCheck(value)
+  }
+
+  debouncedCheck = debounce(value => {
     this._check(value)
   }, 200)
 
-  _check = value => this.worker.postMessage({ content: value, language: this.language, mode: this.mode })
+  _check(value) {
+    this.worker.postMessage({ content: value, language: this.language, mode: this.mode })
+  }
 
-  _onWorkerMessage = message => {
+  _onWorkerMessage(message) {
     const { errors } = message.data
 
     if (!Array.isArray(errors)) {

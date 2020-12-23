@@ -114,6 +114,13 @@ const Preview = () => {
         autoCompleteFunction={autoCompleteFunction}
         toolbarContent={ToolbarContent}
         autoFocus
+        activateLinter
+        showGutter
+        setOptions={
+          {
+            showLineNumbers: true
+          }
+        }
       />
     </div>
   )

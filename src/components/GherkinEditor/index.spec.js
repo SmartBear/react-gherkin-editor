@@ -1,6 +1,14 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import GherkinEditor from '.'
+import GherkinLinter from './modules/gherkin-linter'
+
+jest.mock('./modules/gherkin-linter/gherkin-linter.worker')
+jest.mock('./modules/gherkin-linter')
+
+beforeEach(() => {
+  GherkinLinter.mockClear()
+})
 
 describe('GherkinEditor', () => {
   it('renders a Gherkin editor', () => {
@@ -83,6 +91,67 @@ describe('GherkinEditor', () => {
       editor.setValue('Then no scenario')
 
       expect(onChange).toHaveBeenCalledWith('Then no scenario', expect.anything())
+    })
+  })
+
+  describe('linting', () => {
+    describe('when linter is activated', () => {
+      it('lints the initial value', () => {
+        render(<GherkinEditor initialValue='Given a scenario' showGutter activateLinter />)
+
+        const mockGherkinLinterCheck = GherkinLinter.mock.instances[0].check
+
+        expect(mockGherkinLinterCheck).toHaveBeenCalledWith('Given a scenario')
+      })
+
+      it('lints with new value when it has changed', () => {
+        const ref = React.createRef()
+
+        render(<GherkinEditor initialValue='Given a scenario' showGutter activateLinter ref={ref} />)
+
+        const editor = ref.current.editor
+
+        editor.setValue('Then no scenario')
+
+        const mockGherkinLinterCheck = GherkinLinter.mock.instances[0].check
+
+        expect(mockGherkinLinterCheck).toHaveBeenCalledWith('Then no scenario')
+      })
+    })
+
+    describe('when linter is deactivated', () => {
+      it('does not instanciate linter', () => {
+        render(<GherkinEditor initialValue='Given a scenario' showGutter activateLinter={false} />)
+
+        expect(GherkinLinter).not.toHaveBeenCalled()
+      })
+
+      it('does not lint when value has changed', () => {
+        const ref = React.createRef()
+
+        render(<GherkinEditor initialValue='Given a scenario' showGutter activateLinter={false} ref={ref} />)
+
+        const editor = ref.current.editor
+
+        editor.setValue('Then no scenario')
+
+        expect(GherkinLinter.mock.instances.length).toEqual(0)
+      })
+    })
+
+    describe('when gutter is deactivated', () => {
+      it('deactivate linting', () => {
+        const { warn } = console
+
+        console.warn = jest.fn()
+
+        render(<GherkinEditor initialValue='Given a scenario' showGutter={false} activateLinter />)
+
+        expect(GherkinLinter).not.toHaveBeenCalled()
+        expect(console.warn).toHaveBeenCalledWith('activateLinter requires showGutter to be true')
+
+        console.warn = warn
+      })
     })
   })
 })

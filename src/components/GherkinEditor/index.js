@@ -16,6 +16,7 @@ import {
   setGherkinDialect as setScenarioDialect,
   getGherkinDialect as getScenarioDialect
 } from './modules/dialects/gherkin_scenario_i18n'
+import GherkinLinter from './modules/gherkin-linter'
 import Toolbar from './Toolbar'
 import { EditorWrapper } from './style'
 
@@ -64,6 +65,7 @@ const GherkinEditor = React.forwardRef((props, ref) => {
   const [height, setHeight] = useState(props.initialHeight)
 
   const aceEditorRef = useRef()
+  const gherkinLinter = useRef()
 
   const {
     initialValue,
@@ -78,6 +80,8 @@ const GherkinEditor = React.forwardRef((props, ref) => {
     autoFocus,
     theme,
     mode,
+    showGutter,
+    activateLinter,
     setOptions
   } = props
 
@@ -111,6 +115,28 @@ const GherkinEditor = React.forwardRef((props, ref) => {
     })
   }, [setGherkinDialect, currentLanguage, mode])
 
+  useEffect(() => {
+    if (!activateLinter) {
+      gherkinLinter.current = null
+      return
+    }
+
+    if (!showGutter) {
+      gherkinLinter.current = null
+      console.warn('activateLinter requires showGutter to be true')
+      return
+    }
+
+    if (!gherkinLinter.current) {
+      const { editor } = aceEditorRef.current
+      gherkinLinter.current = new GherkinLinter(editor.getSession())
+    }
+
+    gherkinLinter.current.setLanguage(currentLanguage)
+    gherkinLinter.current.setMode(mode)
+    gherkinLinter.current.check(initialValue)
+  }, [activateLinter, showGutter, initialValue, currentLanguage, mode])
+
   useImperativeHandle(ref, () => ({
     editor: aceEditorRef.current.editor
   }))
@@ -122,6 +148,14 @@ const GherkinEditor = React.forwardRef((props, ref) => {
   const languageChangeHandler = option => {
     setCurrentLanguage(option.value)
     onLanguageChange(option)
+  }
+
+  const onChangeHandler = (newValue, ...args) => {
+    if (gherkinLinter.current) {
+      gherkinLinter.current.check(newValue)
+    }
+
+    return props.onChange(newValue, ...args)
   }
 
   const options = { ...defaultOptions, ...setOptions }
@@ -151,6 +185,7 @@ const GherkinEditor = React.forwardRef((props, ref) => {
       >
         <AceEditor
           {...props}
+          onChange={onChangeHandler}
           ref={aceEditorRef}
           theme={theme}
           value={initialValue}
@@ -189,6 +224,7 @@ GherkinEditor.propTypes = {
   showPrintMargin: PropTypes.bool,
   showGutter: PropTypes.bool,
   highlightActiveLine: PropTypes.bool,
+  activateLinter: PropTypes.bool,
   setOptions: PropTypes.object
 }
 
@@ -211,6 +247,7 @@ GherkinEditor.defaultProps = {
   showPrintMargin: false,
   showGutter: false,
   highlightActiveLine: false,
+  activateLinter: false,
   setOptions: {}
 }
 
