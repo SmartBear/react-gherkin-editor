@@ -1,12 +1,29 @@
 const standardjs = require('@neutrinojs/standardjs');
 const reactComponents = require('@neutrinojs/react-components');
 const jest = require('@neutrinojs/jest');
+const webpack = require('webpack')
 
 module.exports = {
   options: {
     root: __dirname,
   },
   use: [
+    (neutrino) =>  {
+      neutrino.config.output
+        .globalObject('this')
+      .end()
+      .module
+        .rule('worker')
+          .test(neutrino.regexFromExtensions(['worker.js']))
+          .use('worker')
+            .loader(require.resolve('worker-loader'))
+            .options({
+              filename: "worker-gherkin-linter.js"
+            })
+
+      neutrino.config.plugin('buffer')
+        .use(new webpack.ProvidePlugin({ Buffer: ['buffer', 'Buffer'] }));
+    },
     standardjs({
       eslint: {
         baseConfig: {
