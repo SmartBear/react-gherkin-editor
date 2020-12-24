@@ -1,10 +1,10 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import GherkinEditor from '.'
-import GherkinLinter from './modules/gherkin-linter'
+import GherkinLinter from '../../modules/gherkin-linter'
 
-jest.mock('./modules/gherkin-linter/gherkin-linter.worker')
-jest.mock('./modules/gherkin-linter')
+jest.mock('../../modules/gherkin-linter/gherkin-linter.worker')
+jest.mock('../../modules/gherkin-linter')
 
 beforeEach(() => {
   GherkinLinter.mockClear()

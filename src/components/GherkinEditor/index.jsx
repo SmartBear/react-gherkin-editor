@@ -2,32 +2,32 @@ import React, { useState, useEffect, useRef, useImperativeHandle } from 'react'
 import PropTypes from 'prop-types'
 import AceEditor from 'react-ace'
 import { Resizable } from 're-resizable'
-import KeywordCompleter from './modules/keyword-completer'
-import StepCompleter from './modules/step-completer'
+import KeywordCompleter from '../../modules/keyword-completer'
+import StepCompleter from '../../modules/step-completer'
 import {
   setGherkinDialect as setDialect,
   getGherkinDialect as getDialect
-} from './modules/dialects/gherkin_i18n'
+} from '../../modules/dialects/gherkin_i18n'
 import {
   setGherkinDialect as setBackgroundDialect,
   getGherkinDialect as getBackgroundDialect
-} from './modules/dialects/gherkin_background_i18n'
+} from '../../modules/dialects/gherkin_background_i18n'
 import {
   setGherkinDialect as setScenarioDialect,
   getGherkinDialect as getScenarioDialect
-} from './modules/dialects/gherkin_scenario_i18n'
-import GherkinLinter from './modules/gherkin-linter'
+} from '../../modules/dialects/gherkin_scenario_i18n'
+import GherkinLinter from '../../modules/gherkin-linter'
 import Toolbar from './Toolbar'
 import { EditorWrapper } from './style'
 
 import 'ace-builds/src-noconflict/ext-language_tools'
 
-import './theme/jira'
-import './theme/cucumber'
+import '../../themes/jira'
+import '../../themes/cucumber'
 
-import './modules/mode/gherkin_i18n'
-import './modules/mode/gherkin_background_i18n'
-import './modules/mode/gherkin_scenario_i18n'
+import '../../modules/mode/gherkin_i18n'
+import '../../modules/mode/gherkin_background_i18n'
+import '../../modules/mode/gherkin_scenario_i18n'
 
 const setGherkinDialectFunctions = {
   gherkin_i18n: setDialect,
