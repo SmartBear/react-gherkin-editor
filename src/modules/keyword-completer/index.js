@@ -1,5 +1,5 @@
 class KeywordCompleter {
-  constructor (getGherkinDialect) {
+  constructor(getGherkinDialect) {
     this.getGherkinDialect = getGherkinDialect
   }
 

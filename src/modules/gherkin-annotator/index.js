@@ -2,7 +2,7 @@ import { debounce } from 'lodash'
 import GherkinLinter from '../../lib/gherkin-linter'
 
 export default class {
-  constructor (session) {
+  constructor(session) {
     this.session = session
     this.linter = new GherkinLinter()
 

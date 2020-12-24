@@ -69,7 +69,14 @@ module.exports = {
                 html: true
               }
             ],
-            'space-before-function-paren': 'off'
+            'space-before-function-paren': [
+              'error',
+              {
+                anonymous: 'always',
+                named: 'never',
+                asyncArrow: 'always'
+              }
+            ]
           }
         }
       }

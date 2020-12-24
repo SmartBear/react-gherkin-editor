@@ -4,7 +4,7 @@ import _orderBy from 'lodash/orderBy'
 import calculateSize from 'calculate-size'
 
 class StepCompleter {
-  constructor (autoCompleteFunction, getGherkinDialect) {
+  constructor(autoCompleteFunction, getGherkinDialect) {
     this.autoCompleteFunction = autoCompleteFunction
     this.getGherkinDialect = getGherkinDialect
   }
