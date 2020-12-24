@@ -16,7 +16,7 @@ import {
   setGherkinDialect as setScenarioDialect,
   getGherkinDialect as getScenarioDialect
 } from '../../modules/dialects/gherkin_scenario_i18n'
-import GherkinLinter from '../../modules/gherkin-linter'
+import GherkinAnnotator from '../../modules/gherkin-annotator'
 import Toolbar from './Toolbar'
 import { EditorWrapper } from './style'
 
@@ -65,7 +65,7 @@ const GherkinEditor = React.forwardRef((props, ref) => {
   const [height, setHeight] = useState(props.initialHeight)
 
   const aceEditorRef = useRef()
-  const gherkinLinter = useRef()
+  const gherkinAnnotator = useRef()
 
   const {
     initialValue,
@@ -117,25 +117,33 @@ const GherkinEditor = React.forwardRef((props, ref) => {
 
   useEffect(() => {
     if (!activateLinter) {
-      gherkinLinter.current = null
+      gherkinAnnotator.current = null
       return
     }
 
     if (!showGutter) {
-      gherkinLinter.current = null
+      gherkinAnnotator.current = null
       console.warn('activateLinter requires showGutter to be true')
       return
     }
 
-    if (!gherkinLinter.current) {
+    if (!gherkinAnnotator.current) {
       const { editor } = aceEditorRef.current
-      gherkinLinter.current = new GherkinLinter(editor.getSession())
+      gherkinAnnotator.current = new GherkinAnnotator(editor.getSession())
     }
 
-    gherkinLinter.current.setLanguage(currentLanguage)
-    gherkinLinter.current.setMode(mode)
-    gherkinLinter.current.check(initialValue)
-  }, [activateLinter, showGutter, initialValue, currentLanguage, mode])
+    gherkinAnnotator.current.setLanguage(currentLanguage)
+    gherkinAnnotator.current.setMode(mode)
+  }, [activateLinter, showGutter, currentLanguage, mode])
+
+  useEffect(() => {
+    if (!gherkinAnnotator.current) {
+      return
+    }
+
+    gherkinAnnotator.current.annotateNow(initialValue)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useImperativeHandle(ref, () => ({
     editor: aceEditorRef.current.editor
@@ -151,8 +159,8 @@ const GherkinEditor = React.forwardRef((props, ref) => {
   }
 
   const onChangeHandler = (newValue, ...args) => {
-    if (gherkinLinter.current) {
-      gherkinLinter.current.check(newValue)
+    if (gherkinAnnotator.current) {
+      gherkinAnnotator.current.annotate(newValue)
     }
 
     return props.onChange(newValue, ...args)

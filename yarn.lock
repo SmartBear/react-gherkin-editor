@@ -9140,14 +9140,6 @@ worker-farm@^1.7.0:
   dependencies:
     errno "~0.1.7"
 
-worker-loader@^3.0.6:
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/worker-loader/-/worker-loader-3.0.6.tgz#fa540eaa806422b744ddcd64db7eced7ae32a6ff"
-  integrity sha512-yLmxR1momXc8R8NM4j4/nq7hPvVTems7i40NuAdVmitLJwq4agIeZRTyW2Hans0J21laF0e6/ypYbwLpBzlifA==
-  dependencies:
-    loader-utils "^2.0.0"
-    schema-utils "^3.0.0"
-
 wrap-ansi@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-5.1.0.tgz#1fd1f67235d5b6d0fee781056001bfb694c03b09"

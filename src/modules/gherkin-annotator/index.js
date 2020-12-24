@@ -1,11 +1,10 @@
 import { debounce } from 'lodash'
-import GherkinLinterWorker from './gherkin-linter.worker'
+import GherkinLinter from '../../lib/gherkin-linter'
 
-class GherkinLinter {
+export default class {
   constructor (session) {
     this.session = session
-    this.worker = new GherkinLinterWorker()
-    this.worker.onmessage = this._onWorkerMessage.bind(this)
+    this.linter = new GherkinLinter()
 
     this.language = 'en'
     this.mode = ''
@@ -28,20 +27,16 @@ class GherkinLinter {
     }
   }
 
-  check(value) {
-    this.debouncedCheck(value)
+  annotate(value) {
+    this.debouncedAnnotate(value)
   }
 
-  debouncedCheck = debounce(value => {
-    this._check(value)
-  }, 200)
+  debouncedAnnotate = debounce(value => {
+    this.annotateNow(value)
+  }, 250)
 
-  _check(value) {
-    this.worker.postMessage({ content: value, language: this.language, mode: this.mode })
-  }
-
-  _onWorkerMessage(message) {
-    const { errors } = message.data
+  async annotateNow(value) {
+    const errors = await this.lint(value)
 
     if (!Array.isArray(errors)) {
       return
@@ -53,6 +48,12 @@ class GherkinLinter {
       this.session.clearAnnotations()
     }
   }
-}
 
-export default GherkinLinter
+  async lint(value) {
+    return this.linter
+      .setLanguage(this.language)
+      .setSubsetType(this.mode)
+      .parse(value)
+      .getLintingErrors()
+  }
+}

@@ -12,14 +12,6 @@ module.exports = {
       neutrino.config.output
         .globalObject('this')
       .end()
-      .module
-        .rule('worker')
-          .test(neutrino.regexFromExtensions(['worker.js']))
-          .use('worker')
-            .loader(require.resolve('worker-loader'))
-            .options({
-              filename: "worker-gherkin-linter.js"
-            })
 
       neutrino.config.plugin('buffer')
         .use(new webpack.ProvidePlugin({ Buffer: ['buffer', 'Buffer'] }));

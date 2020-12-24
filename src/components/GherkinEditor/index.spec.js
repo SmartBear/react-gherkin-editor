@@ -1,13 +1,12 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import GherkinEditor from '.'
-import GherkinLinter from '../../modules/gherkin-linter'
+import GherkinAnnotator from '../../modules/gherkin-annotator'
 
-jest.mock('../../modules/gherkin-linter/gherkin-linter.worker')
-jest.mock('../../modules/gherkin-linter')
+jest.mock('../../modules/gherkin-annotator')
 
 beforeEach(() => {
-  GherkinLinter.mockClear()
+  GherkinAnnotator.mockClear()
 })
 
 describe('GherkinEditor', () => {
@@ -99,9 +98,9 @@ describe('GherkinEditor', () => {
       it('lints the initial value', () => {
         render(<GherkinEditor initialValue='Given a scenario' showGutter activateLinter />)
 
-        const mockGherkinLinterCheck = GherkinLinter.mock.instances[0].check
+        const mockGherkinAnnotatorAnnotateNow = GherkinAnnotator.mock.instances[0].annotateNow
 
-        expect(mockGherkinLinterCheck).toHaveBeenCalledWith('Given a scenario')
+        expect(mockGherkinAnnotatorAnnotateNow).toHaveBeenCalledWith('Given a scenario')
       })
 
       it('lints with new value when it has changed', () => {
@@ -113,9 +112,9 @@ describe('GherkinEditor', () => {
 
         editor.setValue('Then no scenario')
 
-        const mockGherkinLinterCheck = GherkinLinter.mock.instances[0].check
+        const mockGherkinAnnotatorAnnotate = GherkinAnnotator.mock.instances[0].annotate
 
-        expect(mockGherkinLinterCheck).toHaveBeenCalledWith('Then no scenario')
+        expect(mockGherkinAnnotatorAnnotate).toHaveBeenCalledWith('Then no scenario')
       })
     })
 
@@ -123,7 +122,7 @@ describe('GherkinEditor', () => {
       it('does not instanciate linter', () => {
         render(<GherkinEditor initialValue='Given a scenario' showGutter activateLinter={false} />)
 
-        expect(GherkinLinter).not.toHaveBeenCalled()
+        expect(GherkinAnnotator).not.toHaveBeenCalled()
       })
 
       it('does not lint when value has changed', () => {
@@ -135,7 +134,7 @@ describe('GherkinEditor', () => {
 
         editor.setValue('Then no scenario')
 
-        expect(GherkinLinter.mock.instances.length).toEqual(0)
+        expect(GherkinAnnotator.mock.instances.length).toEqual(0)
       })
     })
 
@@ -147,7 +146,7 @@ describe('GherkinEditor', () => {
 
         render(<GherkinEditor initialValue='Given a scenario' showGutter={false} activateLinter />)
 
-        expect(GherkinLinter).not.toHaveBeenCalled()
+        expect(GherkinAnnotator).not.toHaveBeenCalled()
         expect(console.warn).toHaveBeenCalledWith('activateLinter requires showGutter to be true')
 
         console.warn = warn
