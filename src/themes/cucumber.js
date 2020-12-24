@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 /* global ace */
-ace.define('ace/theme/cucumber', ['require', 'exports', 'module', 'ace/lib/dom'], function (acequire, exports, module) {
+ace.define('ace/theme/cucumber', ['require', 'exports', 'module', 'ace/lib/dom'], function (acequire, exports) {
   exports.isDark = false
   exports.cssClass = 'ace-cucumber'
   exports.cssText = `

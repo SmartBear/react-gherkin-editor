@@ -9,12 +9,12 @@ module.exports = {
   },
   use: [
     neutrino =>  {
-      neutrino.config.output
-        .globalObject('this')
-      .end()
+      neutrino.config.output.globalObject('this').end()
 
-      neutrino.config.plugin('buffer')
-        .use(new webpack.ProvidePlugin({ Buffer: ['buffer', 'Buffer'] }));
+      neutrino.config.plugin('buffer').use(new webpack.ProvidePlugin({ Buffer: ['buffer', 'Buffer'] }))
+
+      neutrino.config.resolve.modules.add(neutrino.options.source)
+      neutrino.config.resolve.modules.add('node_modules')
     },
     standardjs({
       eslint: {

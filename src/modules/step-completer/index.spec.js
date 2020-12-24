@@ -1,5 +1,5 @@
 import StepCompleter from '.'
-import { getGherkinDialect } from '../dialects/gherkin_i18n'
+import { getGherkinDialect } from 'modules/dialects/gherkin_i18n'
 
 describe('StepCompleter class', () => {
   const steps = [

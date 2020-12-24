@@ -1,5 +1,5 @@
 import { generateMessages } from '@cucumber/gherkin'
-import gherkinLanguages from '../gherkin-languages'
+import gherkinLanguages from 'lib/gherkin-languages'
 
 export default class GherkinLinter {
   constructor() {

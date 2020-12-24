@@ -3,7 +3,7 @@
 ace.define(
   'ace/theme/jira',
   ['require', 'exports', 'module', 'ace/lib/dom'],
-  function (acequire, exports, module) {
+  function (acequire, exports) {
     'use strict'
 
     exports.isDark = false

@@ -1,9 +1,9 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import GherkinEditor from '.'
-import GherkinAnnotator, { annotate } from '../../modules/gherkin-annotator'
+import GherkinAnnotator, { annotate } from 'modules/gherkin-annotator'
 
-jest.mock('../../modules/gherkin-annotator')
+jest.mock('modules/gherkin-annotator')
 
 beforeEach(() => {
   GherkinAnnotator.mockClear()
