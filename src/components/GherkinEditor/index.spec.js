@@ -1,12 +1,13 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import GherkinEditor from '.'
-import GherkinAnnotator from '../../modules/gherkin-annotator'
+import GherkinAnnotator, { annotate } from '../../modules/gherkin-annotator'
 
 jest.mock('../../modules/gherkin-annotator')
 
 beforeEach(() => {
   GherkinAnnotator.mockClear()
+  annotate.mockClear()
 })
 
 describe('GherkinEditor', () => {
@@ -98,9 +99,7 @@ describe('GherkinEditor', () => {
       it('lints the initial value', () => {
         render(<GherkinEditor initialValue='Given a scenario' showGutter activateLinter />)
 
-        const mockGherkinAnnotatorAnnotateNow = GherkinAnnotator.mock.instances[0].annotateNow
-
-        expect(mockGherkinAnnotatorAnnotateNow).toHaveBeenCalledWith('Given a scenario')
+        expect(annotate).toHaveBeenCalledWith('Given a scenario')
       })
 
       it('lints with new value when it has changed', () => {
@@ -112,9 +111,7 @@ describe('GherkinEditor', () => {
 
         editor.setValue('Then no scenario')
 
-        const mockGherkinAnnotatorAnnotate = GherkinAnnotator.mock.instances[0].annotate
-
-        expect(mockGherkinAnnotatorAnnotate).toHaveBeenCalledWith('Then no scenario')
+        expect(annotate).toHaveBeenCalledWith('Then no scenario')
       })
     })
 
@@ -134,12 +131,12 @@ describe('GherkinEditor', () => {
 
         editor.setValue('Then no scenario')
 
-        expect(GherkinAnnotator.mock.instances.length).toEqual(0)
+        expect(GherkinAnnotator).not.toHaveBeenCalled()
       })
     })
 
     describe('when gutter is deactivated', () => {
-      it('deactivate linting', () => {
+      it('deactivates linting and warns the users', () => {
         const { warn } = console
 
         console.warn = jest.fn()

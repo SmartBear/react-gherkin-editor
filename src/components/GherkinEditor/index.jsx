@@ -60,12 +60,13 @@ const defaultOptions = {
   tabSize: 2
 }
 
+let gherkinAnnotator = null
+
 const GherkinEditor = React.forwardRef((props, ref) => {
   const [currentLanguage, setCurrentLanguage] = useState(props.language)
   const [height, setHeight] = useState(props.initialHeight)
 
   const aceEditorRef = useRef()
-  const gherkinAnnotator = useRef()
 
   const {
     initialValue,
@@ -87,6 +88,7 @@ const GherkinEditor = React.forwardRef((props, ref) => {
 
   const setGherkinDialect = setGherkinDialectFunctions[mode] || setDialect
   const getGherkinDialect = getGherkinDialectFunctions[mode] || getDialect
+  const isLinterActivated = activateLinter && showGutter
 
   useEffect(() => {
     if (autoFocus) {
@@ -116,38 +118,37 @@ const GherkinEditor = React.forwardRef((props, ref) => {
   }, [setGherkinDialect, currentLanguage, mode])
 
   useEffect(() => {
-    if (!activateLinter) {
-      gherkinAnnotator.current = null
+    if (!isLinterActivated) {
+      gherkinAnnotator = null
       return
     }
 
-    if (!showGutter) {
-      gherkinAnnotator.current = null
-      console.warn('activateLinter requires showGutter to be true')
-      return
-    }
-
-    if (!gherkinAnnotator.current) {
+    if (!gherkinAnnotator) {
       const { editor } = aceEditorRef.current
-      gherkinAnnotator.current = new GherkinAnnotator(editor.getSession())
+      gherkinAnnotator = new GherkinAnnotator(editor.getSession())
     }
-
-    gherkinAnnotator.current.setLanguage(currentLanguage)
-    gherkinAnnotator.current.setMode(mode)
-  }, [activateLinter, showGutter, currentLanguage, mode])
+  }, [isLinterActivated])
 
   useEffect(() => {
-    if (!gherkinAnnotator.current) {
-      return
+    if (gherkinAnnotator) {
+      gherkinAnnotator.setLanguage(currentLanguage)
+      gherkinAnnotator.setMode(mode)
     }
+  }, [currentLanguage, mode])
 
-    gherkinAnnotator.current.annotateNow(initialValue)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  useEffect(() => {
+    if (gherkinAnnotator) {
+      gherkinAnnotator.annotate(initialValue)
+    }
+  }, [initialValue])
 
   useImperativeHandle(ref, () => ({
     editor: aceEditorRef.current.editor
   }))
+
+  if (activateLinter && !showGutter) {
+    console.warn('activateLinter requires showGutter to be true')
+  }
 
   const onResizeStop = (_event, _direction, _refToElement, delta) => {
     setHeight(height + delta.height)
@@ -159,8 +160,8 @@ const GherkinEditor = React.forwardRef((props, ref) => {
   }
 
   const onChangeHandler = (newValue, ...args) => {
-    if (gherkinAnnotator.current) {
-      gherkinAnnotator.current.annotate(newValue)
+    if (gherkinAnnotator) {
+      gherkinAnnotator.annotate(newValue)
     }
 
     return props.onChange(newValue, ...args)
