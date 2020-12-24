@@ -18,7 +18,7 @@ import {
 } from '../../modules/dialects/gherkin_scenario_i18n'
 import GherkinAnnotator from '../../modules/gherkin-annotator'
 import Toolbar from './Toolbar'
-import { EditorWrapper } from './style'
+import { EditorWrapper } from './styled'
 
 import 'ace-builds/src-noconflict/ext-language_tools'
 

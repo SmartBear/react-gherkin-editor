@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Select from 'react-select'
 import gherkinLanguages from '../../../lib/gherkin-languages'
 import _find from 'lodash/find'
-import { ToolbarContainer, LanguageDropdownContainer } from './style'
+import { ToolbarContainer, LanguageDropdownContainer } from './styled'
 
 const availableLanguages = Object.entries(gherkinLanguages).map(([key, language]) => ({
   value: key,
