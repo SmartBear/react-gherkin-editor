@@ -135,14 +135,9 @@ const GherkinEditor = React.forwardRef((props, ref) => {
     if (gherkinAnnotator) {
       gherkinAnnotator.setLanguage(currentLanguage)
       gherkinAnnotator.setMode(mode)
-    }
-  }, [currentLanguage, mode])
-
-  useEffect(() => {
-    if (gherkinAnnotator) {
       gherkinAnnotator.annotate(initialValue)
     }
-  }, [initialValue])
+  }, [currentLanguage, mode, initialValue])
 
   useImperativeHandle(ref, () => ({
     editor: aceEditorRef.current.editor
