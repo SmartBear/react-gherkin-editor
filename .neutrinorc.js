@@ -1,6 +1,6 @@
-const standardjs = require('@neutrinojs/standardjs');
-const reactComponents = require('@neutrinojs/react-components');
-const jest = require('@neutrinojs/jest');
+const standardjs = require('@neutrinojs/standardjs')
+const reactComponents = require('@neutrinojs/react-components')
+const jest = require('@neutrinojs/jest')
 const webpack = require('webpack')
 
 module.exports = {
@@ -8,7 +8,7 @@ module.exports = {
     root: __dirname,
   },
   use: [
-    (neutrino) =>  {
+    neutrino =>  {
       neutrino.config.output
         .globalObject('this')
       .end()
