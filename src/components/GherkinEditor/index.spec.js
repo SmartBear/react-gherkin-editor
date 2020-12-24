@@ -1,13 +1,15 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import GherkinEditor from '.'
-import GherkinAnnotator, { annotate } from 'modules/gherkin-annotator'
+import GherkinAnnotator, { annotate, setLanguage, setMode } from 'modules/gherkin-annotator'
 
 jest.mock('modules/gherkin-annotator')
 
 beforeEach(() => {
   GherkinAnnotator.mockClear()
   annotate.mockClear()
+  setLanguage.mockClear()
+  setMode.mockClear()
 })
 
 describe('GherkinEditor', () => {
@@ -112,6 +114,30 @@ describe('GherkinEditor', () => {
         editor.setValue('Then no scenario')
 
         expect(annotate).toHaveBeenCalledWith('Then no scenario')
+      })
+
+      it('lints after language has changed', () => {
+        const { rerender } = render(<GherkinEditor initialValue='Given a scenario' showGutter activateLinter language='en' />)
+
+        annotate.mockClear()
+        setLanguage.mockClear()
+
+        rerender(<GherkinEditor initialValue='Given a scenario' showGutter activateLinter language='fr' />)
+
+        expect(setLanguage).toHaveBeenCalledWith('fr')
+        expect(annotate).toHaveBeenCalled()
+      })
+
+      it('lints after mode has changed', () => {
+        const { rerender } = render(<GherkinEditor initialValue='Given a scenario' showGutter activateLinter />)
+
+        annotate.mockClear()
+        setMode.mockClear()
+
+        rerender(<GherkinEditor initialValue='Given a scenario' showGutter activateLinter mode='gherkin_scenario_i18n' />)
+
+        expect(setMode).toHaveBeenCalledWith('gherkin_scenario_i18n')
+        expect(annotate).toHaveBeenCalled()
       })
     })
 
