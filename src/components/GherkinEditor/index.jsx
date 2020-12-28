@@ -125,9 +125,12 @@ const GherkinEditor = React.forwardRef((props, ref) => {
       return
     }
 
+    const session = aceEditorRef.current.editor.getSession()
+
     if (!gherkinAnnotator) {
-      const { editor } = aceEditorRef.current
-      gherkinAnnotator = new GherkinAnnotator(editor.getSession())
+      gherkinAnnotator = new GherkinAnnotator(session)
+    } else {
+      gherkinAnnotator.setSession(session)
     }
   }, [isLinterActivated])
 
