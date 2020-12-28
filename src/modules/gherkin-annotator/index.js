@@ -10,6 +10,10 @@ export default class {
     this.mode = ''
   }
 
+  setSession(session) {
+    this.session = session
+  }
+
   setLanguage(language) {
     this.language = language
   }

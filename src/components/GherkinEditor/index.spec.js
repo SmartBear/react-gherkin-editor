@@ -1,13 +1,14 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import GherkinEditor from '.'
-import GherkinAnnotator, { annotate, setLanguage, setMode } from 'modules/gherkin-annotator'
+import GherkinAnnotator, { annotate, setLanguage, setMode, setSession } from 'modules/gherkin-annotator'
 
 jest.mock('modules/gherkin-annotator')
 
 beforeEach(() => {
   GherkinAnnotator.mockClear()
   annotate.mockClear()
+  setSession.mockClear()
   setLanguage.mockClear()
   setMode.mockClear()
 })
@@ -138,6 +139,18 @@ describe('GherkinEditor', () => {
 
         expect(setMode).toHaveBeenCalledWith('gherkin_scenario_i18n')
         expect(annotate).toHaveBeenCalled()
+      })
+    })
+
+    describe('when linter status changes', () => {
+      it('reset the annotator ression', () => {
+        const { rerender } = render(<GherkinEditor showGutter activateLinter />)
+
+        rerender(<GherkinEditor showGutter />)
+        rerender(<GherkinEditor showGutter activateLinter />)
+
+        expect(GherkinAnnotator).toHaveBeenCalledTimes(1)
+        expect(setSession).toHaveBeenCalledTimes(1)
       })
     })
 

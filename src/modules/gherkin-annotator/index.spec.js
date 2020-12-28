@@ -14,6 +14,19 @@ describe('GherkinAnnotator', () => {
     })
   })
 
+  describe('.setSession(session)', () => {
+    afterEach(() => {
+      gherkinAnnotator.setSession(session)
+    })
+
+    it('set the session properly', () => {
+      const newSession = { foo: 'bar' }
+
+      gherkinAnnotator.setSession(newSession)
+      expect(gherkinAnnotator.session).toEqual(newSession)
+    })
+  })
+
   describe('.setLanguage(language)', () => {
     it('set the language properly', () => {
       gherkinAnnotator.setLanguage('fr')
