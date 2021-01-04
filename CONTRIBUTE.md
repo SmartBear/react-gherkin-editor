@@ -9,7 +9,7 @@ ___
 To release a new version, you need to:
 - Create it in package.json
 - Build the release files (currently a `lib` folder that is generated)
-- Release the new version on NPM and/or on GitHub.
+- Release the new version on NPM and/or on GitHub
 
 **This section assumes, for the given commands, that you wish to create a version named 1.0.1**
 
@@ -29,13 +29,14 @@ If you want to create a new version manually instead:
 ### NPM release
 - Build the release using `yarn build`
 - Publish using `yarn publish`
+- When prompted for a new version, you can ignore it (just validate)
 
 You can cleanup the created files using `yarn clean`.
 
 ### GitHub release
 - Update the release branch: `git checkout release` then `git merge master`
 - Build the release using `yarn build`
-- Commit the changes with the message "Release 1.0.1"
+- Commit and push the changes with the message "Release 1.0.1"
 - From the react-gherkin-editor repository in GitHub, go to releases and click "Draft new release"
   - Tag: v1.0.1
   - Target branch: release
