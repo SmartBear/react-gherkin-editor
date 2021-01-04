@@ -1,4 +1,4 @@
-import GherkinLinter from '.'
+import GherkinLinter from 'lib/gherkin-linter'
 
 const fullGherkinContent = `Feature:
   Background:

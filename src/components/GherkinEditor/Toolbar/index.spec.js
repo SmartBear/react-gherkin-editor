@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import SelectEvent from 'react-select-event'
-import Toolbar from '.'
+import Toolbar from 'components/GherkinEditor/Toolbar'
 
 describe('Toolbar', () => {
   describe('when no language is set', () => {

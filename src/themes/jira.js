@@ -171,6 +171,6 @@ ace.define(
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;
 }`
 
-    var dom = acequire('../lib/dom')
+    const dom = acequire('../lib/dom')
     dom.importCssString(exports.cssText, exports.cssClass)
   })

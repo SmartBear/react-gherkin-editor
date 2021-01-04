@@ -1,7 +1,7 @@
-import KeywordCompleter from '.'
 import { getGherkinDialect } from 'modules/dialects/gherkin_i18n'
 import { getGherkinDialect as getBackgroundDialect } from 'modules/dialects/gherkin_background_i18n'
 import { getGherkinDialect as getScenarioDialect } from 'modules/dialects/gherkin_scenario_i18n'
+import KeywordCompleter from 'modules/keyword-completer'
 
 describe('KeywordCompleter class', () => {
   describe('Gherkin i18n', () => {

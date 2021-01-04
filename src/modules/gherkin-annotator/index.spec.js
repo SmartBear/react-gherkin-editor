@@ -1,4 +1,4 @@
-import GherkinAnnotator from '.'
+import GherkinAnnotator from 'modules/gherkin-annotator'
 
 describe('GherkinAnnotator', () => {
   const session = { setAnnotations: jest.fn(), clearAnnotations: jest.fn() }
