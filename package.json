@@ -1,16 +1,18 @@
 {
   "name": "@smartbear/react-gherkin-editor",
   "version": "2.2.2",
-  "main": "build/GherkinEditor.js",
+  "main": "lib/index.js",
   "author": "SmartBear Software",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "babel src --out-dir lib --ignore 'src/**/*.spec.js'",
+    "clean": "rm -rf lib",
     "start": "webpack serve --client-log-level silent",
     "lint": "eslint --ext js,jsx .",
     "test": "jest"
   },
   "devDependencies": {
+    "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
     "@babel/eslint-parser": "^7.12.1",
     "@babel/eslint-plugin": "^7.12.1",
