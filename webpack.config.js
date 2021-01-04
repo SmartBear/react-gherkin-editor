@@ -28,7 +28,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
-    modules: [path.resolve(__dirname, 'src'), 'node_modules']
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    fallback: {
+      stream: require.resolve('stream-browserify')
+    }
   },
   optimization: {
     minimizer: [
