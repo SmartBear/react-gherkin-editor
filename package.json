@@ -4,6 +4,9 @@
   "main": "lib/index.js",
   "author": "SmartBear Software",
   "license": "MIT",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "build": "rm -rf lib && babel src --out-dir lib --ignore 'src/**/*.spec.js'",
     "clean": "rm -rf lib",
