@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import GherkinEditor from '.'
 import GherkinAnnotator, { annotate, setLanguage, setMode, setSession } from 'modules/gherkin-annotator'
+import GherkinEditor from 'components/GherkinEditor'
 
 jest.mock('modules/gherkin-annotator')
 
