@@ -13,15 +13,15 @@ ace.define(
     'ace/mode/text_highlight_rules'
   ],
   function (acequire, exports, module) {
-    var oop = acequire('../lib/oop')
-    var TextHighlightRules = acequire('./text_highlight_rules')
+    const oop = acequire('../lib/oop')
+    const TextHighlightRules = acequire('./text_highlight_rules')
       .TextHighlightRules
-    var stringEscape =
+    const stringEscape =
       '\\\\(x[0-9A-Fa-f]{2}|[0-7]{3}|[\\\\abfnrtv\'"]|U[0-9A-Fa-f]{8}|u[0-9A-Fa-f]{4})'
 
-    var GherkinHighlightRules = function () {
-      var labels = getGherkinDialect().labels
-      var keywords = getGherkinDialect().keywords
+    const GherkinHighlightRules = function () {
+      const labels = getGherkinDialect().labels
+      const keywords = getGherkinDialect().keywords
 
       this.$rules = {
         start: [
@@ -158,12 +158,12 @@ ace.define(
     'ace/mode/gherkin_highlight_rules'
   ],
   function (acequire, exports, module) {
-    var oop = acequire('../lib/oop')
-    var TextMode = acequire('./text').Mode
-    var GherkinHighlightRules = acequire('./gherkin_highlight_rules')
+    const oop = acequire('../lib/oop')
+    const TextMode = acequire('./text').Mode
+    const GherkinHighlightRules = acequire('./gherkin_highlight_rules')
       .GherkinHighlightRules
 
-    var Mode = function () {
+    const Mode = function () {
       this.HighlightRules = GherkinHighlightRules
       this.$behaviour = this.$defaultBehaviour
     }
@@ -173,14 +173,14 @@ ace.define(
       this.$id = 'ace/mode/gherkin_i18n'
 
       this.getNextLineIndent = function (state, line, tab) {
-        var labels = getGherkinDialect().labels
-        var keywords = getGherkinDialect().keywords
+        const labels = getGherkinDialect().labels
+        const keywords = getGherkinDialect().keywords
 
-        var indent = this.$getIndent(line)
-        var space2 = '  '
+        let indent = this.$getIndent(line)
+        const space2 = '  '
 
-        var tokenizedLine = this.getTokenizer().getLineTokens(line, state)
-        var tokens = tokenizedLine.tokens
+        const tokenizedLine = this.getTokenizer().getLineTokens(line, state)
+        const tokens = tokenizedLine.tokens
 
         if (line.match('[ ]*\\|')) {
           indent += '| '
