@@ -44,7 +44,5 @@ You can upgrade react-gherkin-editor from GitHub in two different ways:
 
 If you want the actual package, you need to pack it:
 - Extract the source code you downloaded (or go to your current react-gherkin-editor folder if you want the latest version)
-- Run `yarn` to install dependencies
-- Run `yarn build` to build the release files
 - Run `yarn pack` to create a package file at the root of your folder
 - Replace the source code file by the package file as the file you will use with `yarn add file:[path to package file]`
