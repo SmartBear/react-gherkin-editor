@@ -13,6 +13,7 @@
     "test": "jest",
     "release:build": "rm -rf lib && babel src --out-dir lib --ignore 'src/**/*.spec.js'",
     "release:commit": "git add lib && git commit -m \"Update release files\"",
+    "release:push": "git push --tags && git push",
     "prepublishOnly": "yarn release:build && yarn release:commit"
   },
   "devDependencies": {

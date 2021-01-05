@@ -8,7 +8,7 @@
 - Run `yarn publish`
 - Enter the new version when asked
 - Enter your NPM account password when asked
-- Push the generated commits using `git push --tags` then `git push`
+- Push the generated commits using `yarn release:push`
 
 **Note:** you can skip entering the new version by using `yarn publish --major`, `yarn publish --minor` or `yarn publish --patch`. This will generate a new version based on the current version.
 
