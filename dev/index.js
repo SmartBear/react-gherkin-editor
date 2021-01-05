@@ -102,7 +102,7 @@ const Preview = () => {
     </div>
 
   return (
-    <div style={{ padding: '5px' }}>
+    <div style={{ padding: '5px', width: '600px' }}>
       <GherkinEditor
         initialValue={value}
         language={language}

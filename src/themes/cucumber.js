@@ -108,6 +108,12 @@ ace.define('ace/theme/cucumber', ['require', 'exports', 'module', 'ace/lib/dom']
 }
 .ace-cucumber .ace_indent-guide {
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bdu3f/BwAlfgctduB85QAAAABJRU5ErkJggg==) right repeat-y;
+}
+.ace-cucumber .ace_tooltip {
+  max-width: 400px;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }`
 
   const dom = acequire('../lib/dom')
