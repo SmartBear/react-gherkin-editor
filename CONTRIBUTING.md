@@ -5,6 +5,8 @@
 - NPM user account with SmartBear organization access
 
 ## Release a new version
+
+### Create a release and publish
 - Run `yarn publish`
 - Enter the new version when asked
 - Enter your NPM account password when asked
@@ -25,24 +27,3 @@ For instance with version `1.0.1`:
   - Release title: Release 1.0.1
   - Fill the release notes
 - Click on "Publish release"
-
-## Upgrade from another package
-
-### Using the NPM release
-You can upgrade like any other package. For instance using yarn: `yarn upgrade @smartbear/react-gherkin-editor --latest`
-
-### Using the GitHub release
-You can upgrade react-gherkin-editor from GitHub in two different ways:
-- [Using the release tag](https://github.com/SmartBear/react-gherkin-editor/tree/release#install-from-a-release-tag)
-- From the Github repository:
-  - Go to the wanted release in react-gherkin-editor Github repository
-  - Download the source code and copy the downloaded file
-  - Go to vendor folder of your project and paste the copied file
-  - Run `yarn add file:[path to vendor file]`
-
-**Keep in mind this version contains the full content of the project, including sources and development files.**
-
-If you want the actual package, you need to pack it:
-- Extract the source code you downloaded (or go to your current react-gherkin-editor folder if you want the latest version)
-- Run `yarn pack` to create a package file at the root of your folder
-- Replace the source code file by the package file as the file you will use with `yarn add file:[path to package file]`
