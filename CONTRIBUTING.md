@@ -4,7 +4,6 @@
 - GitHub smartbear/react-gherkin-editor repository access
 - NPM user account with SmartBear organization access
 
-___
 ## Release a new version
 - Run `yarn publish`
 - Enter the new version when asked
@@ -22,7 +21,6 @@ To make a GitHub release, for instance with version `1.0.1`:
   - Fill the release notes
 - Click on "Publish release"
 
-___
 ## Upgrade from another package
 
 ### Using the NPM release
