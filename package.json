@@ -13,8 +13,7 @@
     "test": "jest",
     "release:build": "rm -rf lib && babel src --out-dir lib --ignore 'src/**/*.spec.js'",
     "release:commit": "git add lib && git commit -m \"Update release files\"",
-    "prepublishOnly": "yarn release:build && yarn release:commit",
-    "postpublish": "git push --tags && echo \"Successfully released version $npm_package_version!\""
+    "prepublishOnly": "yarn release:build && yarn release:commit"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
