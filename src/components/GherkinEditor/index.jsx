@@ -29,8 +29,6 @@ import 'modules/mode/gherkin_i18n'
 import 'modules/mode/gherkin_background_i18n'
 import 'modules/mode/gherkin_scenario_i18n'
 
-export { default as GherkinLinter } from 'lib/gherkin-linter'
-
 const setGherkinDialectFunctions = {
   gherkin_i18n: setDialect,
   gherkin_background_i18n: setBackgroundDialect,
