@@ -1,34 +1,40 @@
-# react-gherkin-editor
+# React Gherkin Editor
+
+[![version][version-badge]][package]
+[![license][license-badge]][license]
+
+## Introduction
 
 This is a wrapper arround [React Ace Editor](https://github.com/securingsincity/react-ace) specially designed for Gherkin.
 
-- It includes a special theme for Jira based on ace textmate theme.
-- It includes a special theme for Cucumber.
-
-
-## Features
-
+Features:
 - Gherkin syntax highlighting
-- Gherkin keywords snippets
+- Gherkin keyword snippets
 - Easy to provide step autocompletions (Promise based)
-- I18n support (New)
+- I18n support
+- Special themes for Jira and Cucumber
 
-## Install from a release tag
+## Installation
 
-### With Yarn
-`yarn add @smartbear/react-gherkin-editor`
+Using npm:
+```
+npm install --save @smartbear/react-gherkin-editor
+```
 
-### With npm
-`npm install --save @smartbear/react-gherkin-editor`
-
+Using yarn:
+```
+yarn add @smartbear/react-gherkin-editor
+```
 
 ## Basic Usage
 
 ```javascript
+import React from 'react'
 import { render } from 'react-dom'
 import GherkinEditor from 'react-gherkin-editor'
 
-const root = document.getElementById('root')
+const root = document.createElement('div')
+document.body.appendChild(root)
 
 const initialValue = `Feature: Serve coffee
   As a coffee lover
@@ -45,37 +51,22 @@ const initialValue = `Feature: Serve coffee
 const steps = [
   'I start the coffee machine using language "lang"',
   'I shutdown the coffee machine',
-  'message "message" should be displayed',
-  'coffee should be served',
-  'coffee should not be served',
-  'I take a coffee',
-  'I empty the coffee grounds',
-  'I fill the beans tank',
-  'I fill the water tank',
-  'I take "coffee_number" coffees',
-  'the coffee machine is started',
-  'I handle everything except the water tank',
-  'I handle water tank',
-  'I handle beans',
-  'I handle coffee grounds',
-  'I handle everything except the beans',
-  'I handle everything except the grounds',
-  'displayed message is:',
-  'I switch to settings mode',
-  'settings should be:'
+  'message "message" should be displayed'
 ]
 
 const onValueChange = console.log
 
-const autoCompleteFunction = (_keyword, text) => {
+const autoCompleteFunction = async (_keyword, text) => {
   const matches = steps.filter(step => step.startsWith(text))
+  
   const completions = matches.map(match => ({
     caption: match,
     value: match,
     score: Math.floor(Math.random() * Math.floor(100)),
     meta: 'Step'
   }))
-  return Promise.resolve(completions)
+  
+  return completions
 }
 
 render(
@@ -90,7 +81,10 @@ render(
 )
 ```
 
-___
 ## Ace Documentation
 [React Ace Editor](https://github.com/securingsincity/react-ace)
 
+[version-badge]: https://img.shields.io/npm/v/@smartbear/react-gherkin-editor.svg
+[package]: https://www.npmjs.com/package/@smartbear/react-gherkin-editor
+[license-badge]: https://img.shields.io/npm/l/@smartbear/react-gherkin-editor.svg
+[license]: https://github.com/SmartBear/react-gherkin-editor/blob/master/LICENSE
