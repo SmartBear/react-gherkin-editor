@@ -1,7 +1,7 @@
 # How to release a new version
 
 ## Requirements
-- GitHub smartbear/react-gherkin-editor repository access
+- GitHub SmartBear/react-gherkin-editor repository access
 - NPM user account with SmartBear organization access
 
 ## Release a new version
@@ -19,7 +19,7 @@
 ### GitHub release
 After executing the `yarn publish` command and pushing the commits, you can make a GitHub release.
 For instance with version `1.0.1`:
-- From the react-gherkin-editor repository in GitHub, go to releases and click "Draft new release"
+- From the SmartBear/react-gherkin-editor repository in GitHub, go to releases and click "Draft new release"
   - Tag: v1.0.1
   - Target branch: master
   - Release title: Release 1.0.1
