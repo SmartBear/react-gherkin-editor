@@ -13,7 +13,7 @@ Features:
 - Gherkin syntax highlighting
 - Gherkin keyword snippets
 - Easy to provide step autocompletions (Promise based)
-- I18n support
+- Gherkin I18n support
 - Special themes for Jira and Cucumber
 
 ## Installation
