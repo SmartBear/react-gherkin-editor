@@ -1,11 +1,13 @@
 # React Gherkin Editor
 
+A Gherkin language editor for React.
+
 [![version][version-badge]][package]
 [![license][license-badge]][license]
 
 ## Introduction
 
-This is a wrapper arround [React Ace Editor](https://github.com/securingsincity/react-ace) specially designed for Gherkin.
+React Gherkin Editor is a wrapper arround [React Ace Editor](https://github.com/securingsincity/react-ace) specially designed for Gherkin.
 
 Features:
 - Gherkin syntax highlighting

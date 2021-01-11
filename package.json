@@ -1,6 +1,12 @@
 {
   "name": "@smartbear/react-gherkin-editor",
   "version": "2.4.2",
+  "description": "A Gherkin language editor for React.",
+  "homepage": "https://github.com/SmartBear/react-gherkin-editor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SmartBear/react-gherkin-editor"
+  },
   "main": "lib/index.js",
   "author": "SmartBear Software",
   "license": "MIT",
