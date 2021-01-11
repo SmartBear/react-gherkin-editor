@@ -31,7 +31,7 @@ yarn add @smartbear/react-gherkin-editor
 ```javascript
 import React from 'react'
 import { render } from 'react-dom'
-import GherkinEditor from 'react-gherkin-editor'
+import ReactGherkinEditor from '@smartbear/react-gherkin-editor'
 
 const root = document.createElement('div')
 document.body.appendChild(root)
@@ -58,19 +58,19 @@ const onValueChange = console.log
 
 const autoCompleteFunction = async (_keyword, text) => {
   const matches = steps.filter(step => step.startsWith(text))
-  
+
   const completions = matches.map(match => ({
     caption: match,
     value: match,
     score: Math.floor(Math.random() * Math.floor(100)),
     meta: 'Step'
   }))
-  
+
   return completions
 }
 
 render(
-  <GherkinEditor
+  <ReactGherkinEditor
     initialValue={initialValue}
     onValueChange={onValueChange}
     autoCompleteFunction={autoCompleteFunction}
