@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useImperativeHandle } from 'react'
 import PropTypes from 'prop-types'
 import AceEditor from 'react-ace'
+import { require as acequire } from 'ace-builds'
 import { Resizable } from 're-resizable'
 import KeywordCompleter from 'modules/keyword-completer'
 import StepCompleter from 'modules/step-completer'
@@ -99,7 +100,7 @@ const GherkinEditor = React.forwardRef((props, ref) => {
   useEffect(() => {
     const keywordCompleter = new KeywordCompleter(getGherkinDialect)
     const stepCompleter = new StepCompleter(autoCompleteFunction, getGherkinDialect)
-    const langTools = window.ace.acequire('ace/ext/language_tools')
+    const langTools = acequire('ace/ext/language_tools')
 
     langTools.setCompleters([keywordCompleter, stepCompleter])
   }, [autoCompleteFunction, getGherkinDialect])
