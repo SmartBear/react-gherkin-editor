@@ -2,8 +2,10 @@
 
 A Gherkin language editor for React.
 
-[![version][version-badge]][package]
-[![license][license-badge]][license]
+[![Version][version-badge]][package]
+[![CI][ci-badge]][ci]
+[![Dependencies][dependencies-badge]][dependencies]
+[![License][license-badge]][license]
 
 ## Introduction
 
@@ -86,7 +88,11 @@ render(
 ## Ace Documentation
 [React Ace Editor](https://github.com/securingsincity/react-ace)
 
-[version-badge]: https://img.shields.io/npm/v/@smartbear/react-gherkin-editor.svg
+[version-badge]: https://img.shields.io/npm/v/@smartbear/react-gherkin-editor
 [package]: https://www.npmjs.com/package/@smartbear/react-gherkin-editor
-[license-badge]: https://img.shields.io/npm/l/@smartbear/react-gherkin-editor.svg
+[ci-badge]: https://img.shields.io/github/workflow/status/smartbear/react-gherkin-editor/CI?logo=github
+[ci]: https://github.com/SmartBear/react-gherkin-editor/actions?query=workflow%3ACI
+[dependencies-badge]: https://img.shields.io/david/smartbear/react-gherkin-editor
+[dependencies]: https://david-dm.org/smartbear/react-gherkin-editor
+[license-badge]: https://img.shields.io/npm/l/@smartbear/react-gherkin-editor
 [license]: https://github.com/SmartBear/react-gherkin-editor/blob/master/LICENSE
