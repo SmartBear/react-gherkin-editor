@@ -1,20 +1,27 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Select from 'react-select'
 import gherkinLanguages from 'lib/gherkin-languages'
 import _find from 'lodash/find'
-import { ToolbarContainer, LanguageDropdownContainer } from './styled'
+import React from 'react'
+import Select from 'react-select'
+
+import { LanguageDropdownContainer, ToolbarContainer } from './styled'
+
+interface ToolbarProps {
+  content: React.ReactNode
+  language: string
+  readOnly: boolean
+  onLanguageChange(option: object): void
+}
 
 const availableLanguages = Object.entries(gherkinLanguages).map(([key, language]) => ({
   value: key,
-  label: language.native
+  label: (language as any).native
 }))
 
 const languageSelectStyles = {
   container: styles => ({ ...styles, 'z-index': 5 })
 }
 
-const Toolbar = ({ content, language, readOnly, onLanguageChange }) => {
+const Toolbar = ({ content, language="en", readOnly=false, onLanguageChange=() => {} }: ToolbarProps) => {
   const gherkinLanguage = _find(availableLanguages, { value: language })
 
   return (
@@ -34,17 +41,17 @@ const Toolbar = ({ content, language, readOnly, onLanguageChange }) => {
   )
 }
 
-Toolbar.propTypes = {
-  content: PropTypes.node,
-  language: PropTypes.string,
-  readOnly: PropTypes.bool,
-  onLanguageChange: PropTypes.func
-}
+// Toolbar.propTypes = {
+//   content: PropTypes.node,
+//   language: PropTypes.string,
+//   readOnly: PropTypes.bool,
+//   onLanguageChange: PropTypes.func
+// }
 
-Toolbar.defaultProps = {
-  language: 'en',
-  readOnly: false,
-  onLanguageChange: () => {}
-}
+// Toolbar.defaultProps = {
+//   language: 'en',
+//   readOnly: false,
+//   onLanguageChange: () => {}
+// }
 
 export default Toolbar
