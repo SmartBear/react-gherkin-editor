@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "target": "esnext",
+    "module": "commonjs",
+    "jsx": "preserve",
+    "declaration": true,
+    "outDir": "dist",
+    "strict": false, // TODO: set to true after migrating to TS
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  }
+}

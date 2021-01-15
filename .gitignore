@@ -16,7 +16,7 @@ pids
 *.pid.lock
 
 # Build output
-lib/
+dist/
 
 # Dependency directories
 node_modules/

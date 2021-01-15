@@ -68,7 +68,7 @@ describe('GherkinLinter', () => {
       })
 
       it('parses the gherkin only once', () => {
-        const parseSpy = jest.spyOn(gherkinLinter, '_parseGherkin')
+        const parseSpy = jest.spyOn(gherkinLinter, 'parseGherkin')
 
         gherkinLinter.parse(gherkin)
 

@@ -2,8 +2,20 @@ import { generateMessages } from '@cucumber/gherkin'
 import gherkinLanguages from 'lib/gherkin-languages'
 
 export default class GherkinLinter {
+  private options: object
+  private offset: number
+  private isSubset: boolean
+  private subsetType: string
+  private language: string
+  private featureKeyword: string
+  private lastParsedGherkin: string
+  private lintingErrors: object[]
+
   constructor() {
-    this.options = { includeGherkinDocument: true, newId: () => Math.random().toString() }
+    this.options = {
+      includeGherkinDocument: true,
+      newId: () => Math.random().toString()
+    }
 
     this.offset = 0
     this.isSubset = false
@@ -58,7 +70,7 @@ export default class GherkinLinter {
       return this
     }
 
-    this._parseGherkin(gherkin)
+    this.parseGherkin(gherkin)
     this.lastParsedGherkin = gherkin
 
     return this
@@ -68,8 +80,12 @@ export default class GherkinLinter {
     return this.lintingErrors
   }
 
-  _parseGherkin(gherkin) {
-    const messages = generateMessages(this._getContentToLint(gherkin), '', this.options)
+  private parseGherkin(gherkin) {
+    const messages = generateMessages(
+      this.getContentToLint(gherkin),
+      '',
+      this.options
+    )
 
     this.lintingErrors = messages
       .filter(message => message.parseError)
@@ -78,12 +94,12 @@ export default class GherkinLinter {
         row: message.parseError.source.location.line - 1 - this.offset,
         character: message.parseError.source.location.column,
         column: message.parseError.source.location.column - 1,
-        text: this._removeLineNumber(message.parseError.message),
+        text: this.removeLineNumber(message.parseError.message),
         type: 'warning'
       }))
   }
 
-  _getContentToLint(gherkin) {
+  private getContentToLint(gherkin) {
     let featurePrefix = ''
 
     this.offset = 0
@@ -103,7 +119,7 @@ export default class GherkinLinter {
     return `${featurePrefix}${gherkin}`
   }
 
-  _removeLineNumber(errorMessage) {
+  private removeLineNumber(errorMessage) {
     return errorMessage.split(' ').slice(1).join(' ')
   }
 }
