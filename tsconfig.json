@@ -9,6 +9,7 @@
     "strict": false, // TODO: set to true after migrating to TS
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   }
 }
