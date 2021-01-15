@@ -7,18 +7,24 @@
     "type": "git",
     "url": "https://github.com/SmartBear/react-gherkin-editor"
   },
-  "main": "lib/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "author": "SmartBear Software",
   "license": "MIT",
   "files": [
-    "lib"
+    "dist"
   ],
   "scripts": {
     "start": "webpack serve --client-log-level silent",
-    "lint": "eslint --ext js,jsx .",
     "test": "jest",
-    "prepack": "rm -rf lib && babel src --out-dir lib --ignore 'src/**/*.spec.js'",
-    "postpack": "rm -rf lib",
+    "lint": "concurrently yarn:eslint yarn:type-check",
+    "eslint": "eslint --ext js,jsx,ts,tsx .",
+    "type-check": "tsc --noEmit",
+    "build": "concurrently yarn:build:types yarn:build:js",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "babel src --out-dir dist --ignore '**/*.spec.js,**/__mocks__'",
+    "prepack": "rm -rf dist && yarn build",
+    "postpack": "rm -rf dist",
     "push": "git push --follow-tags",
     "postpublish": "echo The new package has been released! Run \\\"yarn push\\\" to push the release commit and tag."
   },
@@ -29,11 +35,13 @@
     "@babel/eslint-plugin": "^7.12.1",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
+    "@babel/preset-typescript": "^7.12.7",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "babel-loader": "^8.2.2",
     "babel-plugin-module-resolver": "^4.1.0",
     "buffer": "^6.0.3",
+    "concurrently": "^5.3.0",
     "eslint": "^7.17.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
