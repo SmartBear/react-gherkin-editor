@@ -6,10 +6,10 @@ import Select from 'react-select'
 import { LanguageDropdownContainer, ToolbarContainer } from './styled'
 
 interface ToolbarProps {
-  content: React.ReactNode
-  language: string
-  readOnly: boolean
-  onLanguageChange(option: object): void
+  content?: React.ReactNode
+  language?: string
+  readOnly?: boolean
+  onLanguageChange?(option: object): void
 }
 
 const availableLanguages = Object.entries(gherkinLanguages).map(([key, language]) => ({
@@ -40,18 +40,5 @@ const Toolbar = ({ content, language = 'en', readOnly = false, onLanguageChange 
     </ToolbarContainer>
   )
 }
-
-// Toolbar.propTypes = {
-//   content: PropTypes.node,
-//   language: PropTypes.string,
-//   readOnly: PropTypes.bool,
-//   onLanguageChange: PropTypes.func
-// }
-
-// Toolbar.defaultProps = {
-//   language: 'en',
-//   readOnly: false,
-//   onLanguageChange: () => {}
-// }
 
 export default Toolbar

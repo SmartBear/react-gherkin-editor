@@ -9,7 +9,9 @@ describe('Toolbar', () => {
       const toolbar = render(<Toolbar />)
 
       expect(
-        toolbar.container.querySelector('.gherkin-editor-language-select__single-value')
+        toolbar.container.querySelector(
+          '.gherkin-editor-language-select__single-value'
+        )
       ).toHaveTextContent('English')
     })
   })
@@ -19,7 +21,9 @@ describe('Toolbar', () => {
       const toolbar = render(<Toolbar language='fr' />)
 
       expect(
-        toolbar.container.querySelector('.gherkin-editor-language-select__single-value')
+        toolbar.container.querySelector(
+          '.gherkin-editor-language-select__single-value'
+        )
       ).toHaveTextContent('français')
     })
   })
@@ -28,7 +32,11 @@ describe('Toolbar', () => {
     it('renders the language selector as enabled', () => {
       const toolbar = render(<Toolbar />)
 
-      expect(toolbar.container.querySelector('.gherkin-editor-language-select__input input')).toBeEnabled()
+      expect(
+        toolbar.container.querySelector(
+          '.gherkin-editor-language-select__input input'
+        )
+      ).toBeEnabled()
     })
 
     it('calls the onLanguageChange callback when changing the language', async () => {
@@ -37,7 +45,9 @@ describe('Toolbar', () => {
       const toolbar = render(<Toolbar onLanguageChange={onLanguageChange} />)
 
       await SelectEvent.select(
-        toolbar.container.querySelector('.gherkin-editor-language-select__input input'),
+        toolbar.container.querySelector(
+          '.gherkin-editor-language-select__input input'
+        ),
         'français'
       )
 
@@ -49,7 +59,11 @@ describe('Toolbar', () => {
     it('renders the language selector as disabled', () => {
       const toolbar = render(<Toolbar readOnly />)
 
-      expect(toolbar.container.querySelector('.gherkin-editor-language-select__input input')).toBeDisabled()
+      expect(
+        toolbar.container.querySelector(
+          '.gherkin-editor-language-select__input input'
+        )
+      ).toBeDisabled()
     })
   })
 })
