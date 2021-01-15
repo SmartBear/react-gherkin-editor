@@ -18,7 +18,7 @@ import {
   getGherkinDialect as getScenarioDialect
 } from 'modules/dialects/gherkin_scenario_i18n'
 import GherkinAnnotator from 'modules/gherkin-annotator'
-import Toolbar from './Toolbar'
+import Toolbar from 'components/Toolbar'
 import { EditorWrapper } from './styled'
 
 import 'ace-builds/src-noconflict/ext-language_tools'
@@ -99,7 +99,10 @@ const GherkinEditor = React.forwardRef((props, ref) => {
 
   useEffect(() => {
     const keywordCompleter = new KeywordCompleter(getGherkinDialect)
-    const stepCompleter = new StepCompleter(autoCompleteFunction, getGherkinDialect)
+    const stepCompleter = new StepCompleter(
+      autoCompleteFunction,
+      getGherkinDialect
+    )
     const langTools = acequire('ace/ext/language_tools')
 
     langTools.setCompleters([keywordCompleter, stepCompleter])
@@ -170,13 +173,14 @@ const GherkinEditor = React.forwardRef((props, ref) => {
 
   return (
     <EditorWrapper>
-      {!hideToolbar &&
+      {!hideToolbar && (
         <Toolbar
           content={toolbarContent}
           language={currentLanguage}
           readOnly={readOnly}
           onLanguageChange={languageChangeHandler}
-        />}
+        />
+      )}
       <Resizable
         size={{ width: '100%', height: `${height}px` }}
         onResizeStop={onResizeStop}
@@ -201,11 +205,13 @@ const GherkinEditor = React.forwardRef((props, ref) => {
           editorProps={{ $blockScrolling: true }}
           setOptions={options}
           height={`${height}px`}
-          commands={[{
-            name: 'test',
-            bindKey: { win: 'Ctrl-Enter', mac: 'Cmd-Enter' },
-            exec: editor => onSubmit(editor.getValue())
-          }]}
+          commands={[
+            {
+              name: 'test',
+              bindKey: { win: 'Ctrl-Enter', mac: 'Cmd-Enter' },
+              exec: editor => onSubmit(editor.getValue())
+            }
+          ]}
         />
       </Resizable>
     </EditorWrapper>
@@ -226,7 +232,11 @@ GherkinEditor.propTypes = {
   autoFocus: PropTypes.bool,
   initialHeight: PropTypes.number,
   theme: PropTypes.string,
-  mode: PropTypes.oneOf(['gherkin_i18n', 'gherkin_background_i18n', 'gherkin_scenario_i18n']),
+  mode: PropTypes.oneOf([
+    'gherkin_i18n',
+    'gherkin_background_i18n',
+    'gherkin_scenario_i18n'
+  ]),
   fontSize: PropTypes.number,
   width: PropTypes.string,
   showPrintMargin: PropTypes.bool,
