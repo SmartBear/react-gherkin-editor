@@ -8,6 +8,15 @@ module.exports = {
       version: 'detect'
     }
   },
+  overrides: [
+    {
+      files: ['**/*.ts', '**/*.tsx'],
+      parser: '@typescript-eslint/parser',
+      rules: {
+        'no-use-before-define': 'off'
+      }
+    }
+  ],
   extends: ['standard', 'plugin:react/recommended', 'plugin:jest/recommended'],
   parser: '@babel/eslint-parser',
   parserOptions: {

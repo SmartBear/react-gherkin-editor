@@ -21,7 +21,7 @@ const languageSelectStyles = {
   container: styles => ({ ...styles, 'z-index': 5 })
 }
 
-const Toolbar = ({ content, language="en", readOnly=false, onLanguageChange=() => {} }: ToolbarProps) => {
+const Toolbar = ({ content, language = 'en', readOnly = false, onLanguageChange = () => {} }: ToolbarProps) => {
   const gherkinLanguage = _find(availableLanguages, { value: language })
 
   return (
