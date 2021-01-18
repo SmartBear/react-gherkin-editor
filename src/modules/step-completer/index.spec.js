@@ -16,7 +16,9 @@ describe('StepCompleter class', () => {
   ]
 
   const editorMock = {
-    getOptions: jest.fn().mockReturnValue({ fontFamily: 'Arial', fontSize: 14 }),
+    getOptions: jest
+      .fn()
+      .mockReturnValue({ fontFamily: 'Arial', fontSize: 14 }),
     completer: { popup: { container: { style: { width: 0 } } } }
   }
 
@@ -27,7 +29,10 @@ describe('StepCompleter class', () => {
         getLine: jest.fn().mockReturnValue('And I')
       }
       const callBackMock = jest.fn()
-      const stepCompleter = new StepCompleter(autoCompleteFunctionMock, getGherkinDialect)
+      const stepCompleter = new StepCompleter(
+        autoCompleteFunctionMock,
+        getGherkinDialect
+      )
       await stepCompleter.getCompletions(
         editorMock,
         sessionMock,
@@ -45,7 +50,10 @@ describe('StepCompleter class', () => {
       const sessionMock = {
         getLine: jest.fn().mockReturnValue('I start')
       }
-      const stepCompleter = new StepCompleter(autoCompleteFunctionMock, getGherkinDialect)
+      const stepCompleter = new StepCompleter(
+        autoCompleteFunctionMock,
+        getGherkinDialect
+      )
       await stepCompleter.getCompletions(
         editorMock,
         sessionMock,
@@ -63,7 +71,10 @@ describe('StepCompleter class', () => {
       const sessionMock = {
         getLine: jest.fn().mockReturnValue('I start')
       }
-      const stepCompleter = new StepCompleter(autoCompleteFunctionMock, getGherkinDialect)
+      const stepCompleter = new StepCompleter(
+        autoCompleteFunctionMock,
+        getGherkinDialect
+      )
       await stepCompleter.getCompletions(
         editorMock,
         sessionMock,

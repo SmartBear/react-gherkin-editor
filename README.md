@@ -12,6 +12,7 @@ A Gherkin language editor for React.
 React Gherkin Editor is a wrapper arround [React Ace Editor](https://github.com/securingsincity/react-ace) specially designed for Gherkin.
 
 Features:
+
 - Gherkin syntax highlighting
 - Gherkin keyword snippets
 - Easy to provide step autocompletions (Promise based)
@@ -21,11 +22,13 @@ Features:
 ## Installation
 
 Using npm:
+
 ```
 npm install --save @smartbear/react-gherkin-editor
 ```
 
 Using yarn:
+
 ```
 yarn add @smartbear/react-gherkin-editor
 ```
@@ -86,6 +89,7 @@ render(
 ```
 
 ## Ace Documentation
+
 [React Ace Editor](https://github.com/securingsincity/react-ace)
 
 [version-badge]: https://img.shields.io/npm/v/@smartbear/react-gherkin-editor

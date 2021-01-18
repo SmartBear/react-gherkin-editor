@@ -1,6 +1,11 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import GherkinAnnotator, { annotate, setLanguage, setMode, setSession } from 'modules/gherkin-annotator'
+import GherkinAnnotator, {
+  annotate,
+  setLanguage,
+  setMode,
+  setSession
+} from 'modules/gherkin-annotator'
 import GherkinEditor from 'components/GherkinEditor'
 
 jest.mock('modules/gherkin-annotator')
@@ -17,7 +22,9 @@ describe('GherkinEditor', () => {
   it('renders a Gherkin editor', () => {
     const gherkinEditor = render(<GherkinEditor />)
 
-    expect(gherkinEditor.container.querySelector('.ace_editor')).toBeInTheDocument()
+    expect(
+      gherkinEditor.container.querySelector('.ace_editor')
+    ).toBeInTheDocument()
   })
 
   describe('when hideToolbar is false', () => {
@@ -35,7 +42,9 @@ describe('GherkinEditor', () => {
     it('does not render a toolbar', () => {
       const gherkinEditor = render(<GherkinEditor hideToolbar />)
 
-      expect(gherkinEditor.queryByTestId('editor-toolbar')).not.toBeInTheDocument()
+      expect(
+        gherkinEditor.queryByTestId('editor-toolbar')
+      ).not.toBeInTheDocument()
     })
   })
 
@@ -87,20 +96,35 @@ describe('GherkinEditor', () => {
       const onChange = jest.fn()
 
       const ref = React.createRef()
-      render(<GherkinEditor initialValue='Given a scenario' onChange={onChange} ref={ref} />)
+      render(
+        <GherkinEditor
+          initialValue='Given a scenario'
+          onChange={onChange}
+          ref={ref}
+        />
+      )
 
       const editor = ref.current.editor
 
       editor.setValue('Then no scenario')
 
-      expect(onChange).toHaveBeenCalledWith('Then no scenario', expect.anything())
+      expect(onChange).toHaveBeenCalledWith(
+        'Then no scenario',
+        expect.anything()
+      )
     })
   })
 
   describe('linting', () => {
     describe('when linter is activated', () => {
       it('lints the initial value', () => {
-        render(<GherkinEditor initialValue='Given a scenario' showGutter activateLinter />)
+        render(
+          <GherkinEditor
+            initialValue='Given a scenario'
+            showGutter
+            activateLinter
+          />
+        )
 
         expect(annotate).toHaveBeenCalledWith('Given a scenario')
       })
@@ -108,7 +132,14 @@ describe('GherkinEditor', () => {
       it('lints with new value when it has changed', () => {
         const ref = React.createRef()
 
-        render(<GherkinEditor initialValue='Given a scenario' showGutter activateLinter ref={ref} />)
+        render(
+          <GherkinEditor
+            initialValue='Given a scenario'
+            showGutter
+            activateLinter
+            ref={ref}
+          />
+        )
 
         const editor = ref.current.editor
 
@@ -118,24 +149,51 @@ describe('GherkinEditor', () => {
       })
 
       it('lints after language has changed', () => {
-        const { rerender } = render(<GherkinEditor initialValue='Given a scenario' showGutter activateLinter language='en' />)
+        const { rerender } = render(
+          <GherkinEditor
+            initialValue='Given a scenario'
+            showGutter
+            activateLinter
+            language='en'
+          />
+        )
 
         annotate.mockClear()
         setLanguage.mockClear()
 
-        rerender(<GherkinEditor initialValue='Given a scenario' showGutter activateLinter language='fr' />)
+        rerender(
+          <GherkinEditor
+            initialValue='Given a scenario'
+            showGutter
+            activateLinter
+            language='fr'
+          />
+        )
 
         expect(setLanguage).toHaveBeenCalledWith('fr')
         expect(annotate).toHaveBeenCalled()
       })
 
       it('lints after mode has changed', () => {
-        const { rerender } = render(<GherkinEditor initialValue='Given a scenario' showGutter activateLinter />)
+        const { rerender } = render(
+          <GherkinEditor
+            initialValue='Given a scenario'
+            showGutter
+            activateLinter
+          />
+        )
 
         annotate.mockClear()
         setMode.mockClear()
 
-        rerender(<GherkinEditor initialValue='Given a scenario' showGutter activateLinter mode='gherkin_scenario_i18n' />)
+        rerender(
+          <GherkinEditor
+            initialValue='Given a scenario'
+            showGutter
+            activateLinter
+            mode='gherkin_scenario_i18n'
+          />
+        )
 
         expect(setMode).toHaveBeenCalledWith('gherkin_scenario_i18n')
         expect(annotate).toHaveBeenCalled()
@@ -156,7 +214,13 @@ describe('GherkinEditor', () => {
 
     describe('when linter is deactivated', () => {
       it('does not instanciate linter', () => {
-        render(<GherkinEditor initialValue='Given a scenario' showGutter activateLinter={false} />)
+        render(
+          <GherkinEditor
+            initialValue='Given a scenario'
+            showGutter
+            activateLinter={false}
+          />
+        )
 
         expect(GherkinAnnotator).not.toHaveBeenCalled()
       })
@@ -164,7 +228,14 @@ describe('GherkinEditor', () => {
       it('does not lint when value has changed', () => {
         const ref = React.createRef()
 
-        render(<GherkinEditor initialValue='Given a scenario' showGutter activateLinter={false} ref={ref} />)
+        render(
+          <GherkinEditor
+            initialValue='Given a scenario'
+            showGutter
+            activateLinter={false}
+            ref={ref}
+          />
+        )
 
         const editor = ref.current.editor
 
@@ -180,10 +251,18 @@ describe('GherkinEditor', () => {
 
         console.warn = jest.fn()
 
-        render(<GherkinEditor initialValue='Given a scenario' showGutter={false} activateLinter />)
+        render(
+          <GherkinEditor
+            initialValue='Given a scenario'
+            showGutter={false}
+            activateLinter
+          />
+        )
 
         expect(GherkinAnnotator).not.toHaveBeenCalled()
-        expect(console.warn).toHaveBeenCalledWith('activateLinter requires showGutter to be true')
+        expect(console.warn).toHaveBeenCalledWith(
+          'activateLinter requires showGutter to be true'
+        )
 
         console.warn = warn
       })

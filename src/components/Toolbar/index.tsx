@@ -12,16 +12,23 @@ interface ToolbarProps {
   onLanguageChange?(option: object): void
 }
 
-const availableLanguages = Object.entries(gherkinLanguages).map(([key, language]) => ({
-  value: key,
-  label: (language as any).native
-}))
+const availableLanguages = Object.entries(gherkinLanguages).map(
+  ([key, language]) => ({
+    value: key,
+    label: (language as any).native
+  })
+)
 
 const languageSelectStyles = {
   container: styles => ({ ...styles, 'z-index': 5 })
 }
 
-const Toolbar = ({ content, language = 'en', readOnly = false, onLanguageChange = () => {} }: ToolbarProps) => {
+const Toolbar = ({
+  content,
+  language = 'en',
+  readOnly = false,
+  onLanguageChange = () => {}
+}: ToolbarProps) => {
   const gherkinLanguage = _find(availableLanguages, { value: language })
 
   return (

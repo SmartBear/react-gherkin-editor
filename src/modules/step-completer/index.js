@@ -12,7 +12,10 @@ class StepCompleter {
   getCompletions = async (editor, session, position, _prefix, callback) => {
     const lineTokens = session.getLine(position.row).trim().split(' ')
 
-    if (lineTokens.length > 1 && this.getGherkinDialect().keywords.includes(lineTokens[0])) {
+    if (
+      lineTokens.length > 1 &&
+      this.getGherkinDialect().keywords.includes(lineTokens[0])
+    ) {
       const keyword = lineTokens.shift()
       const text = lineTokens.join(' ')
       try {

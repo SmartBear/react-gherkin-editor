@@ -4,14 +4,7 @@
   "endOfLine": "lf",
   "htmlWhitespaceSensitivity": "css",
   "jsxBracketSameLine": false,
-  "printWidth": 80,
-  "proseWrap": "preserve",
-  "requirePragma": false,
-  "semi": false,
-  "singleQuote": true,
-  "tabWidth": 2,
-  "trailingComma": "none",
-  "useTabs": false,
+  "jsxSingleQuote": true,
   "overrides": [
     {
       "files": "*.json",
@@ -19,5 +12,13 @@
         "printWidth": 200
       }
     }
-  ]
+  ],
+  "printWidth": 80,
+  "proseWrap": "preserve",
+  "requirePragma": false,
+  "semi": false,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "none",
+  "useTabs": false
 }

@@ -14,9 +14,4 @@ const GherkinAnnotator = jest.fn().mockImplementation(() => {
 
 export default GherkinAnnotator
 
-export {
-  setSession,
-  setLanguage,
-  setMode,
-  annotate
-}
+export { setSession, setLanguage, setMode, annotate }

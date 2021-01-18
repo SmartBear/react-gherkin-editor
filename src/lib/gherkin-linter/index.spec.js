@@ -79,11 +79,19 @@ describe('GherkinLinter', () => {
 
   describe('.setLanguage(language)', () => {
     describe('with no language', () => {
-      beforeEach(() => { gherkinLinter.setLanguage('fr') })
+      beforeEach(() => {
+        gherkinLinter.setLanguage('fr')
+      })
 
-      it('allows method chaining', () => { expect(gherkinLinter.setLanguage()).toEqual(gherkinLinter) })
-      it('set to english per default', () => { expect(gherkinLinter.setLanguage().language).toEqual('en') })
-      it('set the feature keyword to Feature', () => { expect(gherkinLinter.setLanguage().featureKeyword).toEqual('Feature') })
+      it('allows method chaining', () => {
+        expect(gherkinLinter.setLanguage()).toEqual(gherkinLinter)
+      })
+      it('set to english per default', () => {
+        expect(gherkinLinter.setLanguage().language).toEqual('en')
+      })
+      it('set the feature keyword to Feature', () => {
+        expect(gherkinLinter.setLanguage().featureKeyword).toEqual('Feature')
+      })
 
       it('reset the lastParsedGherkin member', () => {
         gherkinLinter.parse('Feature: Scenario:')
@@ -94,43 +102,73 @@ describe('GherkinLinter', () => {
     describe('with same language as the current one', () => {
       const language = 'fr'
 
-      beforeEach(() => { gherkinLinter.setLanguage(language) })
+      beforeEach(() => {
+        gherkinLinter.setLanguage(language)
+      })
 
-      it('allows method chaining', () => { expect(gherkinLinter.setLanguage(language)).toEqual(gherkinLinter) })
+      it('allows method chaining', () => {
+        expect(gherkinLinter.setLanguage(language)).toEqual(gherkinLinter)
+      })
 
       it('does not reset the lastParsedGherkin member', () => {
         gherkinLinter.parse('Feature: Scenario:')
-        expect(gherkinLinter.setLanguage(language).lastParsedGherkin).toEqual('Feature: Scenario:')
+        expect(gherkinLinter.setLanguage(language).lastParsedGherkin).toEqual(
+          'Feature: Scenario:'
+        )
       })
     })
 
     describe('with compatible language', () => {
       const language = 'fr'
 
-      beforeEach(() => { gherkinLinter.setLanguage() })
+      beforeEach(() => {
+        gherkinLinter.setLanguage()
+      })
 
-      it('allows method chaining', () => { expect(gherkinLinter.setLanguage(language)).toEqual(gherkinLinter) })
-      it('set the language properly', () => { expect(gherkinLinter.setLanguage(language).language).toEqual('fr') })
-      it('set the feature keyword properly', () => { expect(gherkinLinter.setLanguage(language).featureKeyword).toEqual('Fonctionnalité') })
+      it('allows method chaining', () => {
+        expect(gherkinLinter.setLanguage(language)).toEqual(gherkinLinter)
+      })
+      it('set the language properly', () => {
+        expect(gherkinLinter.setLanguage(language).language).toEqual('fr')
+      })
+      it('set the feature keyword properly', () => {
+        expect(gherkinLinter.setLanguage(language).featureKeyword).toEqual(
+          'Fonctionnalité'
+        )
+      })
 
       it('reset the lastParsedGherkin member', () => {
         gherkinLinter.parse('Feature: Scenario:')
-        expect(gherkinLinter.setLanguage(language).lastParsedGherkin).toEqual('')
+        expect(gherkinLinter.setLanguage(language).lastParsedGherkin).toEqual(
+          ''
+        )
       })
     })
 
     describe('with incompatible language', () => {
       const language = 'nope'
 
-      beforeEach(() => { gherkinLinter.setLanguage('fr') })
+      beforeEach(() => {
+        gherkinLinter.setLanguage('fr')
+      })
 
-      it('allows method chaining', () => { expect(gherkinLinter.setLanguage(language)).toEqual(gherkinLinter) })
-      it('keeps the language unchanged', () => { expect(gherkinLinter.setLanguage(language).language).toEqual('fr') })
-      it('keeps the feature keyword unchanged', () => { expect(gherkinLinter.setLanguage(language).featureKeyword).toEqual('Fonctionnalité') })
+      it('allows method chaining', () => {
+        expect(gherkinLinter.setLanguage(language)).toEqual(gherkinLinter)
+      })
+      it('keeps the language unchanged', () => {
+        expect(gherkinLinter.setLanguage(language).language).toEqual('fr')
+      })
+      it('keeps the feature keyword unchanged', () => {
+        expect(gherkinLinter.setLanguage(language).featureKeyword).toEqual(
+          'Fonctionnalité'
+        )
+      })
 
       it('does not reset the lastParsedGherkin member', () => {
         gherkinLinter.parse('Feature: Scenario:')
-        expect(gherkinLinter.setLanguage(language).lastParsedGherkin).toEqual('Feature: Scenario:')
+        expect(gherkinLinter.setLanguage(language).lastParsedGherkin).toEqual(
+          'Feature: Scenario:'
+        )
       })
     })
   })
@@ -140,14 +178,18 @@ describe('GherkinLinter', () => {
       describe('when subset type is scenario', () => {
         const type = 'scenario'
 
-        beforeEach(() => { gherkinLinter.setSubsetType() })
+        beforeEach(() => {
+          gherkinLinter.setSubsetType()
+        })
 
         it('set isSubset to true', () => {
           expect(gherkinLinter.setSubsetType(type).isSubset).toBe(true)
         })
 
         it('set subsetType to scenario', () => {
-          expect(gherkinLinter.setSubsetType(type).subsetType).toEqual('scenario')
+          expect(gherkinLinter.setSubsetType(type).subsetType).toEqual(
+            'scenario'
+          )
         })
 
         it('allows chaining methods', () => {
@@ -156,21 +198,27 @@ describe('GherkinLinter', () => {
 
         it('reset lastParsedGherkin', () => {
           gherkinLinter.parse('Feature:')
-          expect(gherkinLinter.setSubsetType(type).lastParsedGherkin).toEqual('')
+          expect(gherkinLinter.setSubsetType(type).lastParsedGherkin).toEqual(
+            ''
+          )
         })
       })
 
       describe('when subset type is background', () => {
         const type = 'background'
 
-        beforeEach(() => { gherkinLinter.setSubsetType() })
+        beforeEach(() => {
+          gherkinLinter.setSubsetType()
+        })
 
         it('set isSubset to true', () => {
           expect(gherkinLinter.setSubsetType(type).isSubset).toBe(true)
         })
 
         it('set subsetType to scenario', () => {
-          expect(gherkinLinter.setSubsetType(type).subsetType).toEqual('background')
+          expect(gherkinLinter.setSubsetType(type).subsetType).toEqual(
+            'background'
+          )
         })
 
         it('allows chaining methods', () => {
@@ -179,7 +227,9 @@ describe('GherkinLinter', () => {
 
         it('reset lastParsedGherkin', () => {
           gherkinLinter.parse('Feature:')
-          expect(gherkinLinter.setSubsetType(type).lastParsedGherkin).toEqual('')
+          expect(gherkinLinter.setSubsetType(type).lastParsedGherkin).toEqual(
+            ''
+          )
         })
       })
     })
@@ -187,7 +237,9 @@ describe('GherkinLinter', () => {
     describe('when subset type is not scenario or background', () => {
       const type = 'foo'
 
-      beforeEach(() => { gherkinLinter.setSubsetType('scenario') })
+      beforeEach(() => {
+        gherkinLinter.setSubsetType('scenario')
+      })
 
       it('set isSubset to false', () => {
         expect(gherkinLinter.setSubsetType(type).isSubset).toBe(false)
@@ -208,7 +260,9 @@ describe('GherkinLinter', () => {
     })
 
     describe('when subset is not specified', () => {
-      beforeEach(() => { gherkinLinter.setSubsetType('scenario') })
+      beforeEach(() => {
+        gherkinLinter.setSubsetType('scenario')
+      })
 
       it('set isSubset to false', () => {
         expect(gherkinLinter.setSubsetType().isSubset).toBe(false)
@@ -232,7 +286,9 @@ describe('GherkinLinter', () => {
       it('does not reset lastParsedGherkin', () => {
         gherkinLinter.setSubsetType('scenario')
         gherkinLinter.parse('Feature:')
-        expect(gherkinLinter.setSubsetType('scenario').lastParsedGherkin).toEqual('Feature:')
+        expect(
+          gherkinLinter.setSubsetType('scenario').lastParsedGherkin
+        ).toEqual('Feature:')
       })
     })
   })
@@ -240,7 +296,9 @@ describe('GherkinLinter', () => {
   describe('.getLintingErrors()', () => {
     describe('when gherkin content is valid', () => {
       it('returns an empty array', () => {
-        expect(gherkinLinter.parse('Feature:').getLintingErrors().length).toEqual(0)
+        expect(
+          gherkinLinter.parse('Feature:').getLintingErrors().length
+        ).toEqual(0)
       })
     })
 
@@ -249,37 +307,102 @@ describe('GherkinLinter', () => {
         it('returns an array with the errors', () => {
           gherkinLinter.setLanguage().setSubsetType().parse(fullGherkinContent)
           expect(gherkinLinter.getLintingErrors()).toEqual([
-            { character: 3, column: 2, line: 6, row: 5, text: "expected: #EOF, #TableRow, #DocStringSeparator, #StepLine, #TagLine, #ScenarioLine, #RuleLine, #Comment, #Empty, got 'invalid gherkin here!'", type: 'warning' },
-            { character: 3, column: 2, line: 7, row: 6, text: "expected: #EOF, #TableRow, #DocStringSeparator, #StepLine, #TagLine, #ScenarioLine, #RuleLine, #Comment, #Empty, got 'Examples:'", type: 'warning' }
+            {
+              character: 3,
+              column: 2,
+              line: 6,
+              row: 5,
+              text:
+                "expected: #EOF, #TableRow, #DocStringSeparator, #StepLine, #TagLine, #ScenarioLine, #RuleLine, #Comment, #Empty, got 'invalid gherkin here!'",
+              type: 'warning'
+            },
+            {
+              character: 3,
+              column: 2,
+              line: 7,
+              row: 6,
+              text:
+                "expected: #EOF, #TableRow, #DocStringSeparator, #StepLine, #TagLine, #ScenarioLine, #RuleLine, #Comment, #Empty, got 'Examples:'",
+              type: 'warning'
+            }
           ])
         })
       })
 
       describe('with a full feature in another valid language', () => {
         it('returns an array with the errors with appropriate line numbers', () => {
-          gherkinLinter.setLanguage('fr').setSubsetType().parse(fullGherkinContentInFrench)
+          gherkinLinter
+            .setLanguage('fr')
+            .setSubsetType()
+            .parse(fullGherkinContentInFrench)
           expect(gherkinLinter.getLintingErrors()).toEqual([
-            { character: 3, column: 2, line: 6, row: 5, text: "expected: #EOF, #TableRow, #DocStringSeparator, #StepLine, #TagLine, #ScenarioLine, #RuleLine, #Comment, #Empty, got 'invalid gherkin here!'", type: 'warning' },
-            { character: 3, column: 2, line: 7, row: 6, text: "expected: #EOF, #TableRow, #DocStringSeparator, #StepLine, #TagLine, #ScenarioLine, #RuleLine, #Comment, #Empty, got 'Exemples:'", type: 'warning' }
+            {
+              character: 3,
+              column: 2,
+              line: 6,
+              row: 5,
+              text:
+                "expected: #EOF, #TableRow, #DocStringSeparator, #StepLine, #TagLine, #ScenarioLine, #RuleLine, #Comment, #Empty, got 'invalid gherkin here!'",
+              type: 'warning'
+            },
+            {
+              character: 3,
+              column: 2,
+              line: 7,
+              row: 6,
+              text:
+                "expected: #EOF, #TableRow, #DocStringSeparator, #StepLine, #TagLine, #ScenarioLine, #RuleLine, #Comment, #Empty, got 'Exemples:'",
+              type: 'warning'
+            }
           ])
         })
       })
 
       describe('with a subset in plain english', () => {
         it('returns an array with the errors with appropriate line numbers', () => {
-          gherkinLinter.setLanguage().setSubsetType('background').parse(subsetBackgroundGherkinContent)
+          gherkinLinter
+            .setLanguage()
+            .setSubsetType('background')
+            .parse(subsetBackgroundGherkinContent)
           expect(gherkinLinter.getLintingErrors()).toEqual([
-            { character: 1, column: 0, line: 4, row: 3, text: "expected: #EOF, #TableRow, #DocStringSeparator, #StepLine, #TagLine, #ScenarioLine, #RuleLine, #Comment, #Empty, got 'invalid gherkin here!'", type: 'warning' },
-            { character: 1, column: 0, line: 5, row: 4, text: "expected: #EOF, #TableRow, #DocStringSeparator, #StepLine, #TagLine, #ScenarioLine, #RuleLine, #Comment, #Empty, got 'Examples:'", type: 'warning' }
+            {
+              character: 1,
+              column: 0,
+              line: 4,
+              row: 3,
+              text:
+                "expected: #EOF, #TableRow, #DocStringSeparator, #StepLine, #TagLine, #ScenarioLine, #RuleLine, #Comment, #Empty, got 'invalid gherkin here!'",
+              type: 'warning'
+            },
+            {
+              character: 1,
+              column: 0,
+              line: 5,
+              row: 4,
+              text:
+                "expected: #EOF, #TableRow, #DocStringSeparator, #StepLine, #TagLine, #ScenarioLine, #RuleLine, #Comment, #Empty, got 'Examples:'",
+              type: 'warning'
+            }
           ])
         })
       })
 
       describe('with a subset in another valid language', () => {
         it('returns an array with the errors with appropriate line numbers', () => {
-          gherkinLinter.setLanguage('fr').setSubsetType('scenario').parse(subsetScenarioGherkinContentInFrench)
+          gherkinLinter
+            .setLanguage('fr')
+            .setSubsetType('scenario')
+            .parse(subsetScenarioGherkinContentInFrench)
           expect(gherkinLinter.getLintingErrors()).toEqual([
-            { character: 1, column: 0, line: 4, row: 3, text: "expected: #EOF, #TableRow, #DocStringSeparator, #StepLine, #TagLine, #ExamplesLine, #ScenarioLine, #RuleLine, #Comment, #Empty, got 'invalid gherkin here!'", type: 'warning' }
+            {
+              character: 1,
+              column: 0,
+              line: 4,
+              row: 3,
+              text:
+                "expected: #EOF, #TableRow, #DocStringSeparator, #StepLine, #TagLine, #ExamplesLine, #ScenarioLine, #RuleLine, #Comment, #Empty, got 'invalid gherkin here!'",
+              type: 'warning'
+            }
           ])
         })
       })

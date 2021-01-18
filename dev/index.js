@@ -78,7 +78,7 @@ const Preview = () => {
     { label: 'gherkin scenario i18n', value: 'gherkin_scenario_i18n' }
   ]
 
-  const ToolbarContent =
+  const ToolbarContent = (
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <span style={{ marginRight: '8px' }}>Theme</span>
       <Select
@@ -100,6 +100,7 @@ const Preview = () => {
         defaultValue={modeOptions[0]}
       />
     </div>
+  )
 
   return (
     <div style={{ padding: '5px', width: '600px' }}>
@@ -116,11 +117,9 @@ const Preview = () => {
         autoFocus
         activateLinter
         showGutter
-        setOptions={
-          {
-            showLineNumbers: true
-          }
-        }
+        setOptions={{
+          showLineNumbers: true
+        }}
       />
     </div>
   )
