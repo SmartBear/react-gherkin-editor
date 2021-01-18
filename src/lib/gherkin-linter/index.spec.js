@@ -408,4 +408,14 @@ describe('GherkinLinter', () => {
       })
     })
   })
+
+  describe('after parsing', () => {
+    it('calls back with the cucumber message envelopes', () => {
+      let messages
+      const gherkinLinter = new GherkinLinter(msgs => (messages = msgs))
+      gherkinLinter.parse('Feature: our feature\n')
+      expect(messages.length).toBeGreaterThan(0)
+      expect(messages[0].gherkinDocument.feature.name).toEqual('our feature')
+    })
+  })
 })

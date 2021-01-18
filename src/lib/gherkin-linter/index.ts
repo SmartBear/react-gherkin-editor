@@ -1,4 +1,5 @@
 import { generateMessages } from '@cucumber/gherkin'
+import { messages as m } from '@cucumber/messages'
 import gherkinLanguages from 'lib/gherkin-languages'
 
 export default class GherkinLinter {
@@ -11,7 +12,7 @@ export default class GherkinLinter {
   private lastParsedGherkin: string
   private lintingErrors: object[]
 
-  constructor() {
+  constructor(private onParse?: (messages: Readonly<m.IEnvelope[]>) => void) {
     this.options = {
       includeGherkinDocument: true,
       newId: () => Math.random().toString()
@@ -97,6 +98,8 @@ export default class GherkinLinter {
         text: this.removeLineNumber(message.parseError.message),
         type: 'warning'
       }))
+
+    this.onParse && this.onParse(messages)
   }
 
   private getContentToLint(gherkin) {
