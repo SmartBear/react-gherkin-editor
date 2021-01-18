@@ -1,14 +1,17 @@
-/* istanbul ignore file */
-/* global ace */
-ace.define(
-  'ace/theme/jira',
-  ['require', 'exports', 'module', 'ace/lib/dom'],
-  function (acequire, exports) {
-    'use strict'
+import { define } from 'ace-builds'
 
-    exports.isDark = false
-    exports.cssClass = 'ace-jira'
-    exports.cssText = `ace_editor {
+/* istanbul ignore file */
+define('ace/theme/jira', [
+  'require',
+  'exports',
+  'module',
+  'ace/lib/dom'
+], function (acequire, exports) {
+  'use strict'
+
+  exports.isDark = false
+  exports.cssClass = 'ace-jira'
+  exports.cssText = `ace_editor {
   margin: auto;
   width: 100%;
 }
@@ -178,7 +181,6 @@ ace.define(
   word-wrap: break-word;
 }`
 
-    const dom = acequire('../lib/dom')
-    dom.importCssString(exports.cssText, exports.cssClass)
-  }
-)
+  const dom = acequire('../lib/dom')
+  dom.importCssString(exports.cssText, exports.cssClass)
+})

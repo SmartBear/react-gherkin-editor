@@ -1,12 +1,14 @@
+import { define } from 'ace-builds'
 /* istanbul ignore file */
-/* global ace */
-ace.define(
-  'ace/theme/cucumber',
-  ['require', 'exports', 'module', 'ace/lib/dom'],
-  function (acequire, exports) {
-    exports.isDark = false
-    exports.cssClass = 'ace-cucumber'
-    exports.cssText = `
+define('ace/theme/cucumber', [
+  'require',
+  'exports',
+  'module',
+  'ace/lib/dom'
+], function (acequire, exports) {
+  exports.isDark = false
+  exports.cssClass = 'ace-cucumber'
+  exports.cssText = `
 .ace-cucumber .ace_gutter {
   background: #f6f6f6;
   color: #4D4D4C;
@@ -119,7 +121,6 @@ ace.define(
   word-wrap: break-word;
 }`
 
-    const dom = acequire('../lib/dom')
-    dom.importCssString(exports.cssText, exports.cssClass)
-  }
-)
+  const dom = acequire('../lib/dom')
+  dom.importCssString(exports.cssText, exports.cssClass)
+})
