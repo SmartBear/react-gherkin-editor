@@ -1,9 +1,14 @@
 import { debounce } from 'lodash'
 import GherkinLinter from 'lib/gherkin-linter'
+import { LanguageIdentifier } from 'lib/gherkin-languages'
 
 export default class {
-  constructor(session) {
-    this.session = session
+  private linter: GherkinLinter
+  private language: LanguageIdentifier
+  // TODO: narrow down type
+  private mode: string
+
+  constructor(private session) {
     this.linter = new GherkinLinter()
 
     this.language = 'en'
