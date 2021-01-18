@@ -4,13 +4,11 @@ import { LanguageIdentifier } from 'lib/gherkin-languages'
 
 export default class {
   private linter: GherkinLinter
-  private language: LanguageIdentifier
-  // TODO: narrow down type
-  private mode: string
+  public language: LanguageIdentifier
+  public mode: '' | 'scenario' | 'background'
 
   constructor(private session) {
     this.linter = new GherkinLinter()
-
     this.language = 'en'
     this.mode = ''
   }
@@ -23,7 +21,7 @@ export default class {
     this.language = language
   }
 
-  setMode(mode) {
+  setMode(mode: 'gherkin_background_i18n' | 'gherkin_scenario_i18n' | '') {
     switch (mode) {
       case 'gherkin_background_i18n':
         this.mode = 'background'
