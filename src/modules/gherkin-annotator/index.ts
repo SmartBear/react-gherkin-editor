@@ -7,7 +7,7 @@ export default class GherkinAnnotator {
   public language: LanguageIdentifier = 'en'
   public mode: '' | 'scenario' | 'background' = ''
 
-  constructor(private session, private onParse?: OnParseCallback) {
+  constructor(public session, private onParse?: OnParseCallback) {
     this.linter = new GherkinLinter(onParse)
   }
 

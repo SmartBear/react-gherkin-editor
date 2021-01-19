@@ -49,8 +49,9 @@ describe('GherkinAnnotator', () => {
       })
     })
 
-    describe('when mode is not gherkin_background_i18n neither gherkin_scenario_i18n', () => {
+    describe('when mode is not recognized', () => {
       it('reset the mode', () => {
+        // @ts-ignore
         gherkinAnnotator.setMode('gherkin_foo_i18n')
         expect(gherkinAnnotator.mode).toEqual('')
       })
