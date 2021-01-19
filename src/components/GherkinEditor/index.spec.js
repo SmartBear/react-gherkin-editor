@@ -201,6 +201,13 @@ describe('GherkinEditor', () => {
 
       it('delegates onParse to the annotator', () => {
         const onParse = jest.fn()
+        render(
+          <GherkinEditor
+            initialValue='Feature: My feature \nScenario: Given a scenario'
+            showGutter
+            activateLinter={false}
+          />
+        )
 
         render(
           <GherkinEditor
