@@ -198,10 +198,25 @@ describe('GherkinEditor', () => {
         expect(setMode).toHaveBeenCalledWith('gherkin_scenario_i18n')
         expect(annotate).toHaveBeenCalled()
       })
+
+      it('delegates onParse to the annotator', () => {
+        const onParse = jest.fn()
+
+        render(
+          <GherkinEditor
+            initialValue='Feature: My feature \nScenario: Given a scenario'
+            showGutter
+            activateLinter
+            onParse={onParse}
+          />
+        )
+        expect(GherkinAnnotator).toHaveBeenCalledTimes(1)
+        expect(GherkinAnnotator).toHaveBeenCalledWith(expect.anything(), onParse)
+      })
     })
 
     describe('when linter status changes', () => {
-      it('reset the annotator ression', () => {
+      it('resets the annotator session', () => {
         const { rerender } = render(<GherkinEditor showGutter activateLinter />)
 
         rerender(<GherkinEditor showGutter />)

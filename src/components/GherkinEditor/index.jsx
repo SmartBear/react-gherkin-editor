@@ -70,21 +70,22 @@ const GherkinEditor = React.forwardRef((props, ref) => {
   const aceEditorRef = useRef()
 
   const {
+    activateLinter,
+    autoCompleteFunction,
+    autoFocus,
+    hideToolbar,
     initialValue,
     language,
-    hideToolbar,
-    readOnly,
-    uniqueId,
-    toolbarContent,
-    onSubmit,
-    autoCompleteFunction,
-    onLanguageChange,
-    autoFocus,
-    theme,
     mode,
+    onLanguageChange,
+    onParse,
+    onSubmit,
+    readOnly,
+    setOptions,
     showGutter,
-    activateLinter,
-    setOptions
+    theme,
+    toolbarContent,
+    uniqueId
   } = props
 
   const setGherkinDialect = setGherkinDialectFunctions[mode] || setDialect
@@ -130,7 +131,7 @@ const GherkinEditor = React.forwardRef((props, ref) => {
     const session = aceEditorRef.current.editor.getSession()
 
     if (!gherkinAnnotator) {
-      gherkinAnnotator = new GherkinAnnotator(session)
+      gherkinAnnotator = new GherkinAnnotator(session, onParse)
     } else {
       gherkinAnnotator.setSession(session)
     }

@@ -14,6 +14,17 @@ describe('GherkinAnnotator', () => {
     })
   })
 
+  it('delegates onParse to the linter', async() => {
+    const onParse = jest.fn()
+
+    const gherkinAnnotator = new GherkinAnnotator(session, onParse)
+
+    gherkinAnnotator.setLanguage('en')
+    await gherkinAnnotator.annotateNow('Feature: feature')
+
+    expect(onParse).toHaveBeenCalledTimes(1)
+  })
+
   describe('.setSession(session)', () => {
     afterEach(() => {
       gherkinAnnotator.setSession(session)
