@@ -1,16 +1,14 @@
 import { debounce } from 'lodash'
-import GherkinLinter from 'lib/gherkin-linter'
+import GherkinLinter, { OnParseCallback } from 'lib/gherkin-linter'
 import { LanguageIdentifier } from 'lib/gherkin-languages'
 
-export default class {
-  private linter: GherkinLinter
-  public language: LanguageIdentifier
-  public mode: '' | 'scenario' | 'background'
+export default class GherkinAnnotator {
+  private linter:GherkinLinter
+  public language: LanguageIdentifier = 'en'
+  public mode: '' | 'scenario' | 'background' = ''
 
-  constructor(private session) {
-    this.linter = new GherkinLinter()
-    this.language = 'en'
-    this.mode = ''
+  constructor(private session, private onParse?: OnParseCallback) {
+    this.linter = new GherkinLinter(onParse)
   }
 
   setSession(session) {

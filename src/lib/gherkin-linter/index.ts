@@ -2,6 +2,8 @@ import { generateMessages } from '@cucumber/gherkin'
 import { messages as m } from '@cucumber/messages'
 import gherkinLanguages from 'lib/gherkin-languages'
 
+export type OnParseCallback = (messages: Readonly<m.IEnvelope[]>) => void
+
 export default class GherkinLinter {
   private options: object
   private offset: number
@@ -12,7 +14,7 @@ export default class GherkinLinter {
   private lastParsedGherkin: string
   private lintingErrors: object[]
 
-  constructor(private onParse?: (messages: Readonly<m.IEnvelope[]>) => void) {
+  constructor(private onParse?: OnParseCallback) {
     this.options = {
       includeGherkinDocument: true,
       newId: () => Math.random().toString()
