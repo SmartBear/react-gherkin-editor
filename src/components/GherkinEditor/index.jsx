@@ -3,22 +3,22 @@ import PropTypes from 'prop-types'
 import AceEditor from 'react-ace'
 import { require as acequire } from 'ace-builds'
 import { Resizable } from 're-resizable'
-import KeywordCompleter from 'modules/keyword-completer'
-import StepCompleter from 'modules/step-completer'
+import KeywordCompleter from '../../modules/keyword-completer'
+import StepCompleter from '../../modules/step-completer'
 import {
   setGherkinDialect as setDialect,
   getGherkinDialect as getDialect
-} from 'modules/dialects/gherkin_i18n'
+} from '../../modules/dialects/gherkin_i18n'
 import {
   setGherkinDialect as setBackgroundDialect,
   getGherkinDialect as getBackgroundDialect
-} from 'modules/dialects/gherkin_background_i18n'
+} from '../../modules/dialects/gherkin_background_i18n'
 import {
   setGherkinDialect as setScenarioDialect,
   getGherkinDialect as getScenarioDialect
-} from 'modules/dialects/gherkin_scenario_i18n'
-import GherkinAnnotator from 'modules/gherkin-annotator'
-import Toolbar from 'components/Toolbar'
+} from '../../modules/dialects/gherkin_scenario_i18n'
+import GherkinAnnotator from '../../modules/gherkin-annotator'
+import Toolbar from '../Toolbar'
 import { EditorWrapper } from './styled'
 
 import 'ace-builds/src-noconflict/ext-language_tools'
@@ -26,9 +26,9 @@ import 'ace-builds/src-noconflict/ext-language_tools'
 import 'themes/jira'
 import 'themes/cucumber'
 
-import 'modules/mode/gherkin_i18n'
-import 'modules/mode/gherkin_background_i18n'
-import 'modules/mode/gherkin_scenario_i18n'
+import '../../modules/mode/gherkin_i18n'
+import '../../modules/mode/gherkin_background_i18n'
+import '../../modules/mode/gherkin_scenario_i18n'
 
 const setGherkinDialectFunctions = {
   gherkin_i18n: setDialect,

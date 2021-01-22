@@ -1,4 +1,4 @@
-import gherkinLanguages from 'lib/gherkin-languages'
+import gherkinLanguages from '../../lib/gherkin-languages'
 import _find from 'lodash/find'
 import React from 'react'
 import Select from 'react-select'

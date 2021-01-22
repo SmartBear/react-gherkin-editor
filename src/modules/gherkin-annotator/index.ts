@@ -1,6 +1,6 @@
 import { debounce } from 'lodash'
-import GherkinLinter, { OnParseCallback } from 'lib/gherkin-linter'
-import { LanguageIdentifier } from 'lib/gherkin-languages'
+import GherkinLinter, { OnParseCallback } from '../../lib/gherkin-linter'
+import { LanguageIdentifier } from '../../lib/gherkin-languages'
 
 export default class GherkinAnnotator {
   private linter:GherkinLinter
