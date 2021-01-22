@@ -1,6 +1,6 @@
 {
   "name": "@smartbear/react-gherkin-editor",
-  "version": "2.4.3",
+  "version": "2.4.6",
   "description": "A Gherkin language editor for React.",
   "homepage": "https://github.com/SmartBear/react-gherkin-editor",
   "repository": {
@@ -40,7 +40,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@types/react": "^17.0.0",
-    "@typescript-eslint/parser": "^4.13.0",
+    "@typescript-eslint/parser": "^4.14.0",
     "babel-loader": "^8.2.2",
     "babel-plugin-module-resolver": "^4.1.0",
     "buffer": "^6.0.3",
@@ -65,7 +65,7 @@
     "styled-components": "^5.2.1",
     "typescript": "^4.1.3",
     "webpack": "^5.16.0",
-    "webpack-cli": "^4.3.1",
+    "webpack-cli": "^4.4.0",
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
