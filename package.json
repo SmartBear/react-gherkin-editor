@@ -23,7 +23,7 @@
     "type-check": "tsc --noEmit",
     "build": "concurrently yarn:build:types yarn:build:js",
     "build:types": "tsc --emitDeclarationOnly",
-    "build:js": "babel src --out-dir dist --ignore '**/*.spec.js,**/__mocks__'",
+    "build:js": "babel src --out-dir dist",
     "prepack": "rm -rf dist && yarn build",
     "postpack": "rm -rf dist",
     "push": "git push --follow-tags",
