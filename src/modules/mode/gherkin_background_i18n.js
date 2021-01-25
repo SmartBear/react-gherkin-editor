@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-import { getGherkinDialect } from 'modules/dialects/gherkin_background_i18n'
+import { getGherkinDialect } from '../dialects/gherkin_background_i18n'
 import escapeStringRegexp from 'escape-string-regexp'
 import { define } from 'ace-builds'
 

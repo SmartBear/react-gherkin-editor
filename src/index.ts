@@ -1,5 +1,5 @@
-import GherkinEditor from 'components/GherkinEditor'
-import GherkinLinter from 'lib/gherkin-linter'
+import GherkinEditor from './components/GherkinEditor'
+import GherkinLinter from './lib/gherkin-linter'
 
 export { GherkinLinter }
 

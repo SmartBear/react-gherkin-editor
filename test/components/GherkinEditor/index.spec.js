@@ -5,10 +5,10 @@ import GherkinAnnotator, {
   setLanguage,
   setMode,
   setSession
-} from 'modules/gherkin-annotator'
-import GherkinEditor from 'components/GherkinEditor'
+} from '../../../src/modules/gherkin-annotator'
+import GherkinEditor from '../../../src/components/GherkinEditor'
 
-jest.mock('modules/gherkin-annotator')
+jest.mock('../../../src/modules/gherkin-annotator')
 
 beforeEach(() => {
   GherkinAnnotator.mockClear()

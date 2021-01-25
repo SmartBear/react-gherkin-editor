@@ -1,6 +1,6 @@
-import GherkinAnnotator from 'modules/gherkin-annotator'
+import GherkinAnnotator from '../../../src/modules/gherkin-annotator'
 
-jest.unmock('modules/gherkin-annotator')
+// jest.unmock('modules/gherkin-annotator')
 
 describe('GherkinAnnotator', () => {
   const session = { setAnnotations: jest.fn(), clearAnnotations: jest.fn() }
