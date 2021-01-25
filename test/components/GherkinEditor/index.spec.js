@@ -6,7 +6,7 @@ import GherkinAnnotator, {
   setMode,
   setSession
 } from 'modules/gherkin-annotator'
-import GherkinEditor from 'components/GherkinEditor'
+import GherkinEditor from '../../../src/components/GherkinEditor'
 
 jest.mock('modules/gherkin-annotator')
 

@@ -23,8 +23,8 @@ import { EditorWrapper } from './styled'
 
 import 'ace-builds/src-noconflict/ext-language_tools'
 
-import 'themes/jira'
-import 'themes/cucumber'
+import '../../themes/jira'
+import '../../themes/cucumber'
 
 import '../../modules/mode/gherkin_i18n'
 import '../../modules/mode/gherkin_background_i18n'

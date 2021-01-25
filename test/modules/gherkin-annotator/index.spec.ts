@@ -1,4 +1,4 @@
-import GherkinAnnotator from 'modules/gherkin-annotator'
+import GherkinAnnotator from '../../../src/modules/gherkin-annotator'
 
 jest.unmock('modules/gherkin-annotator')
 
