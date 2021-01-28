@@ -413,9 +413,11 @@ describe('GherkinLinter', () => {
     it('calls back with the cucumber message envelopes', () => {
       let messages
       const gherkinLinter = new GherkinLinter(msgs => (messages = msgs))
-      gherkinLinter.parse('Feature: our feature\n')
+      const source = 'Feature: our feature\n'
+      gherkinLinter.parse(source)
       expect(messages.length).toBeGreaterThan(0)
-      expect(messages[0].gherkinDocument.feature.name).toEqual('our feature')
+      expect(messages[0].source.data).toEqual(source)
+      expect(messages[1].gherkinDocument.feature.name).toEqual('our feature')
     })
   })
 })

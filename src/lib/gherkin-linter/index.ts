@@ -87,7 +87,7 @@ export default class GherkinLinter {
     const messages = generateMessages(
       this.getContentToLint(gherkin),
       '',
-      this.options
+      { includeSource: !!this.onParse, ...this.options }
     )
 
     this.lintingErrors = messages
