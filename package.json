@@ -39,7 +39,7 @@
     "@babel/preset-typescript": "^7.12.7",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
-    "@types/react": "^17.0.0",
+    "@types/react": "^17.0.1",
     "@typescript-eslint/parser": "^4.14.2",
     "babel-loader": "^8.2.2",
     "buffer": "^6.0.3",
