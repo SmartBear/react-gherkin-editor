@@ -1115,23 +1115,23 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cucumber/gherkin@^16.0.0":
-  version "16.0.0"
-  resolved "https://registry.yarnpkg.com/@cucumber/gherkin/-/gherkin-16.0.0.tgz#29c2130ba7d1b2edcc983767d32c1969507625fe"
-  integrity sha512-DBX+cEnvIjnmKR8IQrZiea+7cgOLUTB+E8llnM2PEMMUNIn1FKhcDoPkiZ+3wMj4U6eNtiK0fr+9Hvwg+g+28g==
+"@cucumber/gherkin@^17.0.0":
+  version "17.0.0"
+  resolved "https://registry.yarnpkg.com/@cucumber/gherkin/-/gherkin-17.0.0.tgz#f4f82b2d95307720498bbe524b4389ec089679b7"
+  integrity sha512-fiIsF7E6NBEyam40zveUdBDj6VOPL8pMDc/ymEIFNWzKLMrKzwUL+Id0FG2D+p1ow7EJhud7sdpPKdFPRduzGg==
   dependencies:
-    "@cucumber/messages" "^13.2.1"
-    commander "^6.2.0"
+    "@cucumber/messages" "^14.0.0"
+    commander "^7.0.0"
     source-map-support "^0.5.19"
 
-"@cucumber/messages@^13.2.1":
-  version "13.2.1"
-  resolved "https://registry.yarnpkg.com/@cucumber/messages/-/messages-13.2.1.tgz#e43300d8abe7bbb56d98422e3eb6661bfa8603af"
-  integrity sha512-2cu6P1JsEcH0/RlMx302KOK9rkKDHYS1H+6/VhQ6L+yrVW458wOU3CiVgurLn3heCDdJH8r4L87pkSwt0rxiGQ==
+"@cucumber/messages@^14.0.0":
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/@cucumber/messages/-/messages-14.0.0.tgz#edd5c9638e48e3027718e4d2094b29ce5a4ee11b"
+  integrity sha512-YPVQKRMuzQnYbpjccnX7Z4X9l84Rt/40wdr0tbU4NHj9n9cJ3UH78mj8o+ZmYxoXk8HEbdvNc+1+AUCg+VgacA==
   dependencies:
     "@types/uuid" "^8.3.0"
     protobufjs "^6.10.2"
-    uuid "^8.3.1"
+    uuid "^8.3.2"
 
 "@discoveryjs/json-ext@^0.5.0":
   version "0.5.2"
@@ -2845,11 +2845,6 @@ commander@^4.0.1, commander@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-4.1.1.tgz#9fd602bd936294e9e9ef46a3f4d6964044b18068"
   integrity sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==
-
-commander@^6.2.0:
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-6.2.1.tgz#0792eb682dfbc325999bb2b84fddddba110ac73c"
-  integrity sha512-U7VdrJFnJgo4xjrHpTzu0yrHPGImdsmD95ZlgYSEajAn2JKzDhDTPG9kBTefmObL2w/ngeZnilk+OV9CG3d7UA==
 
 commander@^7.0.0:
   version "7.0.0"
@@ -7991,7 +7986,7 @@ uuid@^3.3.2, uuid@^3.4.0:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
 
-uuid@^8.3.0, uuid@^8.3.1:
+uuid@^8.3.0, uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
