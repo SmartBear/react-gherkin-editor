@@ -8,17 +8,8 @@ module.exports = {
       version: 'detect'
     }
   },
-  overrides: [
-    {
-      files: ['**/*.ts', '**/*.tsx'],
-      parser: '@typescript-eslint/parser',
-      rules: {
-        'no-use-before-define': 'off'
-      }
-    }
-  ],
   extends: ['standard', 'plugin:react/recommended', 'plugin:jest/recommended'],
-  parser: '@babel/eslint-parser',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true
@@ -26,8 +17,9 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module'
   },
-  plugins: ['@babel', 'react', 'jest'],
+  plugins: ['react', 'jest'],
   rules: {
+    'no-use-before-define': 'off',
     'arrow-parens': ['error', 'as-needed'],
     camelcase: 'warn',
     'id-length': ['error', { exceptions: ['i', 'v'] }],

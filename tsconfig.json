@@ -1,15 +1,27 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
-    "target": "esnext",
-    "module": "commonjs",
-    "jsx": "preserve",
     "declaration": true,
-    "outDir": "dist",
-    "strict": false, // TODO: set to true after migrating to TS
-    "allowSyntheticDefaultImports": true,
+    "target": "es5",
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "sourceMap": true,
+    "allowJs": true,
+    "jsx": "react",
+    "resolveJsonModule": true,
+    "module": "commonjs",
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true
-  }
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "downlevelIteration": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "src/**/*",
+    "./jest.setup.ts",
+    "test/**/*"
+  ],
+  "compileOnSave": false
 }

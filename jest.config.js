@@ -1,3 +1,4 @@
 module.exports = {
-  setupFilesAfterEnv: ['./jest.setup.js']
+  preset: 'ts-jest/presets/js-with-ts',
+  setupFilesAfterEnv: ['./jest.setup.ts']
 }
