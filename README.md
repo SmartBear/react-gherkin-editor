@@ -79,7 +79,7 @@ const autoCompleteFunction = async (_keyword, text) => {
 render(
   <ReactGherkinEditor
     initialValue={initialValue}
-    onValueChange={onValueChange}
+    onChange={onValueChange}
     autoCompleteFunction={autoCompleteFunction}
     language='en'
     theme='cucumber'
