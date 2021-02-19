@@ -50,7 +50,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-is": "^17.0.1",
-    "react-select-event": "^5.1.0",
+    "react-select-event": "^5.2.0",
     "stream-browserify": "^3.0.0",
     "styled-components": "^5.2.1",
     "ts-jest": "^26.5.1",
