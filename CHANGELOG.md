@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [2.4.10]
+
 - Setup a new package release process that will also release on GitHub Packages
 
 ## [2.4.9]
