@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Setup a new package release process that will also release on GitHub Packages
+
 ## [2.4.9]
 
 Build package using `tsc` instead of `babel`.
@@ -96,7 +98,7 @@ Fix indentation in I18n context
 ## [2.0.1]
 
 Breaking changes:
- - OnValueChange => onChange 
+ - OnValueChange => onChange
 
 Features:
  - Added I18n for gherkin syntax & keyword autocompletions

@@ -22,10 +22,10 @@
     "eslint": "eslint --ext js,jsx,ts,tsx .",
     "type-check": "tsc --noEmit",
     "build": "tsc --project tsconfig.build.json",
+    "release": "node scripts/release.js",
     "prepack": "rm -rf dist && yarn build",
     "postpack": "rm -rf dist",
-    "push": "git push --follow-tags",
-    "postpublish": "echo The new package has been released! Run \\\"yarn push\\\" to push the release commit and tag."
+    "push": "git push --follow-tags"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.9",
