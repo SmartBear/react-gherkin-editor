@@ -68,7 +68,7 @@
     "escape-string-regexp": "^5.0.0",
     "lodash": "^4.17.21",
     "re-resizable": "^6.9.0",
-    "react-ace": "^9.3.0",
+    "react-ace": "^9.4.0",
     "react-select": "^4.3.0"
   },
   "peerDependencies": {
