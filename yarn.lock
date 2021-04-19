@@ -5607,7 +5607,7 @@ re-resizable@^6.9.0:
   dependencies:
     fast-memoize "^2.5.1"
 
-react-ace@^9.3.0:
+react-ace@^9.4.0:
   version "9.4.0"
   resolved "https://registry.yarnpkg.com/react-ace/-/react-ace-9.4.0.tgz#5c68423b5c7d4bc9332fc8b651187799c0bc97f6"
   integrity sha512-fpY3AGViE1OglXThgn3wZWcPoAxr0bqRYqeG3jY3m1L7OIHo0GfZ3bJI0grhrADDy2i9jQoip9xZfpOFupQCsw==
