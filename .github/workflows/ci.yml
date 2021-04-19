@@ -20,9 +20,6 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-cache-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-cache-
-            ${{ runner.os }}-
 
       - name: Run yarn
         run: yarn --frozen-lockfile
