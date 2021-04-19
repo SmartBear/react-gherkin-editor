@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [2.4.11]
+
+- Upgrade dependencies
+
 ## [2.4.10]
 
 - Setup a new package release process that will also release on GitHub Packages
