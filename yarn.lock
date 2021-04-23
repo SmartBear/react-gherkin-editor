@@ -325,10 +325,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cucumber/gherkin@^18.1.0":
-  version "18.1.0"
-  resolved "https://registry.yarnpkg.com/@cucumber/gherkin/-/gherkin-18.1.0.tgz#0b5addb5c1d978cdedfe4793eb7ee9980fc14f74"
-  integrity sha512-PvGI9A8dXG+zWo1aNurplsHc0ytd4ZQwPGh9EAhP1S7gwNfQVpf6sIdkAczloNSCUwL2OJEc7Wvygm9ndcQTog==
+"@cucumber/gherkin@^18.1.1":
+  version "18.1.1"
+  resolved "https://registry.yarnpkg.com/@cucumber/gherkin/-/gherkin-18.1.1.tgz#4c278ebb64b8a8dd1f385ac4f9976fc52835a307"
+  integrity sha512-GJUOnWI9/OAPdLCr7pMqOoeuyLAUHDAkb9gZNXubK5EzYzPsN+mylTT1vJI+TjaXSna0D/YTe8oRKurza0BymQ==
   dependencies:
     "@cucumber/message-streams" "^1.0.0"
     "@cucumber/messages" "^15.0.0"
