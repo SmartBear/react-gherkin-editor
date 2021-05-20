@@ -87,6 +87,7 @@ export default class GherkinLinter {
     const messages = generateMessages(
       this.getContentToLint(gherkin),
       '',
+      m.SourceMediaType.TEXT_X_CUCUMBER_GHERKIN_PLAIN,
       { includeSource: !!this.onParse, ...this.options }
     )
 
