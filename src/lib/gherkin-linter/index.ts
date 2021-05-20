@@ -1,5 +1,5 @@
 import { generateMessages } from '@cucumber/gherkin'
-import { messages as m } from '@cucumber/messages'
+import * as m from '@cucumber/messages'
 import gherkinLanguages from '../gherkin-languages'
 
 export type OnParseCallback = (messages: Readonly<m.IEnvelope[]>) => void
