@@ -1,8 +1,8 @@
 import { generateMessages } from '@cucumber/gherkin'
-import { messages as m } from '@cucumber/messages'
+import * as m from '@cucumber/messages'
 import gherkinLanguages from '../gherkin-languages'
 
-export type OnParseCallback = (messages: Readonly<m.IEnvelope[]>) => void
+export type OnParseCallback = (messages: Readonly<m.Envelope[]>) => void
 
 export default class GherkinLinter {
   private options: object
@@ -86,7 +86,8 @@ export default class GherkinLinter {
   private parseGherkin(gherkin) {
     const messages = generateMessages(
       this.getContentToLint(gherkin),
-      '',
+      'feature.feature',
+      m.SourceMediaType.TEXT_X_CUCUMBER_GHERKIN_PLAIN,
       { includeSource: !!this.onParse, ...this.options }
     )
 
