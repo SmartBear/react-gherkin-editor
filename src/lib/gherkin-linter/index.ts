@@ -2,7 +2,7 @@ import { generateMessages } from '@cucumber/gherkin'
 import * as m from '@cucumber/messages'
 import gherkinLanguages from '../gherkin-languages'
 
-export type OnParseCallback = (messages: Readonly<m.IEnvelope[]>) => void
+export type OnParseCallback = (messages: Readonly<m.Envelope[]>) => void
 
 export default class GherkinLinter {
   private options: object
