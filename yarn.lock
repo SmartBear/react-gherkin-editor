@@ -325,13 +325,13 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cucumber/gherkin@^19.0.2":
-  version "19.0.2"
-  resolved "https://registry.yarnpkg.com/@cucumber/gherkin/-/gherkin-19.0.2.tgz#bb09b3239c76d1e23e40451a93e6f496706ea4fb"
-  integrity sha512-ylhFABT04p5PIkc8bi1VBYnAaLvvoO5nGxHX9Zm8fZ3oHVTi52fE/zkDTdOZyO0uP2fjJmBP6cueL1rrYAzUfA==
+"@cucumber/gherkin@^19.0.3":
+  version "19.0.3"
+  resolved "https://registry.yarnpkg.com/@cucumber/gherkin/-/gherkin-19.0.3.tgz#61036ca4940e66f8a787be5f92ce229ae3815ebf"
+  integrity sha512-gWdMm8mfRk3P+VugJWvNALaQV5QnT+5RkqWy3tO+4NsMSQZPo5p4V4vXwriQZ/sZR1Wni5TDRztuRsKLgZ3XHA==
   dependencies:
     "@cucumber/message-streams" "^2.0.0"
-    "@cucumber/messages" "^16.0.0"
+    "@cucumber/messages" "^16.0.1"
 
 "@cucumber/message-streams@^2.0.0":
   version "2.0.0"
@@ -340,10 +340,10 @@
   dependencies:
     "@cucumber/messages" "^16.0.0"
 
-"@cucumber/messages@^16.0.0":
-  version "16.0.0"
-  resolved "https://registry.yarnpkg.com/@cucumber/messages/-/messages-16.0.0.tgz#41c57380362b41fd507e2a3bd2a65e82021a2a8f"
-  integrity sha512-sGYLfsR1uOZsDIjMJr89SUEvLJJgJ3uMr/9NzPBKbrL5pgoyz7xWRUj9sgk1U4+qXSflJC2C9QVTdrRedlk+Lw==
+"@cucumber/messages@^16.0.0", "@cucumber/messages@^16.0.1":
+  version "16.0.1"
+  resolved "https://registry.yarnpkg.com/@cucumber/messages/-/messages-16.0.1.tgz#8a9f9bb6ad0430d8ddd044dd49cb45ef37ee67b7"
+  integrity sha512-80JcaAfQragFqR1rMhRwiqWL9HcR6Z4LDD2mfF0Lxg/lFkCNvmWa9Jl10NUNfFXYD555NKPzP/8xFo55abw8TQ==
   dependencies:
     "@types/uuid" "8.3.0"
     class-transformer "0.4.0"
