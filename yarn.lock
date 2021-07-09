@@ -325,27 +325,27 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cucumber/gherkin@^19.0.3":
-  version "19.0.3"
-  resolved "https://registry.yarnpkg.com/@cucumber/gherkin/-/gherkin-19.0.3.tgz#61036ca4940e66f8a787be5f92ce229ae3815ebf"
-  integrity sha512-gWdMm8mfRk3P+VugJWvNALaQV5QnT+5RkqWy3tO+4NsMSQZPo5p4V4vXwriQZ/sZR1Wni5TDRztuRsKLgZ3XHA==
+"@cucumber/gherkin@^20.0.0":
+  version "20.0.0"
+  resolved "https://registry.yarnpkg.com/@cucumber/gherkin/-/gherkin-20.0.0.tgz#ab85ebabbbc467454b137135ecc442a36bf9385c"
+  integrity sha512-Zqu0flNhH2YQG18x5I9YNquXntYrvxdBXhcrlHiBT7cr5A9VA/ApEh2XqK5av5qhHYwqt1Ull7AGdSYuGpG7eA==
   dependencies:
-    "@cucumber/message-streams" "^2.0.0"
-    "@cucumber/messages" "^16.0.1"
+    "@cucumber/message-streams" "^3.0.0"
+    "@cucumber/messages" "^17.0.0"
 
-"@cucumber/message-streams@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@cucumber/message-streams/-/message-streams-2.0.0.tgz#3cf2cdeebff50a60736ed0d04f696ca5964587ec"
-  integrity sha512-zbZY+vZCk99FZzsgkCrRdqpFizp+ksM7q2kJJbtjTcjN8T+2cnaLUmmFMNYzMvORx39dn4kdRJYaAQh+eachrg==
+"@cucumber/message-streams@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@cucumber/message-streams/-/message-streams-3.0.0.tgz#a8c7301fbed0f9b7255be06d7bc296ea5efdbc1f"
+  integrity sha512-ABx91nKUebV8mLmpf7BsB3bmQ57CDAfj2EIZswThz+nJHYPAFlZ1JewI6ykFsR9RzJ7/QhgQs0KHeQh7nH/u1Q==
   dependencies:
-    "@cucumber/messages" "^16.0.0"
+    "@cucumber/messages" "^17.0.0"
 
-"@cucumber/messages@^16.0.0", "@cucumber/messages@^16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@cucumber/messages/-/messages-16.0.1.tgz#8a9f9bb6ad0430d8ddd044dd49cb45ef37ee67b7"
-  integrity sha512-80JcaAfQragFqR1rMhRwiqWL9HcR6Z4LDD2mfF0Lxg/lFkCNvmWa9Jl10NUNfFXYD555NKPzP/8xFo55abw8TQ==
+"@cucumber/messages@^17.0.0":
+  version "17.0.0"
+  resolved "https://registry.yarnpkg.com/@cucumber/messages/-/messages-17.0.0.tgz#3aa61ddaaf479ab39f73827ce20da990b470b37b"
+  integrity sha512-qe+9Wr6JaQgFL35r/NbHlOYvBcNRIQ8BpLGAG8tUYq97pCybkEfkBvQRkEbw9vAeMSLxyvwAhmelTfnrjLTYJg==
   dependencies:
-    "@types/uuid" "8.3.0"
+    "@types/uuid" "8.3.1"
     class-transformer "0.4.0"
     reflect-metadata "0.1.13"
     uuid "8.3.2"
@@ -903,10 +903,10 @@
   dependencies:
     "@types/jest" "*"
 
-"@types/uuid@8.3.0":
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.0.tgz#215c231dff736d5ba92410e6d602050cce7e273f"
-  integrity sha512-eQ9qFW/fhfGJF8WKHGEHZEyVWfZxrT+6CLIJGBcZPfxUh/+BnEj+UCGYMlr9qZuX/2AltsvwrGqp0LhEW8D0zQ==
+"@types/uuid@8.3.1":
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.1.tgz#1a32969cf8f0364b3d8c8af9cc3555b7805df14f"
+  integrity sha512-Y2mHTRAbqfFkpjldbkHGY8JIzRN6XqYRliG8/24FcHm2D2PwW24fl5xMRTVGdrb7iMrwCaIEbLWerGIkXuFWVg==
 
 "@types/yargs-parser@*":
   version "20.2.0"
