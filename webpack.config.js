@@ -8,7 +8,7 @@ module.exports = {
   context: path.resolve(__dirname, 'dev'),
   entry: './index.js',
   devServer: {
-    host: 'local-ip',
+    host: 'localhost',
     port: 5000,
     devMiddleware: {
       publicPath: '/',
