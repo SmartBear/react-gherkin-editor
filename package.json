@@ -15,7 +15,7 @@
     "dist"
   ],
   "scripts": {
-    "start": "webpack serve --client-log-level silent",
+    "start": "webpack serve",
     "pretty": "prettier --write .",
     "test": "jest",
     "lint": "concurrently yarn:eslint yarn:type-check",
