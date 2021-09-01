@@ -8,11 +8,17 @@ module.exports = {
   context: path.resolve(__dirname, 'dev'),
   entry: './index.js',
   devServer: {
-    publicPath: '/',
+    host: 'local-ip',
     port: 5000,
-    stats: {
-      preset: 'minimal',
-      colors: true
+    devMiddleware: {
+      publicPath: '/',
+      stats: {
+        preset: 'minimal',
+        colors: true
+      }
+    },
+    client: {
+      logging: 'none'
     }
   },
   module: {
