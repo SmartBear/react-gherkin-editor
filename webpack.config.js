@@ -1,10 +1,11 @@
 const path = require('path')
 const TerserPlugin = require('terser-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { DefinePlugin, ProvidePlugin } = require('webpack')
+const { DefinePlugin, ProvidePlugin, SourceMapDevToolPlugin } = require('webpack')
 
 module.exports = {
   mode: 'development',
+  devtool: false,
   context: path.resolve(__dirname, 'dev'),
   entry: './index.js',
   devServer: {
@@ -66,6 +67,9 @@ module.exports = {
     }),
     new ProvidePlugin({
       Buffer: ['buffer', 'Buffer']
+    }),
+    new SourceMapDevToolPlugin({
+      exclude: /node_modules/
     })
   ]
 }
