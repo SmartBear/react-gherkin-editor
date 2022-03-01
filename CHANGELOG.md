@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [2.4.12]
+
+- Fix lodash import
+- Upgrade dependencies
+
 ## [2.4.11]
 
 - Upgrade dependencies
