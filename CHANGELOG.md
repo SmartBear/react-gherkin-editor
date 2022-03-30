@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [2.4.13]
+
 - Add support for React 18
 
 ## [2.4.12]
