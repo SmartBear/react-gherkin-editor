@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Add support for React 18
+
 ## [2.4.12]
 
 - Fix lodash import
