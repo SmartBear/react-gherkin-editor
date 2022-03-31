@@ -39,11 +39,10 @@ describe('Toolbar', () => {
       const onLanguageChange = jest.fn()
 
       const toolbar = render(<Toolbar onLanguageChange={onLanguageChange} />)
+      const input = toolbar.container.querySelector('.gherkin-editor-language-select__input') as HTMLElement
 
-      await SelectEvent.select(
-        toolbar.container.querySelector('.gherkin-editor-language-select__input'),
-        'français'
-      )
+      SelectEvent.openMenu(input)
+      await SelectEvent.select(input, 'français')
 
       expect(onLanguageChange).toHaveBeenCalled()
     })

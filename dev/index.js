@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 import React, { useState } from 'react'
-import { render } from 'react-dom'
+import ReactDOM from 'react-dom/client'
 import GherkinEditor from 'components/GherkinEditor'
 import Select from 'react-select'
 
@@ -128,4 +128,4 @@ const Preview = () => {
 const root = document.createElement('div')
 document.body.appendChild(root)
 
-render(<Preview />, root)
+ReactDOM.createRoot(root).render(<Preview />)
