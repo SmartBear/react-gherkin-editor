@@ -51,7 +51,7 @@
     "react-dom": "^18.0.0",
     "react-is": "^18.0.0",
     "react-select-event": "^5.5.0",
-    "semver": "^7.3.6",
+    "semver": "^7.3.7",
     "stream-browserify": "^3.0.0",
     "styled-components": "^5.3.5",
     "ts-jest": "^27.1.4",
