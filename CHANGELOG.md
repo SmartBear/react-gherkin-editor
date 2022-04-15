@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [2.4.14]
+
 - Upgrade dependencies
 
 ## [2.4.13]
