@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Upgrade dependencies
+
 ## [2.4.13]
 
 - Add support for React 18
