@@ -4661,10 +4661,10 @@ raw-body@2.4.3:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-re-resizable@^6.9.6:
-  version "6.9.6"
-  resolved "https://registry.yarnpkg.com/re-resizable/-/re-resizable-6.9.6.tgz#b95d37e3821481b56ddfb1e12862940a791e827d"
-  integrity sha512-0xYKS5+Z0zk+vICQlcZW+g54CcJTTmHluA7JUUgvERDxnKAnytylcyPsA+BSFi759s5hPlHmBRegFrwXs2FuBQ==
+re-resizable@^6.9.8:
+  version "6.9.8"
+  resolved "https://registry.yarnpkg.com/re-resizable/-/re-resizable-6.9.8.tgz#d9e8a785be18ab60921751e03a775096642ccd20"
+  integrity sha512-eHqU6DngM6zQOM50cx7CEmjBK+sFh5o/mzkfn9mDGnjtJsB2iFPKfGQPFtRBhuEIgeE03H61aVVEBOV+U2ZkrA==
   dependencies:
     fast-memoize "^2.5.1"
 
