@@ -45,7 +45,7 @@ class StepCompleter {
     const { fontFamily, fontSize } = editor.getOptions()
     const { width } = calculateSize(string, {
       font: fontFamily,
-      fontSize: fontSize
+      fontSize
     })
 
     return width
