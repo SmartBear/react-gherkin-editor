@@ -49,7 +49,7 @@
     "process": "^0.11.10",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.1.0",
+    "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
     "react-select-event": "^5.5.0",
     "semver": "^7.3.7",
