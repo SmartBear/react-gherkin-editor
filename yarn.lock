@@ -1341,10 +1341,10 @@ accepts@~1.3.4, accepts@~1.3.5, accepts@~1.3.8:
     mime-types "~2.1.34"
     negotiator "0.6.3"
 
-ace-builds@^1.4.14, ace-builds@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/ace-builds/-/ace-builds-1.7.0.tgz#2a3c163cbbea817985ea4346dde187a47cbdd211"
-  integrity sha512-5sruz5avLYUGRH5iWbpM4vLnAhHEoryviLP0J2uxKd4I2VQ9ImFCJDehSpiukjP745x2ypg/NIfLoWpvmBLDWg==
+ace-builds@^1.4.14, ace-builds@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/ace-builds/-/ace-builds-1.7.1.tgz#be796fbd98610dda5e138aed98d309cac2ab0872"
+  integrity sha512-1mcbP5kXvr729sJ9dA/8tul0pjuvKbma0LF/ZMRwPEwjoNWNpe/x0OXpaPJo36aRpZCjRZMl5zsME3hAKTiaNw==
 
 acorn-globals@^6.0.0:
   version "6.0.0"
