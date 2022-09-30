@@ -30,7 +30,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
-    "@types/jest": "^29.1.0",
+    "@types/jest": "^29.1.1",
     "@types/react": "^18.0.21",
     "@typescript-eslint/parser": "^5.38.1",
     "buffer": "^6.0.3",
