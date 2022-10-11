@@ -63,7 +63,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-    "@cucumber/gherkin": "^24.0.0",
+    "@cucumber/gherkin": "^24.1.0",
     "ace-builds": "^1.11.2",
     "calculate-size": "^1.1.1",
     "escape-string-regexp": "^5.0.0",
