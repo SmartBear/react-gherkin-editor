@@ -34,7 +34,7 @@
     "@types/react": "^18.0.25",
     "@typescript-eslint/parser": "^5.43.0",
     "buffer": "^6.0.3",
-    "concurrently": "^7.5.0",
+    "concurrently": "^7.6.0",
     "eslint": "^8.28.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
