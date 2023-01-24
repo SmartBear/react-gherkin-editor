@@ -52,7 +52,7 @@ describe('GherkinLinter', () => {
       })
 
       it('does not raise error', () => {
-        expect(() => gherkinLinter.parse(gherkin)).not.toThrowError()
+        expect(() => gherkinLinter.parse(gherkin)).not.toThrow()
       })
     })
 
