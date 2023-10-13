@@ -54,7 +54,7 @@
     "react-select-event": "^5.5.1",
     "semver": "^7.5.4",
     "stream-browserify": "^3.0.0",
-    "styled-components": "^5.3.11",
+    "styled-components": "^6.0.9",
     "ts-jest": "^29.1.1",
     "ts-loader": "^9.5.0",
     "typescript": "^5.2.2",
