@@ -32,7 +32,7 @@
     "@testing-library/react": "^14.2.1",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.2.58",
-    "@typescript-eslint/parser": "^5.61.0",
+    "@typescript-eslint/parser": "^7.0.2",
     "buffer": "^6.0.3",
     "concurrently": "^8.2.2",
     "eslint": "^8.57.0",
