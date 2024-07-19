@@ -55,7 +55,7 @@
     "semver": "^7.6.3",
     "stream-browserify": "^3.0.0",
     "styled-components": "^5.3.11",
-    "ts-jest": "^29.2.2",
+    "ts-jest": "^29.2.3",
     "ts-loader": "^9.5.1",
     "typescript": "^5.5.3",
     "webpack": "^5.93.0",
