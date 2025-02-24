@@ -5944,10 +5944,10 @@ raw-body@2.5.2:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-re-resizable@^6.10.3:
-  version "6.10.3"
-  resolved "https://registry.yarnpkg.com/re-resizable/-/re-resizable-6.10.3.tgz#72c42532ede0cbcaf93308bcbfed782abbf97e79"
-  integrity sha512-zvWb7X3RJMA4cuSrqoxgs3KR+D+pEXnGrD2FAD6BMYAULnZsSF4b7AOVyG6pC3VVNVOtlagGDCDmZSwWLjjBBw==
+re-resizable@^6.11.0:
+  version "6.11.0"
+  resolved "https://registry.yarnpkg.com/re-resizable/-/re-resizable-6.11.0.tgz#2b7b55ec4d061e882aeea50cda15d4c74933e777"
+  integrity sha512-XwaQX5Yk+JEvyGwX1nlLWaZUDr+8gz+Joys5lF4i+7Jy33wShJ0VYQUoFceiSKqUnjVEEz+zf3YkCTyT04R3AA==
 
 react-ace@^10.1.0:
   version "10.1.0"
