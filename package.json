@@ -67,7 +67,7 @@
     "ace-builds": "^1.43.5",
     "calculate-size": "^1.1.1",
     "escape-string-regexp": "^5.0.0",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "re-resizable": "^6.11.2",
     "react-ace": "^10.1.0",
     "react-select": "^5.10.2"
