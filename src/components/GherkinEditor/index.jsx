@@ -85,7 +85,8 @@ const GherkinEditor = React.forwardRef((props, ref) => {
     showGutter,
     theme,
     toolbarContent,
-    uniqueId
+    uniqueId,
+    onCursorChange
   } = props
 
   const setGherkinDialect = setGherkinDialectFunctions[mode] || setDialect
@@ -203,6 +204,7 @@ const GherkinEditor = React.forwardRef((props, ref) => {
           theme={theme}
           value={initialValue}
           name={uniqueId}
+          onCursorChange={onCursorChange}
           editorProps={{ $blockScrolling: true }}
           setOptions={options}
           height={`${height}px`}
@@ -229,6 +231,7 @@ GherkinEditor.propTypes = {
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
   autoCompleteFunction: PropTypes.func,
+  onCursorChange: PropTypes.func,
   onLanguageChange: PropTypes.func,
   autoFocus: PropTypes.bool,
   initialHeight: PropTypes.number,
@@ -256,6 +259,7 @@ GherkinEditor.defaultProps = {
   onChange: () => {},
   onSubmit: () => {},
   autoCompleteFunction: () => Promise.resolve([]),
+  onCursorChange: () => {},
   onLanguageChange: () => {},
   autoFocus: false,
   initialHeight: 500,
