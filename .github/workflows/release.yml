@@ -6,9 +6,42 @@ on:
       - v*
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
-  release:
+  test:
     runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v7
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v7
+      with:
+        node-version-file: '.nvmrc'
+
+    - name: Cache node modules
+      uses: actions/cache@v6
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-cache-${{ hashFiles('**/yarn.lock') }}
+
+    - name: Install dependencies
+      run: yarn --frozen-lockfile
+
+    - name: Run tests
+      run: |
+        yarn lint
+        yarn test
+
+  release:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
 
     steps:
     - name: Checkout
@@ -27,20 +60,15 @@ jobs:
         key: ${{ runner.os }}-cache-${{ hashFiles('**/yarn.lock') }}
 
     - name: Install dependencies
-      run: yarn
-
-    - name: Run tests
-      run: |
-        yarn lint
-        yarn test
+      run: yarn --frozen-lockfile
 
     - name: Get package version
       id: package-version
-      uses: martinbeentjes/npm-get-version-action@master
+      run: echo "current-version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
 
     - name: Get changelog
       id: changelog
-      uses: mindsers/changelog-reader-action@v2
+      uses: mindsers/changelog-reader-action@1faaf50aa09d5793d9a100819973df801febfb31 # v2
       with:
         version: ${{ steps.package-version.outputs.current-version }}
 
