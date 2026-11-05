@@ -20,10 +20,16 @@ on:
   schedule:
     - cron: '30 7 * * 1'
 
+permissions:
+  contents: read
+
 jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
 
     strategy:
       fail-fast: false
